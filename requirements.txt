@@ -1,0 +1,24 @@
+# Core scientific Python stack used directly by the repo scripts
+matplotlib
+numpy
+pandas
+PyYAML
+rdkit
+scikit-learn
+scipy
+xgboost
+torch
+transformers
+
+# MAMMAL inference stack
+mammal
+fuse-med-ml
+
+# Notes
+# - BALM, LigUnity, DeepCoy, and PIGNet2 are expected as separate local checkouts
+#   (for example: BALM/, LigUnity_patched/, DeepCoy_patched/, PIGNet2/) and are
+#   therefore not declared as pip-installed requirements here.
+# - Boltz-2 is invoked through the external `boltz` CLI/runtime and is not managed
+#   by this requirements file.
+# - Manual docking and ligand-preparation steps rely on external tools such as the
+#   Schrödinger Suite, Open Babel (`obabel`), and Smina.

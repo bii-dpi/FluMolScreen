@@ -32,6 +32,7 @@ The current consensus-learning prototype is based on six existing predictor feat
 - `mammal_pr`
 
 These are currently treated as frozen upstream features. Models are trained on labels collected by round, then used for inference over the larger target-specific screening universe.
+Derived branch/disagreement features can be computed from these six predictors and stored as additional static feature tables.
 
 The repo is organized around:
 
@@ -39,6 +40,10 @@ The repo is organized around:
   - modeling inputs, including shared full-library features, round-specific assay labels, and model-ready datasets
 - `results/`
   - round-specific model artifacts, evaluation outputs, and inference tables
+- `build_dataset.py`
+  - assembles target-specific training and inference datasets from assay-data and feature tables
+- `run_modeling.py`
+  - runs a first-pass modeling/evaluation workflow on assembled datasets
 
 See [data/README.md](/Users/charmainechia/Documents/projects/FluMolScreen/data/README.md) for the round-based data conventions.
 
@@ -46,16 +51,15 @@ See [data/README.md](/Users/charmainechia/Documents/projects/FluMolScreen/data/R
 
 - `data/round_synthetic/` contains the current synthetic prototype data derived from the inherited labeled screening tables.
 - `data/round_0/` is reserved for the first round of actual experimental labels.
-- `data/round_x/features/` is the shared feature store for full-library features that remain stable across rounds.
+- `data/static_features/` is the shared feature store for full-library features that remain stable across rounds.
 
 Within each round, assay-data filenames use only the target stem, for example `furin.csv` or `pa_h3n2.csv`. The round directory itself already captures whether the labels are synthetic or experimental.
 
 ## What to build next
 
-1. Implement schema and loader code against the current `data/` layout.
-2. Build feature assembly utilities that join label tables to shared full-library feature tables.
-3. Add the first furin learner and evaluation workflow.
-4. Implement grouped split logic for PA so compound identities are handled correctly across strains.
-5. Build the hierarchical PA learner with shared and strain-specific behavior.
-6. Add broad-PA scoring and evaluation.
-7. Extend the feature system so future feature families such as derived branch features, chemistry descriptors, protein embeddings, and ligand embeddings can plug in cleanly.
+1. Move stable full-library feature tables into `data/static_features/` so the shared feature store is populated explicitly.
+2. Replace the current minimal random-k-fold regression scaffold with task-appropriate evaluation schemes, especially grouped compound splits for PA.
+3. Add the first furin learner that serves as the real baseline consensus model rather than just a placeholder regression scaffold.
+4. Implement hierarchical PA modeling with shared and strain-specific behavior.
+5. Add broad-PA scoring and evaluation.
+6. Extend feature assembly to support additional feature families such as derived branch features, chemistry descriptors, protein embeddings, and ligand embeddings.
