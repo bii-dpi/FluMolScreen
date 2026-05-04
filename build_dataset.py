@@ -25,7 +25,6 @@ def main(
     save_inference_dataset: bool = False,
     training_dataset_name: str | None = None,
     inference_dataset_name: str | None = None,
-    output_dataset_dir: str | None = None,
 ) -> None:
     static_dir = Path(data_dir) / "static_features"
 
@@ -52,18 +51,6 @@ def main(
         inference_dataset_name=inference_dataset_name,
     )
 
-    if output_dataset_dir is not None:
-        output_dir = Path(output_dataset_dir)
-        output_dir.mkdir(parents=True, exist_ok=True)
-
-        if training_dataset_name is not None:
-            training_path = output_dir / training_dataset_name
-            training_df.to_csv(training_path, index=False)
-
-        if inference_dataset_name is not None:
-            inference_path = output_dir / inference_dataset_name
-            inference_df.to_csv(inference_path, index=False)
-
     print("Feature requests:")
     pprint(feature_requests)
     print("\nTraining data shape:", training_df.shape)
@@ -88,7 +75,6 @@ if __name__ == "__main__":
     SAVE_INFERENCE_DATASET = False
     TRAINING_DATASET_NAME = "furin_6predictor_chemdescriptors_train.csv"
     INFERENCE_DATASET_NAME = "furin_6predictor_chemdescriptors_inference.csv"
-    OUTPUT_DATASET_DIR = "data/datasets"
     FEATURE_REQUESTS = [
         {
             "feature_set": "6predictor",
@@ -111,5 +97,4 @@ if __name__ == "__main__":
         save_inference_dataset=SAVE_INFERENCE_DATASET,
         training_dataset_name=TRAINING_DATASET_NAME,
         inference_dataset_name=INFERENCE_DATASET_NAME,
-        output_dataset_dir=OUTPUT_DATASET_DIR,
     )
