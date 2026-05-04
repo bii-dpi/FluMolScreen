@@ -9,8 +9,8 @@ This directory stores modeling inputs, organized around two ideas:
 
 - `registry.csv`
   - Canonical target metadata table.
-- `static_features/`
-  - Shared full-library feature store for feature tables that can be reused across rounds.
+- `shared/`
+  - Shared cross-round inputs, including full-library feature tables and reusable inference datasets.
 - `round_synthetic/`
   - Synthetic prototype data used before real experimental labels are available.
 - `round_0/`, `round_1/`, ...
@@ -29,11 +29,11 @@ Training rows are constructed by matching assayed compounds to the relevant full
 
 ## Folder meanings
 
-### `static_features/`
+### `shared/features/`
 
 Use this for full-library feature tables that are stable across rounds.
 
-These are typically features computed from frozen upstream models or static representations, for example:
+These are typically features computed from frozen upstream models or other shared representations, for example:
 
 - `furin_6predictor.csv`
 - `furin_chemdescriptors.csv`
@@ -55,6 +55,16 @@ This is the default source for both:
 - `X_train`, after subsetting to compounds with labels available up to a given round;
 - `X_inference`, for full-library inference.
 
+### `shared/datasets/`
+
+Use this for assembled inference-ready datasets that are reusable across rounds.
+
+These should contain no labels and should only be saved here when they are built entirely from shared feature families rather than round-specific recalculations.
+
+Examples:
+
+- `furin_6predictor_chemdescriptors_inference.csv`
+
 ### `round_synthetic/`
 
 Use this for pre-experimental synthetic prototype data.
@@ -66,10 +76,10 @@ Current contents include:
 - `features/`
   - round-specific feature-family tables, if any are needed for the synthetic prototype round
 - `datasets/`
-  - direct model-loading datasets such as `furin_6predictor.csv`
+  - round-specific assembled training datasets and any other assembled tables that genuinely depend on this synthetic round
 
 This synthetic round is separate from `round_0` so that the first real experimental round can use `round_0` directly.
-Stable feature families such as the current `6predictor` tables should live in `static_features/`, not here.
+Stable feature families such as the current `6predictor` tables should live in `shared/features/`, not here.
 
 ### `round_k/assay_data/`
 
@@ -86,7 +96,7 @@ Use this only for feature tables that are specific to round `k`.
 
 These should also usually be computed for the full inference universe for that target, not only for the assayed subset.
 
-These use the same file naming convention as `static_features/`:
+These use the same file naming convention as `shared/features/`:
 
 - `{target_id}_{feature_set}.csv`
 
@@ -97,18 +107,18 @@ Examples:
 - round-specific uncertainty or novelty features;
 - label-history-dependent derived features.
 
-Do not copy unchanged full-library features from `static_features/` into each round-specific feature folder just to create training slices.
+Do not copy unchanged full-library features from `shared/features/` into each round-specific feature folder just to create training slices.
 
 ### `round_k/datasets/`
 
-Use this for direct model-loading datasets assembled for round `k`.
+Use this for direct model-loading training datasets assembled for round `k`, or other assembled datasets that genuinely depend on round-specific labels or features.
 
 These are convenience snapshots rather than the canonical storage location for raw features.
 
 Examples:
 
-- `furin_6predictor.csv`
-- `all_targets_6predictor.csv`
+- `furin_6predictor_chemdescriptors_train.csv`
+- `pa_h3n2_6predictor.csv`
 
 These datasets may contain labels plus one or more feature families combined into a model-ready table.
 
@@ -118,20 +128,24 @@ At round `k`:
 
 1. Collect all label-bearing assay rows available up to that point.
 2. Load the relevant full-library feature tables.
-  - Use `static_features/` for stable feature families.
+  - Use `shared/features/` for stable feature families.
   - Use `round_k/features/` only when that round has updated or newly derived full-library features.
 3. Build `X_train` by matching labeled compounds to the full-library feature tables.
 4. Train the round `k` model(s).
-5. Build `X_inference` from the full-library feature tables for that target.
+5. Build `X_inference` from the shared full-library feature tables for that target, unless round-specific feature recalculations are part of the inference set.
 6. Run inference across the full target library.
 7. Save model outputs under `results/round_k/`.
 
+When the inference dataset is built only from shared feature families, it should be saved under `shared/datasets/`.
+When an assembled dataset depends on round-specific labels or round-specific recalculated features, it should be saved under `round_k/datasets/`.
+
 ## Practical rule
 
-- `static_features` = canonical shared full-library feature store
+- `shared/features` = canonical shared full-library feature store
+- `shared/datasets` = canonical shared inference-dataset store
 - `round_synthetic/*` = synthetic prototype inputs before real experimental rounds begin
 - `round_k/assay_data` = labels available by round `k`
 - `round_k/features` = full-library features that changed at round `k`
-- `round_k/datasets` = assembled train/inference-ready tables for convenience
+- `round_k/datasets` = assembled round-specific training datasets and other round-specific assembled tables
 
-In general, if a feature family has not changed, store it once in `static_features/` and subset by compound ID when assembling training data.
+In general, if a feature family has not changed, store it once in `shared/features/` and subset by compound ID when assembling training data.

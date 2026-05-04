@@ -32,7 +32,7 @@ The current consensus-learning prototype is based on six existing predictor feat
 - `mammal_pr`
 
 These are currently treated as frozen upstream features. Models are trained on labels collected by round, then used for inference over the larger target-specific screening universe.
-Derived branch/disagreement features can be computed from these six predictors and stored as additional static feature tables.
+Derived branch/disagreement features can be computed from these six predictors and stored as additional shared feature tables.
 
 The repo is organized around:
 
@@ -51,13 +51,14 @@ See [data/README.md](/Users/charmainechia/Documents/projects/FluMolScreen/data/R
 
 - `data/round_synthetic/` contains the current synthetic prototype data derived from the inherited labeled screening tables.
 - `data/round_0/` is reserved for the first round of actual experimental labels.
-- `data/static_features/` is the shared feature store for full-library features that remain stable across rounds.
+- `data/shared/features/` is the shared feature store for full-library features that remain stable across rounds.
+- `data/shared/datasets/` is the shared store for reusable inference datasets built from shared feature families.
 
 Within each round, assay-data filenames use only the target stem, for example `furin.csv` or `pa_h3n2.csv`. The round directory itself already captures whether the labels are synthetic or experimental.
 
 ## What to build next
 
-1. Move stable full-library feature tables into `data/static_features/` so the shared feature store is populated explicitly.
+1. Continue consolidating reusable full-library feature tables and inference-ready datasets under `data/shared/`.
 2. Replace the current minimal random-k-fold regression scaffold with task-appropriate evaluation schemes, especially grouped compound splits for PA.
 3. Add the first furin learner that serves as the real baseline consensus model rather than just a placeholder regression scaffold.
 4. Implement hierarchical PA modeling with shared and strain-specific behavior.

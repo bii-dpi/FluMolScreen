@@ -63,7 +63,7 @@ if __name__ == "__main__":
     FEATURE_REQUESTS = [
         {
             "feature_set": "6predictor",
-            "source": "static",
+            "source": "shared",
         },
     ]
 

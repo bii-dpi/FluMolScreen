@@ -82,7 +82,7 @@ def load_assay_data(
     )
 
 
-def load_static_feature_table(
+def load_shared_feature_table(
     data_dir: Path | str,
     target_id: str,
     feature_set: str,
@@ -93,11 +93,11 @@ def load_static_feature_table(
     if feature_set not in FEATURE_REGISTRY:
         raise ValueError(f"Unknown feature_set: {feature_set}")
 
-    path = _normalize_data_dir(data_dir) / "static_features" / _feature_file_name(
+    path = _normalize_data_dir(data_dir) / "shared" / "features" / _feature_file_name(
         target_id, feature_set
     )
     if not path.exists():
-        raise FileNotFoundError(f"Static feature file not found: {path}")
+        raise FileNotFoundError(f"Shared feature file not found: {path}")
 
     df = pd.read_csv(path)
     required_columns = _feature_table_columns(feature_set, columns)
@@ -148,11 +148,11 @@ def load_feature_table(
     source: str = "auto",
     columns: list[str] | None = None,
 ) -> pd.DataFrame:
-    if source not in {"auto", "static", "round"}:
-        raise ValueError("source must be one of: 'auto', 'static', 'round'")
+    if source not in {"auto", "shared", "round"}:
+        raise ValueError("source must be one of: 'auto', 'shared', 'round'")
 
-    if source == "static":
-        return load_static_feature_table(data_dir, target_id, feature_set, columns)
+    if source == "shared":
+        return load_shared_feature_table(data_dir, target_id, feature_set, columns)
 
     if source == "round":
         if round_id is None:
@@ -169,7 +169,7 @@ def load_feature_table(
         except FileNotFoundError:
             pass
 
-    return load_static_feature_table(data_dir, target_id, feature_set, columns)
+    return load_shared_feature_table(data_dir, target_id, feature_set, columns)
 
 
 def load_dataset(
@@ -181,6 +181,24 @@ def load_dataset(
     path = _normalize_data_dir(data_dir) / round_id / "datasets" / dataset_name
     if not path.exists():
         raise FileNotFoundError(f"Dataset file not found: {path}")
+
+    df = pd.read_csv(path)
+    return _select_columns(
+        df=df,
+        required_columns=DATASET_REQUIRED_COLUMNS,
+        selected_columns=columns,
+        table_name=str(path),
+    )
+
+
+def load_shared_dataset(
+    data_dir: Path | str,
+    dataset_name: str,
+    columns: list[str] | None = None,
+) -> pd.DataFrame:
+    path = _normalize_data_dir(data_dir) / "shared" / "datasets" / dataset_name
+    if not path.exists():
+        raise FileNotFoundError(f"Shared dataset file not found: {path}")
 
     df = pd.read_csv(path)
     return _select_columns(

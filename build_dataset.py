@@ -26,17 +26,17 @@ def main(
     training_dataset_name: str | None = None,
     inference_dataset_name: str | None = None,
 ) -> None:
-    static_dir = Path(data_dir) / "static_features"
+    shared_features_dir = Path(data_dir) / "shared" / "features"
 
     if generate_derived_6predictor:
-        input_path = static_dir / f"{target_id}_6predictor.csv"
-        output_path = static_dir / f"{target_id}_6predictor_derived.csv"
+        input_path = shared_features_dir / f"{target_id}_6predictor.csv"
+        output_path = shared_features_dir / f"{target_id}_6predictor_derived.csv"
         write_derived_6predictor_features(input_path=input_path, output_path=output_path)
         print(f"Generated derived 6predictor features: {output_path}")
 
     if generate_chemdescriptors:
         input_path = Path(data_dir) / round_id / "assay_data" / f"{target_id}.csv"
-        output_path = static_dir / f"{target_id}_chemdescriptors.csv"
+        output_path = shared_features_dir / f"{target_id}_chemdescriptors.csv"
         write_chemical_descriptor_features(input_path=input_path, output_path=output_path)
         print(f"Generated chemical descriptors: {output_path}")
 
@@ -71,18 +71,18 @@ if __name__ == "__main__":
     TARGET_ID = "furin"
     GENERATE_DERIVED_6PREDICTOR = False
     GENERATE_CHEMDESCRIPTORS = True
-    SAVE_TRAINING_DATASET = False
-    SAVE_INFERENCE_DATASET = False
+    SAVE_TRAINING_DATASET = True
+    SAVE_INFERENCE_DATASET = True
     TRAINING_DATASET_NAME = "furin_6predictor_chemdescriptors_train.csv"
     INFERENCE_DATASET_NAME = "furin_6predictor_chemdescriptors_inference.csv"
     FEATURE_REQUESTS = [
         {
             "feature_set": "6predictor",
-            "source": "static",
+            "source": "shared",
         },
         {
             "feature_set": "chemdescriptors",
-            "source": "static",
+            "source": "shared",
         },
     ]
 

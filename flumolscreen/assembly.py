@@ -104,14 +104,28 @@ def separate_features_and_label(
 def save_dataset(
     df: pd.DataFrame,
     data_dir: Path | str,
-    round_id: str,
     dataset_name: str,
+    round_id: str | None = None,
+    scope: str = "round",
 ) -> Path:
-    output_dir = Path(data_dir) / round_id / "datasets"
+    if scope not in {"round", "shared"}:
+        raise ValueError("scope must be one of: 'round', 'shared'")
+
+    if scope == "round":
+        if round_id is None:
+            raise ValueError("round_id is required when scope='round'")
+        output_dir = Path(data_dir) / round_id / "datasets"
+    else:
+        output_dir = Path(data_dir) / "shared" / "datasets"
+
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / dataset_name
     df.to_csv(output_path, index=False)
     return output_path
+
+
+def _feature_requests_are_shared_only(feature_requests: list[dict]) -> bool:
+    return all(request.get("source", "auto") == "shared" for request in feature_requests)
 
 
 def build_target_datasets(
@@ -148,8 +162,9 @@ def build_target_datasets(
         training_path = save_dataset(
             df=training_df,
             data_dir=data_dir,
-            round_id=round_id,
             dataset_name=training_dataset_name,
+            round_id=round_id,
+            scope="round",
         )
 
     if save_inference_dataset:
@@ -157,11 +172,13 @@ def build_target_datasets(
             raise ValueError(
                 "inference_dataset_name is required when save_inference_dataset=True"
             )
+        inference_scope = "shared" if _feature_requests_are_shared_only(feature_requests) else "round"
         inference_path = save_dataset(
             df=inference_df,
             data_dir=data_dir,
-            round_id=round_id,
             dataset_name=inference_dataset_name,
+            round_id=round_id,
+            scope=inference_scope,
         )
 
     return training_df, inference_df, training_path, inference_path
