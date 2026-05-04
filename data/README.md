@@ -53,11 +53,11 @@ Use this for pre-experimental synthetic prototype data.
 Current contents include:
 
 - `assay_data/`
-  - synthetic label-bearing tables such as `furin_synthetic.csv`
+  - synthetic label-bearing tables such as `furin.csv`
 - `features/`
   - current synthetic-round feature-family tables
 - `datasets/`
-  - direct model-loading datasets such as `furin_synthetic_6predictor.csv`
+  - direct model-loading datasets such as `furin_6predictor.csv`
 
 This synthetic round is separate from `round_0` so that the first real experimental round can use `round_0` directly.
 
@@ -67,8 +67,8 @@ Use this for label-bearing tables for a specific real round.
 
 Examples:
 
-- `furin_explabels.csv`
-- `pa_ph1n1_explabels.csv`
+- `furin.csv`
+- `pa_ph1n1.csv`
 
 ### `round_k/features/`
 
@@ -93,8 +93,8 @@ These are convenience snapshots rather than the canonical storage location for r
 
 Examples:
 
-- `furin_explabels_6predictor.csv`
-- `all_targets_explabels_6predictor.csv`
+- `furin_6predictor.csv`
+- `all_targets_6predictor.csv`
 
 These datasets may contain labels plus one or more feature families combined into a model-ready table.
 

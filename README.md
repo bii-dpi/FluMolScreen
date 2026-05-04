@@ -48,6 +48,8 @@ See [data/README.md](/Users/charmainechia/Documents/projects/FluMolScreen/data/R
 - `data/round_0/` is reserved for the first round of actual experimental labels.
 - `data/round_x/features/` is the shared feature store for full-library features that remain stable across rounds.
 
+Within each round, assay-data filenames use only the target stem, for example `furin.csv` or `pa_h3n2.csv`. The round directory itself already captures whether the labels are synthetic or experimental.
+
 ## What to build next
 
 1. Implement schema and loader code against the current `data/` layout.
