@@ -1,0 +1,5 @@
+target_id,target_class,target_family,strain
+furin,Furin,host,
+pa_ph1n1,PA,pa,pH1N1
+pa_h3n2,PA,pa,H3N2
+pa_h5n1,PA,pa,H5N1
