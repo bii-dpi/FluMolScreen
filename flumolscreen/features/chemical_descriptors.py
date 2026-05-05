@@ -13,11 +13,13 @@ DESCRIPTOR_COLUMNS = [
     "tpsa",
     "hbd",
     "hba",
+    "formal_charge",
     "rotatable_bonds",
     "ring_count",
     "aromatic_ring_count",
     "heavy_atom_count",
     "fraction_csp3",
+    "structural_alert_count",
     "qed",
 ]
 
@@ -36,7 +38,8 @@ def _load_rdkit_modules():
 
 
 def _build_descriptor_record(mol, compound_id, descriptor_modules) -> dict:
-    _, Crippen, Descriptors, Lipinski, QED, rdMolDescriptors = descriptor_modules
+    Chem, Crippen, Descriptors, Lipinski, QED, rdMolDescriptors = descriptor_modules
+    qed_properties = QED.properties(mol)
 
     return {
         "compound_id": compound_id,
@@ -45,11 +48,13 @@ def _build_descriptor_record(mol, compound_id, descriptor_modules) -> dict:
         "tpsa": rdMolDescriptors.CalcTPSA(mol),
         "hbd": Lipinski.NumHDonors(mol),
         "hba": Lipinski.NumHAcceptors(mol),
+        "formal_charge": Chem.GetFormalCharge(mol),
         "rotatable_bonds": Lipinski.NumRotatableBonds(mol),
         "ring_count": Lipinski.RingCount(mol),
         "aromatic_ring_count": rdMolDescriptors.CalcNumAromaticRings(mol),
         "heavy_atom_count": Lipinski.HeavyAtomCount(mol),
         "fraction_csp3": Lipinski.FractionCSP3(mol),
+        "structural_alert_count": qed_properties.ALERTS,
         "qed": QED.qed(mol),
     }
 
