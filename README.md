@@ -34,14 +34,16 @@ The current consensus-learning prototype is based on six existing predictor feat
 These are currently treated as frozen upstream percentile-rank features. Models are trained on labels collected by round, then used for inference over the larger target-specific screening universe.
 The current shared feature family is `6predictor_pr`, and derived branch/disagreement features can be computed from these six percentile predictors and stored as additional shared feature tables.
 
-Planned uncertainty estimation is based on an adaptive conformal workflow. The current recommended design is:
-- outer `k = 5` fold CV for unbiased evaluation
-- inner `l = 3` fold CV for model / feature / hyperparameter selection
-- within each outer training fold, reserve `20%` as a calibration subset
-- train an ensemble of `m = 10` models on the remaining proper-training subset
-- use ensemble prediction mean and standard deviation together with conformal calibration on absolute standardized residuals to produce sample-specific prediction intervals
+Current model comparison uses nested cross-validation:
+- outer `k = 5` fold CV for unbiased evaluation of each feature-set / model ablation
+- inner `l = 3` fold CV or holdout tuning for candidate-specific hyperparameter selection
+- Optuna tuning within each candidate, with full fold metrics saved for every feature/model combination rather than collapsing immediately to one global winner
 
-The first implementation target is symmetric `90%` prediction intervals for ridge and XGBoost models.
+Current uncertainty-aware inference uses an adaptive conformal workflow on the final fitted candidate:
+- reserve `20%` of labeled data as a calibration subset
+- fit a bootstrap ensemble of `m = 10` models on the remaining proper-training rows
+- use the ensemble mean and spread on the calibration subset to fit a symmetric conformal scaler
+- save final inference outputs as `pred_mean` plus a calibrated half-width `pred_err`
 
 The repo is organized around:
 
@@ -55,21 +57,3 @@ The repo is organized around:
   - rebuilds datasets for configured feature comparisons, runs cross-validated modeling, and saves evaluation/inference outputs
 
 See [data/README.md](/Users/charmainechia/Documents/projects/FluMolScreen/data/README.md) for the round-based data conventions.
-
-## Current data state
-
-- `data/round_synthetic/` contains the current synthetic prototype data derived from the inherited labeled screening tables.
-- `data/round_0/` is reserved for the first round of actual experimental labels.
-- `data/shared/features/` is the shared feature store for full-library features that remain stable across rounds.
-- `data/shared/datasets/` is the shared store for reusable inference datasets built from shared feature families.
-
-Within each round, assay-data filenames use only the target stem, for example `furin.csv` or `pa_h3n2.csv`. The round directory itself already captures whether the labels are synthetic or experimental.
-
-## What to build next
-
-1. Continue consolidating reusable full-library feature tables and inference-ready datasets under `data/shared/`.
-2. Replace the current minimal random-k-fold regression scaffold with task-appropriate evaluation schemes, especially grouped compound splits for PA.
-3. Add the first furin learner that serves as the real baseline consensus model rather than just a placeholder regression scaffold.
-4. Implement hierarchical PA modeling with shared and strain-specific behavior.
-5. Add broad-PA scoring and evaluation.
-6. Extend feature assembly to support additional feature families such as derived branch features, chemistry descriptors, protein embeddings, and ligand embeddings.
