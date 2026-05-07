@@ -17,7 +17,9 @@ from flumolscreen.ml.splits import make_splits
 from flumolscreen.ml.tuning import TRIAL_TRACE_COLUMNS, tune_candidate
 from flumolscreen.ml.utils import (
     DISPLAY_TUNING_MODES,
+    build_merged_inference_path,
     evaluation_base_name,
+    merge_inference_predictions,
     prepare_result_dirs,
     round_metrics,
 )
@@ -89,6 +91,25 @@ def _initialize_trace_file(trace_path: Path) -> None:
     """Create an empty trial-trace CSV with the expected columns."""
     # Start each workflow run with a clean live trace file for Optuna trials.
     pd.DataFrame(columns=TRIAL_TRACE_COLUMNS).to_csv(trace_path, index=False)
+
+
+def _build_merged_inference_table(
+    inference_paths: dict[tuple[str, str], Path],
+    inference_dir: Path,
+    target_id: str,
+) -> Path:
+    """Load per-candidate inference files, merge them, and save one wide table."""
+    inference_tables = {
+        f"{comparison_name}_{model_type}": pd.read_csv(path)
+        for (comparison_name, model_type), path in inference_paths.items()
+    }
+    merged_df = merge_inference_predictions(inference_tables)
+    merged_path = build_merged_inference_path(
+        inference_dir=inference_dir,
+        target_id=target_id,
+    )
+    merged_df.to_csv(merged_path, index=False)
+    return merged_path
 
 
 def evaluate_candidate_on_outer_fold(
@@ -305,6 +326,11 @@ def run_cv_workflow(
         )
 
     final_tuning_df = pd.concat(final_tuning_rows, ignore_index=True)
+    merged_inference_path = _build_merged_inference_table(
+        inference_paths=inference_paths,
+        inference_dir=result_dirs["inference"],
+        target_id=target_id,
+    )
     fold_path, summary_path, trace_path = save_cv_outputs(
         evaluation_dir=result_dirs["evaluation"],
         target_id=target_id,
@@ -325,6 +351,7 @@ def run_cv_workflow(
         "summary_path": summary_path,
         "trace_path": trace_path,
         "inference_paths": inference_paths,
+        "merged_inference_path": merged_inference_path,
     }
 
 
@@ -383,5 +410,6 @@ def print_cv_summary(
     print(f"- fold_metrics: {results['fold_path']}")
     print(f"- summary: {results['summary_path']}")
     print(f"- trace: {results['trace_path']}")
+    print(f"- merged_inference: {results['merged_inference_path']}")
     for (comparison_name, model_type), path in results["inference_paths"].items():
         print(f"- inference [{comparison_name}, {model_type}]: {path}")

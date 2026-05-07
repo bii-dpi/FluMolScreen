@@ -16,7 +16,11 @@ from flumolscreen.ml.splits import (
     make_bootstrap_sample_indices,
     make_random_holdout_split,
 )
-from flumolscreen.ml.utils import inference_file_name, select_model_feature_columns
+from flumolscreen.ml.utils import (
+    annotate_inference_overlap,
+    inference_file_name,
+    select_model_feature_columns,
+)
 
 __all__ = [
     "fit_bootstrap_ensemble",
@@ -79,8 +83,8 @@ def _build_uncertainty_inference_df(
     """Build the compact uncertainty-aware inference payload."""
     # Keep only stable IDs plus the calibrated prediction center and half-width.
     inference_df = inference_source_df.loc[:, ["compound_id", "target_id"]].copy()
-    inference_df["prediction_mean"] = prediction_mean.round(4)
-    inference_df["prediction_err"] = prediction_err.round(4)
+    inference_df["pred_mean"] = prediction_mean.round(4)
+    inference_df["pred_err"] = prediction_err.round(4)
     return inference_df
 
 
@@ -174,10 +178,14 @@ def _fit_and_save_point_inference(
     # Save either plain point predictions or GP-style mean/error outputs.
     inference_df = candidate["inference_df"].loc[:, ["compound_id", "target_id"]].copy()
     if "prediction_err" in predictions.columns:
-        inference_df["prediction_mean"] = predictions["prediction_mean"]
-        inference_df["prediction_err"] = predictions["prediction_err"]
+        inference_df["pred_mean"] = predictions["prediction_mean"]
+        inference_df["pred_err"] = predictions["prediction_err"]
     else:
         inference_df["prediction"] = predictions["prediction_mean"]
+    inference_df = annotate_inference_overlap(
+        inference_df=inference_df,
+        experimental_df=candidate["training_df"],
+    )
     output_path = _build_inference_output_path(
         inference_dir=inference_dir,
         target_id=target_id,
@@ -276,6 +284,10 @@ def _fit_and_save_adaptive_conformal_inference(
         inference_source_df=candidate["inference_df"],
         prediction_mean=inference_predictions["prediction_mean"],
         prediction_err=prediction_err,
+    )
+    inference_df = annotate_inference_overlap(
+        inference_df=inference_df,
+        experimental_df=candidate["training_df"],
     )
     output_path = _build_inference_output_path(
         inference_dir=inference_dir,
