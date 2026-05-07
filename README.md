@@ -31,8 +31,17 @@ The current consensus-learning prototype is based on six existing predictor feat
 - `balm_pr`
 - `mammal_pr`
 
-These are currently treated as frozen upstream features. Models are trained on labels collected by round, then used for inference over the larger target-specific screening universe.
-Derived branch/disagreement features can be computed from these six predictors and stored as additional shared feature tables.
+These are currently treated as frozen upstream percentile-rank features. Models are trained on labels collected by round, then used for inference over the larger target-specific screening universe.
+The current shared feature family is `6predictor_pr`, and derived branch/disagreement features can be computed from these six percentile predictors and stored as additional shared feature tables.
+
+Planned uncertainty estimation is based on an adaptive conformal workflow. The current recommended design is:
+- outer `k = 5` fold CV for unbiased evaluation
+- inner `l = 3` fold CV for model / feature / hyperparameter selection
+- within each outer training fold, reserve `20%` as a calibration subset
+- train an ensemble of `m = 10` models on the remaining proper-training subset
+- use ensemble prediction mean and standard deviation together with conformal calibration on absolute standardized residuals to produce sample-specific prediction intervals
+
+The first implementation target is symmetric `90%` prediction intervals for ridge and XGBoost models.
 
 The repo is organized around:
 
@@ -42,8 +51,8 @@ The repo is organized around:
   - round-specific model artifacts, evaluation outputs, and inference tables
 - `build_dataset.py`
   - assembles target-specific training and inference datasets from assay-data and feature tables
-- `run_modeling.py`
-  - runs a first-pass modeling/evaluation workflow on assembled datasets
+- `run_consensus_learner.py`
+  - rebuilds datasets for configured feature comparisons, runs cross-validated modeling, and saves evaluation/inference outputs
 
 See [data/README.md](/Users/charmainechia/Documents/projects/FluMolScreen/data/README.md) for the round-based data conventions.
 

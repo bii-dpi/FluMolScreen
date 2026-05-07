@@ -9,8 +9,24 @@ import pandas as pd
 from flumolscreen.feature_registry import FEATURE_REGISTRY
 from flumolscreen.loaders import load_assay_data, load_feature_table
 
+DATASET_METADATA_COLUMNS = [
+    "compound_id",
+    "target_id",
+    "isomeric_smiles",
+]
 
-def _merge_feature_frames(feature_frames: list[pd.DataFrame], feature_sets: list[str]) -> pd.DataFrame:
+NON_ESSENTIAL_ASSEMBLY_COLUMNS = {
+    "target_class",
+    "strain",
+    "label_source",
+    "round_id",
+}
+
+
+def _merge_feature_frames(
+    feature_frames: list[pd.DataFrame],
+    feature_sets: list[str],
+) -> pd.DataFrame:
     merged = feature_frames[0]
 
     for feature_set, frame in zip(feature_sets[1:], feature_frames[1:]):
@@ -51,13 +67,31 @@ def assemble_features(
     return _merge_feature_frames(feature_frames, feature_sets)
 
 
+def _standardize_dataset_frame(
+    df: pd.DataFrame,
+    include_label: bool,
+) -> pd.DataFrame:
+    metadata_columns = [col for col in DATASET_METADATA_COLUMNS if col in df.columns]
+    label_columns = (
+        ["label_pkd"] if include_label and "label_pkd" in df.columns else []
+    )
+    excluded = set(metadata_columns + label_columns) | NON_ESSENTIAL_ASSEMBLY_COLUMNS
+    feature_columns = [col for col in df.columns if col not in excluded]
+    ordered_columns = [*metadata_columns, *label_columns, *feature_columns]
+    return df.loc[:, ordered_columns].copy()
+
+
 def assemble_training_data(
     data_dir: Path | str,
     round_id: str,
     target_id: str,
     feature_requests: list[dict],
 ) -> pd.DataFrame:
-    assay_df = load_assay_data(data_dir=data_dir, round_id=round_id, target_id=target_id)
+    assay_df = load_assay_data(
+        data_dir=data_dir,
+        round_id=round_id,
+        target_id=target_id,
+    )
     feature_df = assemble_features(
         data_dir=data_dir,
         target_id=target_id,
@@ -65,14 +99,28 @@ def assemble_training_data(
         round_id=round_id,
     )
 
-    feature_only_columns = [
+    assay_base_columns = [
+        col
+        for col in [*DATASET_METADATA_COLUMNS, "label_pkd"]
+        if col in assay_df.columns
+    ]
+    assay_base_df = assay_df.loc[:, assay_base_columns].copy()
+    feature_columns_to_keep = [
         col
         for col in feature_df.columns
-        if col not in assay_df.columns or col in {"compound_id", "target_id"}
+        if col not in DATASET_METADATA_COLUMNS or col in {"compound_id", "target_id"}
     ]
-    feature_df = feature_df.loc[:, feature_only_columns]
+    feature_df = feature_df.loc[:, feature_columns_to_keep].copy()
+    merge_keys = [
+        col for col in ["compound_id", "target_id"] if col in feature_df.columns
+    ]
 
-    return assay_df.merge(feature_df, on=["compound_id", "target_id"], how="inner")
+    training_df = assay_base_df.merge(
+        feature_df,
+        on=merge_keys,
+        how="inner",
+    )
+    return _standardize_dataset_frame(training_df, include_label=True)
 
 
 def assemble_inference_data(
@@ -81,24 +129,16 @@ def assemble_inference_data(
     target_id: str,
     feature_requests: list[dict],
 ) -> pd.DataFrame:
-    return assemble_features(
+    inference_df = assemble_features(
         data_dir=data_dir,
         target_id=target_id,
         feature_requests=feature_requests,
         round_id=round_id,
     )
-
-
-def separate_features_and_label(
-    training_df: pd.DataFrame,
-    label_column: str = "label_pkd",
-) -> tuple[pd.DataFrame, pd.Series]:
-    if label_column not in training_df.columns:
-        raise ValueError(f"Label column not found: {label_column}")
-
-    y = training_df[label_column].copy()
-    X = training_df.drop(columns=[label_column]).copy()
-    return X, y
+    if "target_id" not in inference_df.columns:
+        inference_df = inference_df.copy()
+        inference_df["target_id"] = target_id
+    return _standardize_dataset_frame(inference_df, include_label=False)
 
 
 def save_dataset(
@@ -125,7 +165,9 @@ def save_dataset(
 
 
 def _feature_requests_are_shared_only(feature_requests: list[dict]) -> bool:
-    return all(request.get("source", "auto") == "shared" for request in feature_requests)
+    return all(
+        request.get("source", "auto") == "shared" for request in feature_requests
+    )
 
 
 def build_target_datasets(
@@ -133,8 +175,6 @@ def build_target_datasets(
     round_id: str,
     target_id: str,
     feature_requests: list[dict],
-    save_training_dataset: bool = False,
-    save_inference_dataset: bool = False,
     training_dataset_name: str | None = None,
     inference_dataset_name: str | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, Path | None, Path | None]:
@@ -154,11 +194,7 @@ def build_target_datasets(
     training_path = None
     inference_path = None
 
-    if save_training_dataset:
-        if training_dataset_name is None:
-            raise ValueError(
-                "training_dataset_name is required when save_training_dataset=True"
-            )
+    if training_dataset_name is not None:
         training_path = save_dataset(
             df=training_df,
             data_dir=data_dir,
@@ -167,12 +203,12 @@ def build_target_datasets(
             scope="round",
         )
 
-    if save_inference_dataset:
-        if inference_dataset_name is None:
-            raise ValueError(
-                "inference_dataset_name is required when save_inference_dataset=True"
-            )
-        inference_scope = "shared" if _feature_requests_are_shared_only(feature_requests) else "round"
+    if inference_dataset_name is not None:
+        inference_scope = (
+            "shared"
+            if _feature_requests_are_shared_only(feature_requests)
+            else "round"
+        )
         inference_path = save_dataset(
             df=inference_df,
             data_dir=data_dir,

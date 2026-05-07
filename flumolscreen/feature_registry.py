@@ -1,7 +1,7 @@
 """Canonical feature registry for FluMolScreen."""
 
 FEATURE_REGISTRY = {
-    "6predictor": {
+    "6predictor_pr": {
         "join_keys": ["compound_id", "target_id"],
         "default_columns": [
             "glidesp_pr",
@@ -12,18 +12,43 @@ FEATURE_REGISTRY = {
             "mammal_pr",
         ],
     },
-    "6predictor_derived": {
+    "6predictor_pr_derived": {
         "join_keys": ["compound_id", "target_id"],
         "default_columns": [
-            "branch_sequence",
-            "branch_pose",
-            "branch_structure",
-            "consensus_123",
-            "disagreement_sd",
-            "disagreement_range",
-            "disagreement_branch_sd",
-            "structure_minus_pose",
-            "sequence_minus_structure",
+            "branch_sequence_pr",
+            "branch_pose_pr",
+            "branch_structure_pr",
+            "consensus_123_pr",
+            "disagreement_sd_pr",
+            "disagreement_range_pr",
+            "disagreement_branch_sd_pr",
+            "structure_minus_pose_pr",
+            "sequence_minus_structure_pr",
+        ],
+    },
+    "6predictor_sc": {
+        "join_keys": ["compound_id", "target_id"],
+        "default_columns": [
+            "glidesp_sc",
+            "pignet2_sc",
+            "ligunity_sc",
+            "boltz2_sc",
+            "balm_sc",
+            "mammal_sc",
+        ],
+    },
+    "6predictor_sc_derived": {
+        "join_keys": ["compound_id", "target_id"],
+        "default_columns": [
+            "branch_sequence_sc",
+            "branch_pose_sc",
+            "branch_structure_sc",
+            "consensus_123_sc",
+            "disagreement_sd_sc",
+            "disagreement_range_sc",
+            "disagreement_branch_sd_sc",
+            "structure_minus_pose_sc",
+            "sequence_minus_structure_sc",
         ],
     },
     "chemdescriptors": {

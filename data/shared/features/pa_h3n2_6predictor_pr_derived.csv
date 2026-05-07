@@ -1,4 +1,4 @@
-compound_id,target_id,branch_sequence,branch_pose,branch_structure,consensus_123,disagreement_sd,disagreement_range,disagreement_branch_sd,structure_minus_pose,sequence_minus_structure
+compound_id,target_id,branch_sequence_pr,branch_pose_pr,branch_structure_pr,consensus_123_pr,disagreement_sd_pr,disagreement_range_pr,disagreement_branch_sd_pr,structure_minus_pose_pr,sequence_minus_structure_pr
 1004316-88-4,pa_h3n2,0.5097499999999999,0.6779,0.7155,0.668675,0.16686788087186422,0.44020000000000004,0.1095606719280844,0.03760000000000008,-0.2057500000000001
 100643-71-8,pa_h3n2,0.8694999999999999,0.958,0.9829,0.9556999999999998,0.08290710464127908,0.22560000000000002,0.059598406018953255,0.024900000000000033,-0.11340000000000006
 101-26-8,pa_h3n2,0.3738,0.0505,0.79225,0.4752583333333333,0.384359771134632,0.862,0.37189074448463133,0.74175,-0.41845

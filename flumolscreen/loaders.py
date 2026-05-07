@@ -10,6 +10,8 @@ from flumolscreen.feature_registry import FEATURE_REGISTRY
 from flumolscreen.schema import ASSAY_DATA_REQUIRED_COLUMNS, DATASET_REQUIRED_COLUMNS
 from flumolscreen.target_registry import TARGET_REGISTRY
 
+FEATURE_CONTEXT_COLUMNS = ["isomeric_smiles"]
+
 
 def _normalize_data_dir(data_dir: Path | str) -> Path:
     return Path(data_dir)
@@ -28,7 +30,12 @@ def _select_columns(
         )
 
     if selected_columns is None:
-        return df.copy()
+        ordered_columns = [
+            *required_columns,
+            *[col for col in FEATURE_CONTEXT_COLUMNS if col in df.columns],
+        ]
+        ordered_columns = list(dict.fromkeys(ordered_columns))
+        return df.loc[:, ordered_columns].copy()
 
     requested = list(dict.fromkeys(required_columns + selected_columns))
     missing_requested = [col for col in requested if col not in df.columns]
@@ -50,14 +57,6 @@ def _feature_table_columns(feature_set: str, columns: list[str] | None) -> list[
     default_columns = feature_spec["default_columns"]
     requested = default_columns if columns is None else columns
     return list(dict.fromkeys(join_keys + requested))
-
-
-def load_target_registry() -> dict:
-    return TARGET_REGISTRY
-
-
-def load_feature_registry() -> dict:
-    return FEATURE_REGISTRY
 
 
 def load_assay_data(
@@ -170,26 +169,6 @@ def load_feature_table(
             pass
 
     return load_shared_feature_table(data_dir, target_id, feature_set, columns)
-
-
-def load_dataset(
-    data_dir: Path | str,
-    round_id: str,
-    dataset_name: str,
-    columns: list[str] | None = None,
-) -> pd.DataFrame:
-    path = _normalize_data_dir(data_dir) / round_id / "datasets" / dataset_name
-    if not path.exists():
-        raise FileNotFoundError(f"Dataset file not found: {path}")
-
-    df = pd.read_csv(path)
-    return _select_columns(
-        df=df,
-        required_columns=DATASET_REQUIRED_COLUMNS,
-        selected_columns=columns,
-        table_name=str(path),
-    )
-
 
 def load_shared_dataset(
     data_dir: Path | str,

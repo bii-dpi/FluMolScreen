@@ -1,4 +1,4 @@
-compound_id,target_id,branch_sequence,branch_pose,branch_structure,consensus_123,disagreement_sd,disagreement_range,disagreement_branch_sd,structure_minus_pose,sequence_minus_structure
+compound_id,target_id,branch_sequence_pr,branch_pose_pr,branch_structure_pr,consensus_123_pr,disagreement_sd_pr,disagreement_range_pr,disagreement_branch_sd_pr,structure_minus_pose_pr,sequence_minus_structure_pr
 68-19-9,furin,0.22585,0.70695,0.59465,0.5706166666666667,0.2975213118416898,0.8428,0.2516882794251651,-0.11229999999999996,-0.3688
 70476-82-3,furin,0.24409999999999998,0.7953,0.37515,0.49335833333333334,0.3511792386612094,0.9038999999999999,0.287958783219636,-0.42015,-0.13105
 1405-89-6,furin,0.5640999999999999,0.92875,0.8458,0.8264999999999999,0.19127164714091843,0.5507,0.19113922281938892,-0.08294999999999997,-0.28170000000000006

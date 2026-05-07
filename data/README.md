@@ -35,7 +35,7 @@ Use this for full-library feature tables that are stable across rounds.
 
 These are typically features computed from frozen upstream models or other shared representations, for example:
 
-- `furin_6predictor.csv`
+- `furin_6predictor_pr.csv`
 - `furin_chemdescriptors.csv`
 - `furin_plmembeddings.csv`
 
@@ -47,7 +47,7 @@ File naming convention:
 
 Examples:
 
-- `furin_6predictor.csv`
+- `furin_6predictor_pr.csv`
 - `pa_h3n2_chemdescriptors.csv`
 
 This is the default source for both:
@@ -63,7 +63,7 @@ These should contain no labels and should only be saved here when they are built
 
 Examples:
 
-- `furin_6predictor_chemdescriptors_inference.csv`
+- `furin_6predictor_pr_chemdescriptors_inference.csv`
 
 ### `round_synthetic/`
 
@@ -79,7 +79,7 @@ Current contents include:
   - round-specific assembled training datasets and any other assembled tables that genuinely depend on this synthetic round
 
 This synthetic round is separate from `round_0` so that the first real experimental round can use `round_0` directly.
-Stable feature families such as the current `6predictor` tables should live in `shared/features/`, not here.
+Stable percentile-rank feature families such as the current `6predictor_pr` tables should live in `shared/features/`, not here.
 
 ### `round_k/assay_data/`
 
@@ -117,8 +117,8 @@ These are convenience snapshots rather than the canonical storage location for r
 
 Examples:
 
-- `furin_6predictor_chemdescriptors_train.csv`
-- `pa_h3n2_6predictor.csv`
+- `furin_6predictor_pr_chemdescriptors_train.csv`
+- `pa_h3n2_6predictor_pr.csv`
 
 These datasets may contain labels plus one or more feature families combined into a model-ready table.
 
