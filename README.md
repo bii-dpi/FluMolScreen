@@ -52,22 +52,22 @@ The current target-specific consensus learner can be written generically as:
 
 Here:
 
-- $i$ indexes compounds and $t$ indexes targets
+- $i$ indexes compounds and `t` indexes targets
 - $r_{it,m}$ are the per-method target-specific features such as `glidesp_pr`, `pignet2_pr`, `ligunity_pr`, `boltz2_pr`, `balm_pr`, and `mammal_pr`
 - $d_{it,k}$ are derived target-specific features such as branch summaries, disagreement features, and the hand `1:2:3` consensus
 - $c_{ij}$ are compound-only chemistry descriptors such as `logp`, `tpsa`, `qed`, and related ligand properties
 
 When used as a hit model, the corresponding probability head is:
 
-\[
+```math
 \operatorname{logit}\!\left(\hat{p}_{it}^{(\tau)}\right) = \eta_{it}^{\mathrm{generic}}.
-\]
+```
 
-When used as a potency model, `\eta_{it}^{generic}` is the regression score for `pkd`.
+When used as a potency model, $\eta_{it}^{generic}$ is the regression score for `pkd`.
 
 For multi-strain target families such as PA, the planned hierarchical per-strain extension uses one pooled model with T-1 reference-coded strain indicators and strain-by-method interaction columns:
 
-\[
+```math
 \eta_{it}^{\mathrm{hier}}
 =
 \alpha_{\mathrm{ref}}
@@ -81,31 +81,31 @@ For multi-strain target families such as PA, the planned hierarchical per-strain
 \sum_k \gamma_k\, d_{it,k}
 +
 \sum_j \theta_j\, c_{ij}.
-\]
+```
 
 Here:
 
-- `\mathcal{T}` is the set of pooled strains, for example `{pH1N1, H3N2, H5N1}` for PA
+- $\mathcal{T}$ is the set of pooled strains, for example `{pH1N1, H3N2, H5N1}` for PA
 - `ref` is the chosen reference strain, for example `pH1N1`
-- `I_{it}^{(s)}` is a binary indicator that row `(i, t)` belongs to non-reference strain `s`
-- `\beta_m` is the shared target-family main effect for method `m`
-- `\delta_{s,m}` is the non-reference strain-specific adjustment for method `m`
+- $I_{it}^{(s)}$ is a binary indicator that row `(i, t)` belongs to non-reference strain `s`
+- $\beta_m$ is the shared target-family main effect for method `m`
+- $\delta_{s,m}$ is the non-reference strain-specific adjustment for method `m`
 
 This encoding implies effective per-strain method weights:
 
-\[
+```math
 \beta_{\mathrm{ref},m}^{\mathrm{eff}} = \beta_m
-\]
+```
 
-\[
+```math
 \beta_{s,m}^{\mathrm{eff}} = \beta_m + \delta_{s,m}, \qquad s \neq \mathrm{ref}.
-\]
+```
 
 The corresponding hit-probability head is:
 
-\[
+```math
 \operatorname{logit}\!\left(\hat{p}_{it}^{(\tau)}\right) = \eta_{it}^{\mathrm{hier}}.
-\]
+```
 
 In implementation terms, the hierarchical model keeps the existing shared feature blocks such as `6predictor_pr`, `6predictor_pr_derived`, and `chemdescriptors`, then adds a new T-1 hierarchical feature block consisting of:
 
