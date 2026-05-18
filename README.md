@@ -38,7 +38,7 @@ The current shared feature family is `6predictor_pr`, and derived branch/disagre
 
 The current target-specific consensus learner can be written generically as:
 
-\[
+```math
 \eta_{it}^{\mathrm{generic}}
 =
 \alpha_t
@@ -48,14 +48,14 @@ The current target-specific consensus learner can be written generically as:
 \sum_k \gamma_{t,k}\, d_{it,k}
 +
 \sum_j \theta_{t,j}\, c_{ij}.
-\]
+```
 
 Here:
 
-- `i` indexes compounds and `t` indexes targets
-- `r_{it,m}` are the per-method target-specific features such as `glidesp_pr`, `pignet2_pr`, `ligunity_pr`, `boltz2_pr`, `balm_pr`, and `mammal_pr`
-- `d_{it,k}` are derived target-specific features such as branch summaries, disagreement features, and the hand `1:2:3` consensus
-- `c_{ij}` are compound-only chemistry descriptors such as `logp`, `tpsa`, `qed`, and related ligand properties
+- $i$ indexes compounds and $t$ indexes targets
+- $r_{it,m}$ are the per-method target-specific features such as `glidesp_pr`, `pignet2_pr`, `ligunity_pr`, `boltz2_pr`, `balm_pr`, and `mammal_pr`
+- $d_{it,k}$ are derived target-specific features such as branch summaries, disagreement features, and the hand `1:2:3` consensus
+- $c_{ij}$ are compound-only chemistry descriptors such as `logp`, `tpsa`, `qed`, and related ligand properties
 
 When used as a hit model, the corresponding probability head is:
 
