@@ -9,16 +9,23 @@ FluMolScreen is a modular modeling workspace for prioritizing compounds against 
 - Support both target-specific prioritization and broader multi-strain prioritization, beginning with furin and influenza A PA.
 - Keep the system extensible to additional target classes, feature families, and future rounds of real experimental data.
 
-## Current target scope
+## Target scope
 
-The current prototype scope includes:
+The current implemented scope includes:
 
 - `furin`
 - `pa_ph1n1`
 - `pa_h3n2`
 - `pa_h5n1`
 
-The broader project is intended to extend to additional targets such as `fasn`, `na_ph1n1`, `na_h3n2`, and `na_h5n1`.
+The modeling framework is intended to extend to additional targets and target families such as:
+
+- `fasn`
+- `na_ph1n1`
+- `na_h3n2`
+- `na_h5n1`
+
+The current hierarchical per-strain workflow is designed so the same pattern used for pooled PA targets can later be reused for other multi-strain target families such as NA.
 
 ## Modeling setup
 
@@ -133,5 +140,115 @@ The repo is organized around:
   - assembles target-specific training and inference datasets from assay-data and feature tables
 - `run_consensus_learner.py`
   - rebuilds datasets for configured feature comparisons, runs cross-validated modeling, and saves evaluation/inference outputs
+
+## Running the learner
+
+`run_consensus_learner.py` uses:
+
+- default settings from [flumolscreen/learner_config.py](/Users/charmainechia/Documents/projects/FluMolScreen/flumolscreen/learner_config.py)
+- optional local overrides at the top of [run_consensus_learner.py](/Users/charmainechia/Documents/projects/FluMolScreen/run_consensus_learner.py)
+
+The override precedence is:
+
+1. values set in `run_consensus_learner.py`
+2. otherwise the defaults in `learner_config.py`
+
+### Config defaults
+
+In `flumolscreen/learner_config.py`, the main dataset-selection settings are:
+
+- `DATASET_MODE = "single_target"` or `"target_family"`
+- `TARGET_ID = "furin"` for single-target runs
+- `FAMILY_KEY = "pa"` or `"na"` for pooled target-family runs
+
+The comparison lists are split by mode:
+
+- `COMPARISONS_SINGLE_TARGET`
+- `COMPARISONS_TARGET_FAMILY`
+
+### Runner overrides
+
+At the top of `run_consensus_learner.py`, set:
+
+- `DATASET_MODE_OVERRIDE`
+- `TARGET_ID_OVERRIDE`
+- `FAMILY_KEY_OVERRIDE`
+
+Leave an override as `None` to use the config default.
+
+### Single-target mode
+
+To run a target such as `furin`, set:
+
+```python
+DATASET_MODE_OVERRIDE = "single_target"
+TARGET_ID_OVERRIDE = "furin"
+FAMILY_KEY_OVERRIDE = None
+```
+
+Then run:
+
+```bash
+python run_consensus_learner.py
+```
+
+This uses:
+
+- `COMPARISONS_SINGLE_TARGET`
+- output filename stems based on `TARGET_ID`, for example `furin_...`
+
+### Target-family mode
+
+To run the pooled PA hierarchical workflow, set:
+
+```python
+DATASET_MODE_OVERRIDE = "target_family"
+TARGET_ID_OVERRIDE = None
+FAMILY_KEY_OVERRIDE = "pa"
+```
+
+Then run:
+
+```bash
+python run_consensus_learner.py
+```
+
+This uses:
+
+- `COMPARISONS_TARGET_FAMILY`
+- hierarchical family defaults from `HIERARCHICAL_TARGET_FAMILY_REGISTRY`
+- output filename stems based on `FAMILY_KEY`, for example `pa_...`
+
+For NA, use:
+
+```python
+DATASET_MODE_OVERRIDE = "target_family"
+TARGET_ID_OVERRIDE = None
+FAMILY_KEY_OVERRIDE = "na"
+```
+
+### Output paths
+
+Evaluation outputs are written under:
+
+- `results/<round_id>/evaluation/`
+
+Inference outputs are written under:
+
+- `results/<round_id>/inference/`
+
+Examples:
+
+- single-target `furin` run:
+  - `results/round_synthetic/inference/furin_6predictor_pr_ridge_inference.csv`
+- pooled PA run:
+  - `results/round_synthetic/inference/pa_6predictor_pr_plus_hxnx_hierarchical_tminus1_pr_ridge_inference.csv`
+  - `results/round_synthetic/inference/pa_merged_inference_predictions.csv`
+
+### Mode notes
+
+- In `target_family` mode, `TARGET_ID` is ignored and filenames are keyed by `FAMILY_KEY`.
+- In `single_target` mode, `FAMILY_KEY` is ignored and filenames are keyed by `TARGET_ID`.
+- If old output files from earlier runs are still present, they are not automatically deleted.
 
 See [data/README.md](/Users/charmainechia/Documents/projects/FluMolScreen/data/README.md) for the round-based data conventions.

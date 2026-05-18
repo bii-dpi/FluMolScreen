@@ -63,6 +63,30 @@ def _get_indicator_column_name(target_label: str) -> str:
     return f"is_{target_label}"
 
 
+def _validate_target_id_to_label(
+    df: pd.DataFrame,
+    target_id_to_label: dict[str, str],
+) -> None:
+    """Validate that label mappings cover the pooled targets and are unique."""
+    # Unique short labels are required so indicator and interaction column names
+    # remain one-to-one with targets after we strip the family stem.
+    pooled_target_ids = df["target_id"].drop_duplicates().tolist()
+    missing_target_ids = [
+        target_id for target_id in pooled_target_ids if target_id not in target_id_to_label
+    ]
+    if missing_target_ids:
+        raise ValueError(
+            "target_id_to_label is missing pooled target ids: "
+            f"{missing_target_ids}"
+        )
+
+    labels = [target_id_to_label[target_id] for target_id in pooled_target_ids]
+    if len(set(labels)) != len(labels):
+        raise ValueError(
+            "target_id_to_label must map pooled target ids to unique short labels."
+        )
+
+
 def build_tminus1_indicator_columns(
     df: pd.DataFrame,
     reference_target_id: str,
@@ -92,13 +116,14 @@ def build_tminus1_indicator_columns(
     _validate_reference_target_id(df, reference_target_id)
     if target_id_to_label is None:
         raise ValueError("target_id_to_label must be provided for hierarchical expansion")
+    _validate_target_id_to_label(df, target_id_to_label)
 
+    # The reference target is encoded implicitly as all-zero across the T-1
+    # indicator block.
     indicator_df = df.loc[:, REQUIRED_KEY_COLUMNS].copy()
     non_reference_target_ids = _get_non_reference_target_ids(df, reference_target_id)
 
     for target_id in non_reference_target_ids:
-        if target_id not in target_id_to_label:
-            raise ValueError(f"Missing label mapping for target_id: {target_id}")
         indicator_column = _get_indicator_column_name(target_id_to_label[target_id])
         indicator_df[indicator_column] = (df["target_id"] == target_id).astype(int)
 
@@ -135,6 +160,7 @@ def build_tminus1_method_interactions(
     _validate_required_columns(indicator_df, REQUIRED_KEY_COLUMNS)
     if target_id_to_label is None:
         raise ValueError("target_id_to_label must be provided for hierarchical expansion")
+    _validate_target_id_to_label(df, target_id_to_label)
 
     if indicator_df.shape[0] != df.shape[0]:
         raise ValueError(
@@ -147,15 +173,18 @@ def build_tminus1_method_interactions(
             "indicator_df keys must align exactly with df keys in the same row order."
         )
 
+    # Interaction columns capture the strain-specific coefficient deviations,
+    # while the shared main-effect columns stay in the original feature family.
     interaction_df = df.loc[:, REQUIRED_KEY_COLUMNS].copy()
-    target_ids = df["target_id"].drop_duplicates().tolist()
-    non_reference_target_ids = [
-        target_id for target_id in target_ids if target_id in target_id_to_label
-    ]
-
     indicator_columns = [
         column for column in indicator_df.columns if column not in REQUIRED_KEY_COLUMNS
     ]
+    non_reference_target_ids = [
+        target_id
+        for target_id, label in target_id_to_label.items()
+        if _get_indicator_column_name(label) in indicator_columns
+    ]
+
     label_to_indicator = {column.removeprefix("is_"): column for column in indicator_columns}
 
     for target_id in non_reference_target_ids:

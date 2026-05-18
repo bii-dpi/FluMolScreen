@@ -40,10 +40,12 @@ def _resolve_runtime_settings(config: dict) -> dict:
         comparisons = config["COMPARISONS_SINGLE_TARGET"]
         if resolved_target_id is None:
             raise ValueError("TARGET_ID is required when DATASET_MODE='single_target'")
+        resolved_family_key = None
     elif resolved_dataset_mode == "target_family":
         comparisons = config["COMPARISONS_TARGET_FAMILY"]
         if resolved_family_key is None:
             raise ValueError("FAMILY_KEY is required when DATASET_MODE='target_family'")
+        resolved_target_id = None
     else:
         raise ValueError(
             "DATASET_MODE must be one of: 'single_target', 'target_family'"

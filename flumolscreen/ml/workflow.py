@@ -28,6 +28,8 @@ METRIC_COLUMNS = ["rmse", "mae", "r2", "spearman"]
 
 __all__ = ["print_cv_summary", "run_cv_workflow"]
 
+ROW_ALIGNMENT_KEY_COLUMNS = ["compound_id", "target_id", "label_pkd"]
+
 
 def _build_fold_record(
     candidate: dict,
@@ -110,6 +112,38 @@ def _build_merged_inference_table(
     )
     merged_df.to_csv(merged_path, index=False)
     return merged_path
+
+
+def _validate_candidate_row_alignment(candidates: list[dict]) -> None:
+    """Ensure every candidate in a workflow shares the same training row universe."""
+    if not candidates:
+        raise ValueError("candidates must contain at least one candidate")
+
+    # Outer CV splits are generated once from the first candidate and then
+    # reused for every candidate in the run, so all candidates must share the
+    # same ordered labeled rows.
+    reference_df = candidates[0]["training_df"]
+    available_key_columns = [
+        column for column in ROW_ALIGNMENT_KEY_COLUMNS if column in reference_df.columns
+    ]
+    reference_keys = reference_df.loc[:, available_key_columns].reset_index(drop=True)
+
+    for candidate in candidates[1:]:
+        training_df = candidate["training_df"]
+        if len(training_df) != len(reference_df):
+            raise ValueError(
+                "All candidates in one workflow run must share the same number of "
+                "training rows so outer CV splits can be reused safely. "
+                f"Got {len(training_df)} rows for {candidate['comparison_name']} "
+                f"vs {len(reference_df)} rows for {candidates[0]['comparison_name']}."
+            )
+        candidate_keys = training_df.loc[:, available_key_columns].reset_index(drop=True)
+        if not candidate_keys.equals(reference_keys):
+            raise ValueError(
+                "All candidates in one workflow run must share the same ordered "
+                "training row universe. Consider running different dataset tasks "
+                "separately."
+            )
 
 
 def evaluate_candidate_on_outer_fold(
@@ -260,6 +294,9 @@ def run_cv_workflow(
         dataset_mode=dataset_mode,
         family_key=family_key,
     )
+    _validate_candidate_row_alignment(candidates)
+    # Save outputs under a dataset-level stem: target_id for single-target runs
+    # and family_key for pooled target-family runs.
     dataset_label = target_id if dataset_mode == "single_target" else family_key
     if dataset_label is None:
         raise ValueError("A dataset label could not be resolved for workflow outputs.")
@@ -321,7 +358,7 @@ def run_cv_workflow(
         inference_paths[(candidate["comparison_name"], candidate["model_type"])] = (
             fit_final_candidate_and_save_inference(
                 inference_dir=result_dirs["inference"],
-                target_id=target_id,
+                target_id=dataset_label,
                 candidate=candidate,
                 tuned_model_params=model_params,
                 inference_mode=inference_mode,

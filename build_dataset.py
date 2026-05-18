@@ -73,6 +73,8 @@ def _resolve_target_family_inputs(
 ) -> tuple[list[str], str, dict[str, str]]:
     """Resolve pooled-family inputs, optionally deriving them from a family key."""
     if family_key is not None:
+        # The family registry is the canonical source for pooled target ids,
+        # the reference target, and the short labels used in interaction names.
         target_ids = target_ids or resolve_hierarchical_target_ids(family_key)
         reference_target_id = (
             reference_target_id or resolve_hierarchical_reference_target_id(family_key)
@@ -191,6 +193,8 @@ def compose_target_family_datasets(
     derived_feature_sets_to_generate = derived_feature_sets_to_generate or []
 
     for target_id in target_ids:
+        # Derived features and chemistry descriptors are still generated per
+        # concrete target because their source tables remain target-specific.
         _generate_target_prerequisites(
             data_dir=data_dir,
             round_id=round_id,
@@ -214,6 +218,9 @@ def compose_target_family_datasets(
         )
         base_source = request.get("base_source", request.get("source", "shared"))
 
+        # Hierarchical per-strain features are generated from one pooled base
+        # table, then split back into per-target shared feature CSVs so the
+        # existing single-target assembly code can be reused unchanged.
         pooled_base_df = pd.concat(
             [
                 load_feature_table(
@@ -248,6 +255,8 @@ def compose_target_family_datasets(
     training_tables = []
     inference_tables = []
     for target_id in target_ids:
+        # Reuse the standard single-target dataset builder for each member of
+        # the family, then concatenate the assembled datasets row-wise.
         training_df, inference_df, _, _ = compose_target_datasets(
             data_dir=data_dir,
             round_id=round_id,
