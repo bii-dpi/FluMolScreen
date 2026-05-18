@@ -104,7 +104,7 @@ This encoding implies effective per-strain method weights:
 The corresponding hit-probability head is:
 
 ```math
-\operatorname{logit}\!\left(\hat{p}_{it}^{(\tau)}\right) = \eta_{it}^{\mathrm{hier}}.
+\mathrm{logit}\left(\hat{p}_{it}^{(\tau)}\right) = \eta_{it}^{\mathrm{hier}}
 ```
 
 In implementation terms, the hierarchical model keeps the existing shared feature blocks such as `6predictor_pr`, `6predictor_pr_derived`, and `chemdescriptors`, then adds a new T-1 hierarchical feature block consisting of:
