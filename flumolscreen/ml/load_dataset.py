@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from build_dataset import compose_target_datasets
+from build_dataset import compose_target_datasets, compose_target_family_datasets
 from flumolscreen.ml.utils import select_model_feature_columns
 
 __all__ = ["compose_candidate_datasets", "infer_feature_generation_settings"]
@@ -30,11 +30,21 @@ def infer_feature_generation_settings(
 def compose_candidate_datasets(
     data_dir: str,
     round_id: str,
-    target_id: str,
+    target_id: str | None,
     comparisons: list[dict],
     model_runs: list[dict],
+    dataset_mode: str = "single_target",
+    family_key: str | None = None,
+    target_ids: list[str] | None = None,
+    reference_target_id: str | None = None,
+    target_id_to_label: dict[str, str] | None = None,
 ) -> list[dict]:
     """Build one flat candidate per comparison/model combination."""
+    if dataset_mode not in {"single_target", "target_family"}:
+        raise ValueError("dataset_mode must be one of: 'single_target', 'target_family'")
+    if dataset_mode == "single_target" and target_id is None:
+        raise ValueError("target_id is required when dataset_mode='single_target'")
+
     candidates = []
 
     for comparison in comparisons:
@@ -43,16 +53,54 @@ def compose_candidate_datasets(
         derived_feature_sets, generate_chemdescriptors = infer_feature_generation_settings(
             feature_requests
         )
-        training_df, inference_df, _, _ = compose_target_datasets(
-            data_dir=data_dir,
-            round_id=round_id,
-            target_id=target_id,
-            feature_requests=feature_requests,
-            derived_feature_sets_to_generate=derived_feature_sets,
-            generate_chemdescriptors=generate_chemdescriptors,
-            training_dataset_name=None,
-            inference_dataset_name=None,
-        )
+
+        comparison_dataset_mode = comparison.get("dataset_mode", dataset_mode)
+        if comparison_dataset_mode not in {"single_target", "target_family"}:
+            raise ValueError(
+                "comparison dataset_mode must be one of: "
+                "'single_target', 'target_family'"
+            )
+
+        if comparison_dataset_mode == "single_target":
+            comparison_target_id = comparison.get("target_id", target_id)
+            if comparison_target_id is None:
+                raise ValueError(
+                    "target_id is required for single-target comparisons"
+                )
+            training_df, inference_df, _, _ = compose_target_datasets(
+                data_dir=data_dir,
+                round_id=round_id,
+                target_id=comparison_target_id,
+                feature_requests=feature_requests,
+                derived_feature_sets_to_generate=derived_feature_sets,
+                generate_chemdescriptors=generate_chemdescriptors,
+                training_dataset_name=None,
+                inference_dataset_name=None,
+            )
+        else:
+            comparison_family_key = comparison.get("family_key", family_key)
+            comparison_target_ids = comparison.get("target_ids", target_ids)
+            comparison_reference_target_id = comparison.get(
+                "reference_target_id",
+                reference_target_id,
+            )
+            comparison_target_id_to_label = comparison.get(
+                "target_id_to_label",
+                target_id_to_label,
+            )
+            training_df, inference_df, _, _ = compose_target_family_datasets(
+                data_dir=data_dir,
+                round_id=round_id,
+                target_ids=comparison_target_ids,
+                reference_target_id=comparison_reference_target_id,
+                feature_requests=feature_requests,
+                derived_feature_sets_to_generate=derived_feature_sets,
+                generate_chemdescriptors=generate_chemdescriptors,
+                training_dataset_name=None,
+                inference_dataset_name=None,
+                target_id_to_label=comparison_target_id_to_label,
+                family_key=comparison_family_key,
+            )
         p = len(select_model_feature_columns(training_df))
 
         # Flatten the comparison/model grid into one candidate list.
@@ -60,6 +108,7 @@ def compose_candidate_datasets(
             candidates.append(
                 {
                     "comparison_name": comparison["name"],
+                    "dataset_mode": comparison_dataset_mode,
                     "feature_requests": feature_requests,
                     "model_type": model_run["model_type"],
                     "base_model_params": model_run.get("model_params"),

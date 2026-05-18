@@ -1,10 +1,16 @@
 """Default configuration for the FluMolScreen consensus learner."""
 
+from flumolscreen.feature_registry import FEATURE_REGISTRY
+
 # --- data settings ---
 DATA_DIR = "data"
 RESULTS_DIR = "results"
 TRAIN_ROUND_ID = "round_synthetic"
+
+# --- dataset selection ---
+DATASET_MODE = "single_target"  # "single_target" or "target_family"
 TARGET_ID = "furin"
+FAMILY_KEY = "pa"
 
 # --- split settings ---
 OUTER_SPLIT_TYPE = "random_kfold"
@@ -49,7 +55,7 @@ MODEL_RUNS = [
     },
 ]
 
-COMPARISONS = [
+COMPARISONS_SINGLE_TARGET = [
     {
         "name": "6predictor_pr",
         "feature_requests": [
@@ -92,11 +98,64 @@ COMPARISONS = [
     },
 ]
 
+COMPARISONS_TARGET_FAMILY = [
+    {
+        "name": "6predictor_pr",
+        "feature_requests": [
+            {"feature_set": "6predictor_pr", "source": "shared"},
+        ],
+    },
+    {
+        "name": "6predictor_pr_plus_hxnx_hierarchical_tminus1_pr",
+        "feature_requests": [
+            {"feature_set": "6predictor_pr", "source": "shared"},
+            {
+                "feature_set": "hxnx_hierarchical_tminus1_pr",
+                "source": "shared",
+                "feature_generator": "hierarchical_perstrain",
+                "base_feature_set": "6predictor_pr",
+                "feature_columns": FEATURE_REGISTRY["6predictor_pr"]["default_columns"],
+            },
+        ],
+    },
+    {
+        "name": "6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr",
+        "feature_requests": [
+            {"feature_set": "6predictor_pr", "source": "shared"},
+            {"feature_set": "6predictor_pr_derived", "source": "shared"},
+            {
+                "feature_set": "hxnx_hierarchical_tminus1_pr",
+                "source": "shared",
+                "feature_generator": "hierarchical_perstrain",
+                "base_feature_set": "6predictor_pr",
+                "feature_columns": FEATURE_REGISTRY["6predictor_pr"]["default_columns"],
+            },
+        ],
+    },
+    {
+        "name": "6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr",
+        "feature_requests": [
+            {"feature_set": "6predictor_pr", "source": "shared"},
+            {"feature_set": "6predictor_pr_derived", "source": "shared"},
+            {"feature_set": "chemdescriptors", "source": "shared"},
+            {
+                "feature_set": "hxnx_hierarchical_tminus1_pr",
+                "source": "shared",
+                "feature_generator": "hierarchical_perstrain",
+                "base_feature_set": "6predictor_pr",
+                "feature_columns": FEATURE_REGISTRY["6predictor_pr"]["default_columns"],
+            },
+        ],
+    },
+]
+
 CONFIG_VARIABLE_NAMES = (
     "DATA_DIR",
     "RESULTS_DIR",
     "TRAIN_ROUND_ID",
+    "DATASET_MODE",
     "TARGET_ID",
+    "FAMILY_KEY",
     "OUTER_SPLIT_TYPE",
     "INNER_SPLIT_TYPE",
     "OUTER_K",
@@ -114,5 +173,6 @@ CONFIG_VARIABLE_NAMES = (
     "TUNING_N_TRIALS",
     "TUNING_RANDOM_SEED",
     "MODEL_RUNS",
-    "COMPARISONS",
+    "COMPARISONS_SINGLE_TARGET",
+    "COMPARISONS_TARGET_FAMILY",
 )

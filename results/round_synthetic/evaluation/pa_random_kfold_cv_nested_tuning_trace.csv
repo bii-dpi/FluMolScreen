@@ -1,0 +1,210 @@
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,10,20,0.5414,0.5588,"{'learning_rate': 0.00819, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.509}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,11,20,0.5577,0.5588,"{'learning_rate': 0.00429, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.64}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,12,20,0.5565,0.5588,"{'learning_rate': 0.00305, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.571}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,13,20,0.5588,0.5588,"{'learning_rate': 0.00283, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.62}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,14,20,0.56,0.56,"{'learning_rate': 0.0019, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.504}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,15,20,0.5552,0.56,"{'learning_rate': 0.00153, 'max_depth': 5, 'n_estimators': 500, 'subsample': 0.528}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,16,20,0.5148,0.56,"{'learning_rate': 0.0191, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.505}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5259,0.56,"{'learning_rate': 0.00783, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.798}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5445,0.56,"{'learning_rate': 0.00184, 'max_depth': 6, 'n_estimators': 500, 'subsample': 0.617}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.4531,0.56,"{'learning_rate': 0.183, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.565}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5616,0.5616,{'alpha': 0.0419}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5194,0.5616,{'alpha': 452.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5725,0.5725,{'alpha': 13.3}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5676,0.5725,{'alpha': 1.55}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5609,0.5725,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5609,0.5725,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5609,0.5725,{'alpha': 0.000255}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.558,0.5725,{'alpha': 116.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5676,0.5725,{'alpha': 1.61}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.572,0.5725,{'alpha': 9.05}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5611,0.5725,{'alpha': 0.0176}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5718,0.5725,{'alpha': 22.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5719,0.5725,{'alpha': 7.46}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5625,0.5725,{'alpha': 0.208}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5681,0.5725,{'alpha': 45.8}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5702,0.5725,{'alpha': 4.82}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5097,0.5725,{'alpha': 548.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5625,0.5725,{'alpha': 0.206}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5646,0.5725,{'alpha': 70.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5648,0.5725,{'alpha': 0.728}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5588,0.5588,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5399,0.5588,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5341,0.5588,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,3,20,0.5679,0.5679,"{'learning_rate': 0.00282, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.592}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,4,20,0.58,0.58,"{'learning_rate': 0.0117, 'max_depth': 5, 'n_estimators': 250, 'subsample': 0.646}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,5,20,0.5612,0.58,"{'learning_rate': 0.00529, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.683}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,6,20,0.566,0.58,"{'learning_rate': 0.00312, 'max_depth': 7, 'n_estimators': 350, 'subsample': 0.757}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,7,20,0.5907,0.5907,"{'learning_rate': 0.032, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.585}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,8,20,0.5202,0.5907,"{'learning_rate': 0.247, 'max_depth': 8, 'n_estimators': 100, 'subsample': 0.904}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,9,20,0.5916,0.5916,"{'learning_rate': 0.0495, 'max_depth': 2, 'n_estimators': 250, 'subsample': 0.72}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,10,20,0.5561,0.5916,"{'learning_rate': 0.13, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.509}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,11,20,0.5884,0.5916,"{'learning_rate': 0.0255, 'max_depth': 2, 'n_estimators': 500, 'subsample': 0.505}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,12,20,0.5934,0.5934,"{'learning_rate': 0.0374, 'max_depth': 4, 'n_estimators': 200, 'subsample': 0.809}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,13,20,0.5847,0.5934,"{'learning_rate': 0.061, 'max_depth': 4, 'n_estimators': 200, 'subsample': 0.835}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,14,20,0.5806,0.5934,"{'learning_rate': 0.0124, 'max_depth': 4, 'n_estimators': 250, 'subsample': 0.7}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,15,20,0.5785,0.5934,"{'learning_rate': 0.0669, 'max_depth': 5, 'n_estimators': 150, 'subsample': 0.848}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,16,20,0.583,0.5934,"{'learning_rate': 0.0331, 'max_depth': 3, 'n_estimators': 250, 'subsample': 0.749}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,17,20,0.5592,0.5934,"{'learning_rate': 0.144, 'max_depth': 6, 'n_estimators': 100, 'subsample': 0.755}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,18,20,0.5682,0.5934,"{'learning_rate': 0.00843, 'max_depth': 3, 'n_estimators': 300, 'subsample': 0.886}"
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,19,20,0.5788,0.5934,"{'learning_rate': 0.0197, 'max_depth': 4, 'n_estimators': 200, 'subsample': 0.809}"
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,0,20,0.556,0.556,{'alpha': 0.0419}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,1,20,0.5482,0.556,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,2,20,0.5563,0.5563,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,3,20,0.5562,0.5563,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,4,20,0.556,0.5563,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,5,20,0.556,0.5563,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,6,20,0.556,0.5563,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,7,20,0.5538,0.5563,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,8,20,0.5562,0.5563,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,9,20,0.5565,0.5565,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,10,20,0.556,0.5565,{'alpha': 0.0151}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,11,20,0.5568,0.5568,{'alpha': 22.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,12,20,0.5565,0.5568,{'alpha': 7.46}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,13,20,0.5562,0.5568,{'alpha': 45.9}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,14,20,0.5561,0.5568,{'alpha': 0.324}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,15,20,0.5562,0.5568,{'alpha': 2.61}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,16,20,0.5476,0.5568,{'alpha': 574.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,17,20,0.5561,0.5568,{'alpha': 0.175}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,18,20,0.5559,0.5568,{'alpha': 62.9}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,19,20,0.5564,0.5568,{'alpha': 14.8}
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,0,20,0.4898,0.4898,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,1,20,0.5212,0.5212,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,2,20,0.5226,0.5226,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,3,20,0.5491,0.5491,"{'learning_rate': 0.00282, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.592}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,4,20,0.5358,0.5491,"{'learning_rate': 0.0117, 'max_depth': 5, 'n_estimators': 250, 'subsample': 0.646}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,5,20,0.543,0.5491,"{'learning_rate': 0.00529, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.683}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,6,20,0.5269,0.5491,"{'learning_rate': 0.00312, 'max_depth': 7, 'n_estimators': 350, 'subsample': 0.757}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,7,20,0.5389,0.5491,"{'learning_rate': 0.032, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.585}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,8,20,0.451,0.5491,"{'learning_rate': 0.247, 'max_depth': 8, 'n_estimators': 100, 'subsample': 0.904}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,9,20,0.5364,0.5491,"{'learning_rate': 0.0495, 'max_depth': 2, 'n_estimators': 250, 'subsample': 0.72}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,10,20,0.5377,0.5491,"{'learning_rate': 0.00819, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.509}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,11,20,0.5499,0.5499,"{'learning_rate': 0.00429, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.64}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,12,20,0.5471,0.5499,"{'learning_rate': 0.00305, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.571}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,13,20,0.5477,0.5499,"{'learning_rate': 0.00283, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.62}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,14,20,0.5365,0.5499,"{'learning_rate': 0.0161, 'max_depth': 3, 'n_estimators': 500, 'subsample': 0.505}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,15,20,0.5472,0.5499,"{'learning_rate': 0.00679, 'max_depth': 3, 'n_estimators': 500, 'subsample': 0.826}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,16,20,0.5396,0.5499,"{'learning_rate': 0.00211, 'max_depth': 5, 'n_estimators': 550, 'subsample': 0.671}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,17,20,0.5526,0.5526,"{'learning_rate': 0.0049, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.564}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,18,20,0.5342,0.5526,"{'learning_rate': 0.00592, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.55}"
+full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,19,20,0.5171,0.5526,"{'learning_rate': 0.0212, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.708}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5593,0.5593,{'alpha': 0.0419}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.535,0.5593,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5611,0.5611,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.56,0.5611,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5591,0.5611,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5591,0.5611,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5591,0.5611,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5534,0.5611,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5601,0.5611,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5609,0.5611,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5593,0.5611,{'alpha': 0.0176}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5609,0.5611,{'alpha': 22.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5606,0.5611,{'alpha': 7.46}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5595,0.5611,{'alpha': 0.208}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5597,0.5611,{'alpha': 45.8}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5609,0.5611,{'alpha': 4.82}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5323,0.5611,{'alpha': 548.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5595,0.5611,{'alpha': 0.206}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5576,0.5611,{'alpha': 70.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5599,0.5611,{'alpha': 0.728}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,0,20,0.4809,0.4809,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,1,20,0.5138,0.5138,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,2,20,0.5211,0.5211,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,3,20,0.5512,0.5512,"{'learning_rate': 0.00282, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.592}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,4,20,0.5442,0.5512,"{'learning_rate': 0.0117, 'max_depth': 5, 'n_estimators': 250, 'subsample': 0.646}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,5,20,0.547,0.5512,"{'learning_rate': 0.00529, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.683}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,6,20,0.5313,0.5512,"{'learning_rate': 0.00312, 'max_depth': 7, 'n_estimators': 350, 'subsample': 0.757}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,7,20,0.5473,0.5512,"{'learning_rate': 0.032, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.585}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,8,20,0.4551,0.5512,"{'learning_rate': 0.247, 'max_depth': 8, 'n_estimators': 100, 'subsample': 0.904}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,9,20,0.5474,0.5512,"{'learning_rate': 0.0495, 'max_depth': 2, 'n_estimators': 250, 'subsample': 0.72}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,10,20,0.5477,0.5512,"{'learning_rate': 0.00819, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.509}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,11,20,0.5471,0.5512,"{'learning_rate': 0.00796, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.506}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,12,20,0.5542,0.5542,"{'learning_rate': 0.00305, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.505}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,13,20,0.5536,0.5542,"{'learning_rate': 0.00283, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.593}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,14,20,0.55,0.5542,"{'learning_rate': 0.00253, 'max_depth': 5, 'n_estimators': 500, 'subsample': 0.572}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,15,20,0.5256,0.5542,"{'learning_rate': 0.0186, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.634}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,16,20,0.541,0.5542,"{'learning_rate': 0.0043, 'max_depth': 6, 'n_estimators': 500, 'subsample': 0.54}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,17,20,0.5422,0.5542,"{'learning_rate': 0.00206, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.849}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,18,20,0.5091,0.5542,"{'learning_rate': 0.0173, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.631}"
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,19,20,0.4478,0.5542,"{'learning_rate': 0.131, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.695}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5597,0.5597,{'alpha': 0.0419}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5518,0.5597,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5651,0.5651,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5636,0.5651,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5592,0.5651,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5592,0.5651,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5592,0.5651,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.562,0.5651,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5636,0.5651,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5651,0.5651,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5594,0.5651,{'alpha': 0.0176}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5652,0.5652,{'alpha': 22.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5623,0.5652,{'alpha': 113.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5656,0.5656,{'alpha': 14.4}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5653,0.5656,{'alpha': 17.6}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5638,0.5656,{'alpha': 1.91}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.561,0.5656,{'alpha': 0.169}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5492,0.5656,{'alpha': 581.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5637,0.5656,{'alpha': 68.3}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5626,0.5656,{'alpha': 0.485}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,0,20,0.4972,0.4972,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,1,20,0.5215,0.5215,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,2,20,0.5299,0.5299,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,3,20,0.5534,0.5534,"{'learning_rate': 0.00282, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.592}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,4,20,0.5427,0.5534,"{'learning_rate': 0.0117, 'max_depth': 5, 'n_estimators': 250, 'subsample': 0.646}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,5,20,0.5473,0.5534,"{'learning_rate': 0.00529, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.683}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,6,20,0.532,0.5534,"{'learning_rate': 0.00312, 'max_depth': 7, 'n_estimators': 350, 'subsample': 0.757}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,7,20,0.5454,0.5534,"{'learning_rate': 0.032, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.585}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,8,20,0.4818,0.5534,"{'learning_rate': 0.247, 'max_depth': 8, 'n_estimators': 100, 'subsample': 0.904}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,9,20,0.5451,0.5534,"{'learning_rate': 0.0495, 'max_depth': 2, 'n_estimators': 250, 'subsample': 0.72}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,10,20,0.546,0.5534,"{'learning_rate': 0.00819, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.509}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,11,20,0.5555,0.5555,"{'learning_rate': 0.00429, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.64}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,12,20,0.5534,0.5555,"{'learning_rate': 0.00305, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.571}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,13,20,0.5556,0.5556,"{'learning_rate': 0.00329, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.509}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,14,20,0.5273,0.5556,"{'learning_rate': 0.0182, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.502}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,15,20,0.5422,0.5556,"{'learning_rate': 0.00587, 'max_depth': 5, 'n_estimators': 500, 'subsample': 0.637}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,16,20,0.5445,0.5556,"{'learning_rate': 0.00235, 'max_depth': 3, 'n_estimators': 500, 'subsample': 0.822}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5119,0.5556,"{'learning_rate': 0.0165, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.545}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5514,0.5556,"{'learning_rate': 0.00556, 'max_depth': 4, 'n_estimators': 550, 'subsample': 0.624}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.5475,0.5556,"{'learning_rate': 0.00178, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.691}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5659,0.5659,{'alpha': 0.0419}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5363,0.5659,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5721,0.5721,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5695,0.5721,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5651,0.5721,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5651,0.5721,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5651,0.5721,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5655,0.5721,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5696,0.5721,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5718,0.5721,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5655,0.5721,{'alpha': 0.0176}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5721,0.5721,{'alpha': 22.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5654,0.5721,{'alpha': 113.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5723,0.5723,{'alpha': 14.4}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5722,0.5723,{'alpha': 17.6}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5699,0.5723,{'alpha': 1.91}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5666,0.5723,{'alpha': 0.169}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5265,0.5723,{'alpha': 581.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5692,0.5723,{'alpha': 68.3}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.568,0.5723,{'alpha': 0.485}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5784,0.5784,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5313,0.5784,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5402,0.5784,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,3,20,0.5698,0.5784,"{'learning_rate': 0.00282, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.592}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,4,20,0.5889,0.5889,"{'learning_rate': 0.0117, 'max_depth': 5, 'n_estimators': 250, 'subsample': 0.646}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,5,20,0.5553,0.5889,"{'learning_rate': 0.00529, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.683}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,6,20,0.5686,0.5889,"{'learning_rate': 0.00312, 'max_depth': 7, 'n_estimators': 350, 'subsample': 0.757}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,7,20,0.5917,0.5917,"{'learning_rate': 0.032, 'max_depth': 2, 'n_estimators': 400, 'subsample': 0.585}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,8,20,0.537,0.5917,"{'learning_rate': 0.247, 'max_depth': 8, 'n_estimators': 100, 'subsample': 0.904}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,9,20,0.5899,0.5917,"{'learning_rate': 0.0495, 'max_depth': 2, 'n_estimators': 250, 'subsample': 0.72}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,10,20,0.5994,0.5994,"{'learning_rate': 0.0273, 'max_depth': 4, 'n_estimators': 550, 'subsample': 0.509}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,11,20,0.5894,0.5994,"{'learning_rate': 0.0307, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.506}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,12,20,0.5625,0.5994,"{'learning_rate': 0.134, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.505}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,13,20,0.5977,0.5994,"{'learning_rate': 0.0148, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.595}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,14,20,0.5932,0.5994,"{'learning_rate': 0.011, 'max_depth': 5, 'n_estimators': 500, 'subsample': 0.572}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,15,20,0.6027,0.6027,"{'learning_rate': 0.0145, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.636}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,16,20,0.585,0.6027,"{'learning_rate': 0.0919, 'max_depth': 6, 'n_estimators': 600, 'subsample': 0.822}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,17,20,0.5989,0.6027,"{'learning_rate': 0.025, 'max_depth': 3, 'n_estimators': 600, 'subsample': 0.655}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,18,20,0.5924,0.6027,"{'learning_rate': 0.00715, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.542}"
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,19,20,0.5906,0.6027,"{'learning_rate': 0.00607, 'max_depth': 4, 'n_estimators': 550, 'subsample': 0.629}"

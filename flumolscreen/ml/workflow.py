@@ -225,13 +225,15 @@ def run_cv_workflow(
     data_dir: str,
     results_dir: str,
     train_round_id: str,
-    target_id: str,
+    target_id: str | None,
     comparisons: list[dict],
     model_runs: list[dict],
     outer_split_type: str,
     outer_split_params: dict | None,
     tuning_mode: str | None,
     tuning_metric: str,
+    dataset_mode: str = "single_target",
+    family_key: str | None = None,
     holdout_validation_fraction: float = 0.2,
     inner_split_type: str | None = None,
     inner_split_params: dict | None = None,
@@ -255,7 +257,12 @@ def run_cv_workflow(
         target_id=target_id,
         comparisons=comparisons,
         model_runs=model_runs,
+        dataset_mode=dataset_mode,
+        family_key=family_key,
     )
+    dataset_label = target_id if dataset_mode == "single_target" else family_key
+    if dataset_label is None:
+        raise ValueError("A dataset label could not be resolved for workflow outputs.")
 
     # Build the shared outer splits from the first candidate's training table.
     outer_splits = make_splits(
@@ -329,11 +336,11 @@ def run_cv_workflow(
     merged_inference_path = _build_merged_inference_table(
         inference_paths=inference_paths,
         inference_dir=result_dirs["inference"],
-        target_id=target_id,
+        target_id=dataset_label,
     )
     fold_path, summary_path, trace_path = save_cv_outputs(
         evaluation_dir=result_dirs["evaluation"],
-        target_id=target_id,
+        target_id=dataset_label,
         split_type=outer_split_type,
         tuning_mode=tuning_mode,
         fold_df=fold_df,
@@ -343,6 +350,8 @@ def run_cv_workflow(
 
     return {
         "candidates": candidates,
+        "dataset_label": dataset_label,
+        "dataset_mode": dataset_mode,
         "fold_df": fold_df,
         "summary_df": summary_df,
         "tuning_df": tuning_df,
@@ -358,7 +367,9 @@ def run_cv_workflow(
 def print_cv_summary(
     results: dict,
     train_round_id: str,
-    target_id: str,
+    target_id: str | None,
+    dataset_mode: str,
+    family_key: str | None,
     comparisons: list[dict],
     model_runs: list[dict],
     outer_split_type: str,
@@ -378,7 +389,11 @@ def print_cv_summary(
     # Report the run configuration first so saved outputs are interpretable.
     print("CV settings:")
     print(f"- train_round_id: {train_round_id}")
-    print(f"- target_id: {target_id}")
+    print(f"- dataset_mode: {dataset_mode}")
+    if dataset_mode == "single_target":
+        print(f"- target_id: {target_id}")
+    else:
+        print(f"- family_key: {family_key}")
     print(f"- outer_split_type: {outer_split_type}")
     print(f"- tuning_mode: {display_tuning_mode}")
     print(f"- tuning_metric: {tuning_metric}")
