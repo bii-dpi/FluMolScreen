@@ -60,7 +60,7 @@ Here:
 When used as a hit model, the corresponding probability head is:
 
 ```math
-\(\mathrm{logit}\left(\hat{p}_{it}^{(\tau)}\right) = \eta_\){it}\(^{\mathrm{generic}}. \%\%\)MAGIT_PARSER_PROTECT%%
+\mathrm{logit}\left(\hat{p}_{it}^{(\tau)}\right) = \eta_{it}^{\mathrm{generic}}
 ```
 
 When used as a potency model, $\eta_{it}^{generic}$ is the regression score for `pkd`.
