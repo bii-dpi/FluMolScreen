@@ -24,8 +24,6 @@ from flumolscreen.ml.utils import (
     round_metrics,
 )
 
-METRIC_COLUMNS = ["rmse", "mae", "r2", "spearman"]
-
 __all__ = ["print_cv_summary", "run_cv_workflow"]
 
 ROW_ALIGNMENT_KEY_COLUMNS = ["compound_id", "target_id", "label_pkd"]
@@ -159,6 +157,9 @@ def evaluate_candidate_on_outer_fold(
     inner_split_params: dict | None = None,
     tuning_n_trials: int = 20,
     tuning_random_seed: int = 42,
+    hit_threshold_pkd: float | None = None,
+    enrichment_top_fractions: list[float] | None = None,
+    precision_at_n_values: list[int] | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Tune one candidate on the outer-train rows, then score the outer-test rows."""
     training_df = candidate["training_df"]
@@ -181,6 +182,9 @@ def evaluate_candidate_on_outer_fold(
         random_seed=tuning_random_seed,
         selection_scope=f"outer_fold_{outer_fold_idx}",
         trace_path=trace_path,
+        hit_threshold_pkd=hit_threshold_pkd,
+        enrichment_top_fractions=enrichment_top_fractions,
+        precision_at_n_values=precision_at_n_values,
     )
 
     # Fit the tuned candidate on outer-train and evaluate on outer-test.
@@ -188,13 +192,20 @@ def evaluate_candidate_on_outer_fold(
         training_df=train_df,
         model_type=candidate["model_type"],
         model_params=model_params,
+        standardize_features=candidate.get("standardize_features", False),
     )
     predictions = predict_regression_model(
         model=model,
         df=test_df,
         feature_columns=feature_columns,
     )
-    metrics = compute_regression_metrics(test_df["label_pkd"], predictions)
+    metrics = compute_regression_metrics(
+        test_df["label_pkd"],
+        predictions,
+        hit_threshold_pkd=hit_threshold_pkd,
+        enrichment_top_fractions=enrichment_top_fractions,
+        precision_at_n_values=precision_at_n_values,
+    )
     # Save the tuned-candidate outer-fold metrics in one tidy row.
     fold_df = _build_fold_record(
         candidate=candidate,
@@ -204,7 +215,10 @@ def evaluate_candidate_on_outer_fold(
         tuning_mode=tuning_df.iloc[0]["tuning_mode"],
         n_train=len(train_df),
         n_test=len(test_df),
-        metrics={name: round(float(value), 4) for name, value in metrics.items()},
+        metrics={
+            name: round(float(value), 4) if pd.notna(value) else float("nan")
+            for name, value in metrics.items()
+        },
     )
     return fold_df, tuning_df
 
@@ -212,13 +226,26 @@ def evaluate_candidate_on_outer_fold(
 def build_cv_summary(fold_df: pd.DataFrame, tuning_df: pd.DataFrame) -> pd.DataFrame:
     """Aggregate fold-level metrics to one summary row per candidate."""
     # Average fold metrics per candidate so ablations are easy to compare.
-    summary_df = (
-        fold_df.groupby(
-            ["comparison_name", "model_type", "p", "tuning_mode", "tuning_metric"],
-            as_index=False,
-        )[[*METRIC_COLUMNS, "n_train", "n_test"]]
-        .mean()
-    )
+    group_columns = [
+        "comparison_name",
+        "model_type",
+        "p",
+        "tuning_mode",
+        "tuning_metric",
+    ]
+    excluded_columns = {
+        "outer_fold",
+        "comparison_name",
+        "model_type",
+        "p",
+        "tuning_mode",
+        "tuning_metric",
+        "tuning_score",
+    }
+    metric_columns = [
+        column for column in fold_df.columns if column not in excluded_columns
+    ]
+    summary_df = fold_df.groupby(group_columns, as_index=False)[metric_columns].mean()
     # Attach the per-fold selected hyperparameters to each candidate summary row.
     params_by_fold_df = _summarize_selected_params_by_outer_fold(tuning_df)
     summary_df = summary_df.merge(
@@ -278,6 +305,10 @@ def run_cv_workflow(
     ensemble_size_m: int = 10,
     interval_coverage: float = 0.9,
     inference_random_seed: int = 42,
+    standardize_features: bool = False,
+    hit_threshold_pkd: float | None = None,
+    enrichment_top_fractions: list[float] | None = None,
+    precision_at_n_values: list[int] | None = None,
 ) -> dict:
     """Run the general outer-loop scaffold across all candidate ablations."""
     result_dirs = prepare_result_dirs(results_dir, train_round_id)
@@ -293,6 +324,7 @@ def run_cv_workflow(
         model_runs=model_runs,
         dataset_mode=dataset_mode,
         family_key=family_key,
+        standardize_features=standardize_features,
     )
     _validate_candidate_row_alignment(candidates)
     # Save outputs under a dataset-level stem: target_id for single-target runs
@@ -327,6 +359,9 @@ def run_cv_workflow(
                 inner_split_params=inner_split_params,
                 tuning_n_trials=tuning_n_trials,
                 tuning_random_seed=tuning_random_seed,
+                hit_threshold_pkd=hit_threshold_pkd,
+                enrichment_top_fractions=enrichment_top_fractions,
+                precision_at_n_values=precision_at_n_values,
             )
             fold_rows.append(fold_df)
             tuning_rows.append(tuning_df)
@@ -352,6 +387,9 @@ def run_cv_workflow(
             random_seed=tuning_random_seed,
             selection_scope="full_labeled_data",
             trace_path=trace_path,
+            hit_threshold_pkd=hit_threshold_pkd,
+            enrichment_top_fractions=enrichment_top_fractions,
+            precision_at_n_values=precision_at_n_values,
         )
         candidate_tuning_df.insert(0, "selection_scope", "full_labeled_data")
         final_tuning_rows.append(candidate_tuning_df)
@@ -419,6 +457,10 @@ def print_cv_summary(
     calibration_fraction: float = 0.2,
     ensemble_size_m: int = 10,
     interval_coverage: float = 0.9,
+    standardize_features: bool = False,
+    hit_threshold_pkd: float | None = None,
+    enrichment_top_fractions: list[float] | None = None,
+    precision_at_n_values: list[int] | None = None,
 ) -> None:
     """Print a compact summary of the CV run for IDE execution."""
     display_tuning_mode = DISPLAY_TUNING_MODES.get(tuning_mode, str(tuning_mode))
@@ -434,7 +476,12 @@ def print_cv_summary(
     print(f"- outer_split_type: {outer_split_type}")
     print(f"- tuning_mode: {display_tuning_mode}")
     print(f"- tuning_metric: {tuning_metric}")
+    print(f"- standardize_features: {standardize_features}")
     print(f"- inference_mode: {inference_mode}")
+    if hit_threshold_pkd is not None:
+        print(f"- hit_threshold_pkd: {hit_threshold_pkd}")
+        print(f"- enrichment_top_fractions: {enrichment_top_fractions}")
+        print(f"- precision_at_n_values: {precision_at_n_values}")
     if tuning_mode is not None:
         print(f"- tuning_n_trials: {tuning_n_trials}")
     if tuning_mode == "holdout":

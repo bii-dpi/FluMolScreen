@@ -74,6 +74,9 @@ def score_candidate_params(
     model_params: dict | None,
     tuning_metric: str,
     splits: list[tuple],
+    hit_threshold_pkd: float | None = None,
+    enrichment_top_fractions: list[float] | None = None,
+    precision_at_n_values: list[int] | None = None,
 ) -> tuple[float, pd.DataFrame, pd.DataFrame]:
     """Score one candidate/parameter setting on the provided inner splits."""
     # Run the shared fold evaluator on the requested inner splits.
@@ -82,6 +85,10 @@ def score_candidate_params(
         splits=splits,
         model_type=candidate["model_type"],
         model_params=model_params,
+        standardize_features=candidate.get("standardize_features", False),
+        hit_threshold_pkd=hit_threshold_pkd,
+        enrichment_top_fractions=enrichment_top_fractions,
+        precision_at_n_values=precision_at_n_values,
     )
     # Extract the optimization metric from the summary row.
     return float(summary_df.iloc[0][tuning_metric]), fold_df, summary_df
@@ -89,7 +96,13 @@ def score_candidate_params(
 
 def _resolve_direction(tuning_metric: str) -> str:
     """Return whether the tuning metric should be maximized or minimized."""
-    return "maximize" if tuning_metric in MAXIMIZE_METRICS else "minimize"
+    if (
+        tuning_metric in MAXIMIZE_METRICS
+        or tuning_metric.startswith("ef_")
+        or tuning_metric.startswith("precision_at_")
+    ):
+        return "maximize"
+    return "minimize"
 
 
 def _merge_model_params(candidate: dict, tuned_params: dict[str, Any] | None) -> dict[str, Any]:
@@ -108,6 +121,9 @@ def _build_tuning_record_for_splits(
     selection_scope: str,
     outer_fold_idx: int | None,
     trace_path: str | None,
+    hit_threshold_pkd: float | None,
+    enrichment_top_fractions: list[float] | None,
+    precision_at_n_values: list[int] | None,
 ) -> tuple[dict[str, Any], float, pd.DataFrame]:
     """Optimize one candidate on precomputed inner splits and return its record."""
     # Score candidate trials on the supplied inner splits, then package the result.
@@ -122,6 +138,9 @@ def _build_tuning_record_for_splits(
         selection_scope=selection_scope,
         outer_fold_idx=outer_fold_idx,
         trace_path=trace_path,
+        hit_threshold_pkd=hit_threshold_pkd,
+        enrichment_top_fractions=enrichment_top_fractions,
+        precision_at_n_values=precision_at_n_values,
     )
     record = build_tuning_record(
         candidate=candidate,
@@ -147,6 +166,9 @@ def _optimize_candidate(
     selection_scope: str,
     outer_fold_idx: int | None,
     trace_path: str | None,
+    hit_threshold_pkd: float | None,
+    enrichment_top_fractions: list[float] | None,
+    precision_at_n_values: list[int] | None,
 ) -> tuple[dict[str, Any], float, int, bool]:
     """Run an Optuna study over the candidate's registered search space."""
     try:
@@ -163,6 +185,9 @@ def _optimize_candidate(
             model_params=base_model_params,
             tuning_metric=tuning_metric,
             splits=splits,
+            hit_threshold_pkd=hit_threshold_pkd,
+            enrichment_top_fractions=enrichment_top_fractions,
+            precision_at_n_values=precision_at_n_values,
         )
         return base_model_params, score, 0, False
 
@@ -209,6 +234,9 @@ def _optimize_candidate(
             model_params=model_params,
             tuning_metric=tuning_metric,
             splits=splits,
+            hit_threshold_pkd=hit_threshold_pkd,
+            enrichment_top_fractions=enrichment_top_fractions,
+            precision_at_n_values=precision_at_n_values,
         )
         trial.set_user_attr("model_params", model_params)
         return score
@@ -260,6 +288,9 @@ def tune_candidate_holdout(
     selection_scope: str,
     outer_fold_idx: int | None = None,
     trace_path: str | None = None,
+    hit_threshold_pkd: float | None = None,
+    enrichment_top_fractions: list[float] | None = None,
+    precision_at_n_values: list[int] | None = None,
 ) -> tuple[dict | None, float, pd.DataFrame]:
     """Tune a candidate on one random inner train/validation split."""
     # Build one inner holdout split for scoring candidate hyperparameters.
@@ -282,6 +313,9 @@ def tune_candidate_holdout(
         selection_scope=selection_scope,
         outer_fold_idx=outer_fold_idx,
         trace_path=trace_path,
+        hit_threshold_pkd=hit_threshold_pkd,
+        enrichment_top_fractions=enrichment_top_fractions,
+        precision_at_n_values=precision_at_n_values,
     )
 
 
@@ -296,6 +330,9 @@ def tune_candidate_nested_cv(
     selection_scope: str,
     outer_fold_idx: int | None = None,
     trace_path: str | None = None,
+    hit_threshold_pkd: float | None = None,
+    enrichment_top_fractions: list[float] | None = None,
+    precision_at_n_values: list[int] | None = None,
 ) -> tuple[dict | None, float, pd.DataFrame]:
     """Tune a candidate with inner-fold cross-validation on the outer-train rows."""
     # Build the inner CV splits used to score each trial parameter setting.
@@ -315,6 +352,9 @@ def tune_candidate_nested_cv(
         selection_scope=selection_scope,
         outer_fold_idx=outer_fold_idx,
         trace_path=trace_path,
+        hit_threshold_pkd=hit_threshold_pkd,
+        enrichment_top_fractions=enrichment_top_fractions,
+        precision_at_n_values=precision_at_n_values,
     )
 
 
@@ -331,6 +371,9 @@ def tune_candidate(
     random_seed: int = 42,
     selection_scope: str | None = None,
     trace_path: str | None = None,
+    hit_threshold_pkd: float | None = None,
+    enrichment_top_fractions: list[float] | None = None,
+    precision_at_n_values: list[int] | None = None,
 ) -> tuple[dict | None, float | None, pd.DataFrame]:
     """Dispatch to the configured per-candidate tuning strategy."""
     selection_scope = selection_scope or (
@@ -354,6 +397,9 @@ def tune_candidate(
             selection_scope=selection_scope,
             outer_fold_idx=outer_fold_idx,
             trace_path=trace_path,
+            hit_threshold_pkd=hit_threshold_pkd,
+            enrichment_top_fractions=enrichment_top_fractions,
+            precision_at_n_values=precision_at_n_values,
         )
     if tuning_mode == "nested":
         if inner_split_type is None or inner_split_params is None:
@@ -371,6 +417,9 @@ def tune_candidate(
             selection_scope=selection_scope,
             outer_fold_idx=outer_fold_idx,
             trace_path=trace_path,
+            hit_threshold_pkd=hit_threshold_pkd,
+            enrichment_top_fractions=enrichment_top_fractions,
+            precision_at_n_values=precision_at_n_values,
         )
 
     raise ValueError(f"Unsupported tuning_mode: {tuning_mode}")

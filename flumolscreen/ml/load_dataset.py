@@ -8,6 +8,14 @@ from flumolscreen.ml.utils import select_model_feature_columns
 __all__ = ["compose_candidate_datasets", "infer_feature_generation_settings"]
 
 
+def _resolve_candidate_standardization(
+    model_run: dict,
+    default_standardize_features: bool,
+) -> bool:
+    """Resolve whether one candidate should standardize features before fitting."""
+    return model_run.get("standardize_features", default_standardize_features)
+
+
 def infer_feature_generation_settings(
     feature_requests: list[dict],
 ) -> tuple[list[str], bool]:
@@ -38,6 +46,7 @@ def compose_candidate_datasets(
     target_ids: list[str] | None = None,
     reference_target_id: str | None = None,
     target_id_to_label: dict[str, str] | None = None,
+    standardize_features: bool = False,
 ) -> list[dict]:
     """Build one flat candidate per comparison/model combination."""
     if dataset_mode not in {"single_target", "target_family"}:
@@ -112,6 +121,10 @@ def compose_candidate_datasets(
                     "feature_requests": feature_requests,
                     "model_type": model_run["model_type"],
                     "base_model_params": model_run.get("model_params"),
+                    "standardize_features": _resolve_candidate_standardization(
+                        model_run=model_run,
+                        default_standardize_features=standardize_features,
+                    ),
                     "training_df": training_df,
                     "inference_df": inference_df,
                     "p": p,

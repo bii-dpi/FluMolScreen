@@ -96,6 +96,7 @@ def fit_bootstrap_ensemble(
     random_state: int = 42,
     feature_columns: list[str] | None = None,
     label_column: str = "label_pkd",
+    standardize_features: bool = False,
 ) -> tuple[list, list[str]]:
     """Fit a bootstrap ensemble and return the models with their shared features."""
     # Resolve one shared feature list so every ensemble member uses the same inputs.
@@ -119,6 +120,7 @@ def fit_bootstrap_ensemble(
             feature_columns=used_feature_columns,
             label_column=label_column,
             model_params=model_params,
+            standardize_features=standardize_features,
         )
         models.append(model)
 
@@ -165,6 +167,7 @@ def _fit_and_save_point_inference(
         training_df=candidate["training_df"],
         model_type=candidate["model_type"],
         model_params=tuned_model_params,
+        standardize_features=candidate.get("standardize_features", False),
     )
 
     # Predict the full inference table, requesting model-native uncertainty when available.
@@ -241,6 +244,7 @@ def _fit_and_save_adaptive_conformal_inference(
         model_params=tuned_model_params,
         n_bootstrap=n_bootstrap,
         random_state=random_state + 1,
+        standardize_features=candidate.get("standardize_features", False),
     )
 
     # Predict calibration rows and estimate the conformal multiplier q.

@@ -9,6 +9,7 @@ scipy
 xgboost
 torch
 transformers
+optuna
 
 # MAMMAL inference stack
 mammal

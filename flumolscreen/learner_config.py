@@ -36,6 +36,12 @@ TUNING_METRIC = "spearman"
 TUNING_N_TRIALS = 20
 TUNING_RANDOM_SEED = 42
 
+# --- feature preprocessing and hit-ranking metrics ---
+STANDARDIZE_FEATURES = False
+HIT_THRESHOLD_PKD = 5.0
+ENRICHMENT_TOP_FRACTIONS = [0.01, 0.05, 0.10]
+PRECISION_AT_N_VALUES = [10, 25, 50]
+
 # --- uncertainty estimation ---
 CALIBRATION_FRACTION = 0.2
 ENSEMBLE_SIZE_M = 10
@@ -48,10 +54,12 @@ MODEL_RUNS = [
     {
         "model_type": "ridge",
         "model_params": {"alpha": 1.0},
+        "standardize_features": True,
     },
     {
         "model_type": "xgboost",
         "model_params": {"n_estimators": 300, 'max_depth': 4},
+        "standardize_features": False,
     },
 ]
 
@@ -172,6 +180,10 @@ CONFIG_VARIABLE_NAMES = (
     "TUNING_METRIC",
     "TUNING_N_TRIALS",
     "TUNING_RANDOM_SEED",
+    "STANDARDIZE_FEATURES",
+    "HIT_THRESHOLD_PKD",
+    "ENRICHMENT_TOP_FRACTIONS",
+    "PRECISION_AT_N_VALUES",
     "MODEL_RUNS",
     "COMPARISONS_SINGLE_TARGET",
     "COMPARISONS_TARGET_FAMILY",

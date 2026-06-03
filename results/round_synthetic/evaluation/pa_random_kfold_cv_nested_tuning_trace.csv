@@ -1,24 +1,24 @@
 selection_scope,outer_fold,comparison_name,model_type,p,tuning_mode,tuning_metric,trial_number,n_trials_planned,tuning_score,best_tuning_score_so_far,model_params
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,0,20,0.57,0.57,{'alpha': 0.0419}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,1,20,0.5674,0.57,{'alpha': 452.0}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,2,20,0.5709,0.5709,{'alpha': 13.3}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,3,20,0.5702,0.5709,{'alpha': 1.55}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,4,20,0.5701,0.5709,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,5,20,0.5701,0.5709,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,6,20,0.5701,0.5709,{'alpha': 0.000255}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,7,20,0.57,0.5709,{'alpha': 116.0}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,8,20,0.5702,0.5709,{'alpha': 1.61}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,9,20,0.571,0.571,{'alpha': 9.05}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,10,20,0.5701,0.571,{'alpha': 0.0151}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,11,20,0.5714,0.5714,{'alpha': 22.0}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,12,20,0.5711,0.5714,{'alpha': 7.46}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,13,20,0.5713,0.5714,{'alpha': 45.9}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,14,20,0.57,0.5714,{'alpha': 104.0}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,15,20,0.5715,0.5715,{'alpha': 73.6}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,16,20,0.567,0.5715,{'alpha': 715.0}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,17,20,0.5701,0.5715,{'alpha': 0.223}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,18,20,0.5702,0.5715,{'alpha': 0.986}
-outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,19,20,0.5715,0.5715,{'alpha': 23.4}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,0,20,0.5701,0.5701,{'alpha': 0.0419}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,1,20,0.5713,0.5713,{'alpha': 452.0}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,2,20,0.5701,0.5713,{'alpha': 13.3}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,3,20,0.57,0.5713,{'alpha': 1.55}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,4,20,0.5701,0.5713,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,5,20,0.5701,0.5713,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,6,20,0.5701,0.5713,{'alpha': 0.000255}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,7,20,0.5709,0.5713,{'alpha': 116.0}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,8,20,0.57,0.5713,{'alpha': 1.61}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,9,20,0.57,0.5713,{'alpha': 9.05}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,10,20,0.5715,0.5715,{'alpha': 719.0}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,11,20,0.5712,0.5715,{'alpha': 339.0}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,12,20,0.5715,0.5715,{'alpha': 612.0}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,13,20,0.5705,0.5715,{'alpha': 42.8}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,14,20,0.5713,0.5715,{'alpha': 865.0}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,15,20,0.5701,0.5715,{'alpha': 0.0255}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,16,20,0.5706,0.5715,{'alpha': 35.8}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,17,20,0.5701,0.5715,{'alpha': 0.353}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,18,20,0.5709,0.5715,{'alpha': 131.0}
+outer_fold_0,0,6predictor_pr,ridge,6,nested,spearman,19,20,0.57,0.5715,{'alpha': 3.21}
 outer_fold_0,0,6predictor_pr,xgboost,6,nested,spearman,0,20,0.518,0.518,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_0,0,6predictor_pr,xgboost,6,nested,spearman,1,20,0.5272,0.5272,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_0,0,6predictor_pr,xgboost,6,nested,spearman,2,20,0.5336,0.5336,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -39,26 +39,26 @@ outer_fold_0,0,6predictor_pr,xgboost,6,nested,spearman,16,20,0.5537,0.5647,"{'le
 outer_fold_0,0,6predictor_pr,xgboost,6,nested,spearman,17,20,0.5309,0.5647,"{'learning_rate': 0.025, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.843}"
 outer_fold_0,0,6predictor_pr,xgboost,6,nested,spearman,18,20,0.5575,0.5647,"{'learning_rate': 0.00179, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.556}"
 outer_fold_0,0,6predictor_pr,xgboost,6,nested,spearman,19,20,0.561,0.5647,"{'learning_rate': 0.00519, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.65}"
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5655,0.5655,{'alpha': 0.0419}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5413,0.5655,{'alpha': 452.0}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5674,0.5674,{'alpha': 13.3}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5665,0.5674,{'alpha': 1.55}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5653,0.5674,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5653,0.5674,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5653,0.5674,{'alpha': 0.000255}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5618,0.5674,{'alpha': 116.0}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5667,0.5674,{'alpha': 1.61}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5677,0.5677,{'alpha': 9.05}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5653,0.5677,{'alpha': 0.0151}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5679,0.5679,{'alpha': 22.0}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5677,0.5679,{'alpha': 7.46}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5667,0.5679,{'alpha': 41.0}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5659,0.5679,{'alpha': 0.158}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5665,0.5679,{'alpha': 1.33}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5344,0.5679,{'alpha': 629.0}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5666,0.5679,{'alpha': 48.3}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5674,0.5679,{'alpha': 5.9}
-outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5664,0.5679,{'alpha': 0.485}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5653,0.5653,{'alpha': 0.0419}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.567,0.567,{'alpha': 452.0}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5665,0.567,{'alpha': 13.3}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5658,0.567,{'alpha': 1.55}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5652,0.567,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5652,0.567,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5652,0.567,{'alpha': 0.000255}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.568,0.568,{'alpha': 116.0}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5658,0.568,{'alpha': 1.61}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5667,0.568,{'alpha': 9.05}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5654,0.568,{'alpha': 711.0}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5663,0.568,{'alpha': 515.0}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5673,0.568,{'alpha': 51.7}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5669,0.568,{'alpha': 45.0}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5652,0.568,{'alpha': 0.0603}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5673,0.568,{'alpha': 56.4}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5678,0.568,{'alpha': 78.0}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5656,0.568,{'alpha': 0.44}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5677,0.568,{'alpha': 130.0}
+outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5667,0.568,{'alpha': 10.5}
 outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,0,20,0.4865,0.4865,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,1,20,0.5222,0.5222,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,2,20,0.5195,0.5222,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -79,26 +79,26 @@ outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested
 outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,17,20,0.5351,0.565,"{'learning_rate': 0.025, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.558}"
 outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,18,20,0.5441,0.565,"{'learning_rate': 0.00451, 'max_depth': 6, 'n_estimators': 550, 'subsample': 0.822}"
 outer_fold_0,0,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,19,20,0.5569,0.565,"{'learning_rate': 0.00195, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.68}"
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5666,0.5666,{'alpha': 0.0419}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5598,0.5666,{'alpha': 452.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5728,0.5728,{'alpha': 13.3}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5694,0.5728,{'alpha': 1.55}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5663,0.5728,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5663,0.5728,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5663,0.5728,{'alpha': 0.000255}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5704,0.5728,{'alpha': 116.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5693,0.5728,{'alpha': 1.61}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5721,0.5728,{'alpha': 9.05}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5665,0.5728,{'alpha': 0.0176}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5726,0.5728,{'alpha': 22.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5706,0.5728,{'alpha': 113.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5728,0.5728,{'alpha': 14.4}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5674,0.5728,{'alpha': 0.216}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5725,0.5728,{'alpha': 10.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5683,0.5728,{'alpha': 0.787}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5572,0.5728,{'alpha': 574.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.573,0.573,{'alpha': 30.7}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5668,0.573,{'alpha': 0.0803}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5663,0.5663,{'alpha': 0.0419}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5746,0.5746,{'alpha': 452.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5684,0.5746,{'alpha': 13.3}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5666,0.5746,{'alpha': 1.55}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5662,0.5746,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5662,0.5746,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5662,0.5746,{'alpha': 0.000255}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5718,0.5746,{'alpha': 116.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5666,0.5746,{'alpha': 1.61}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5679,0.5746,{'alpha': 9.05}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5751,0.5751,{'alpha': 719.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5739,0.5751,{'alpha': 339.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5751,0.5751,{'alpha': 612.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5703,0.5751,{'alpha': 42.8}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5748,0.5751,{'alpha': 865.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5663,0.5751,{'alpha': 0.0255}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5696,0.5751,{'alpha': 35.8}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5663,0.5751,{'alpha': 0.353}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5722,0.5751,{'alpha': 131.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.567,0.5751,{'alpha': 3.21}
 outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,0,20,0.5177,0.5177,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,1,20,0.5448,0.5448,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,2,20,0.535,0.5448,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -119,26 +119,26 @@ outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgbo
 outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5398,0.5704,"{'learning_rate': 0.025, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.558}"
 outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5554,0.5704,"{'learning_rate': 0.00451, 'max_depth': 6, 'n_estimators': 550, 'subsample': 0.822}"
 outer_fold_0,0,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.4842,0.5704,"{'learning_rate': 0.131, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.68}"
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5766,0.5766,{'alpha': 0.0419}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.542,0.5766,{'alpha': 452.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5803,0.5803,{'alpha': 13.3}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5797,0.5803,{'alpha': 1.55}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.576,0.5803,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.576,0.5803,{'alpha': 0.00124}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.576,0.5803,{'alpha': 0.000255}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5727,0.5803,{'alpha': 116.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5797,0.5803,{'alpha': 1.61}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.581,0.581,{'alpha': 9.05}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5762,0.581,{'alpha': 0.0151}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5804,0.581,{'alpha': 22.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5809,0.581,{'alpha': 7.46}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5773,0.581,{'alpha': 0.385}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.581,0.581,{'alpha': 15.8}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5737,0.581,{'alpha': 105.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5769,0.581,{'alpha': 0.091}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5343,0.581,{'alpha': 537.0}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5802,0.581,{'alpha': 2.44}
-outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5777,0.581,{'alpha': 0.485}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.576,0.576,{'alpha': 0.0419}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5786,0.5786,{'alpha': 452.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5782,0.5786,{'alpha': 13.3}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5767,0.5786,{'alpha': 1.55}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.576,0.5786,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.576,0.5786,{'alpha': 0.00124}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.576,0.5786,{'alpha': 0.000255}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5792,0.5792,{'alpha': 116.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5767,0.5792,{'alpha': 1.61}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5777,0.5792,{'alpha': 9.05}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5782,0.5792,{'alpha': 711.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5787,0.5792,{'alpha': 515.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5789,0.5792,{'alpha': 173.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5789,0.5792,{'alpha': 46.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5785,0.5792,{'alpha': 34.5}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5762,0.5792,{'alpha': 0.271}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.579,0.5792,{'alpha': 77.0}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.576,0.5792,{'alpha': 0.0559}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5769,0.5792,{'alpha': 2.44}
+outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5789,0.5792,{'alpha': 46.6}
 outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5935,0.5935,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5508,0.5935,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5474,0.5935,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -160,25 +160,25 @@ outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarc
 outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,18,20,0.5952,0.6001,"{'learning_rate': 0.00594, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.556}"
 outer_fold_0,0,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,19,20,0.5944,0.6001,"{'learning_rate': 0.0462, 'max_depth': 7, 'n_estimators': 600, 'subsample': 0.652}"
 outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,0,20,0.5424,0.5424,{'alpha': 0.0419}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,1,20,0.5346,0.5424,{'alpha': 452.0}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,2,20,0.5421,0.5424,{'alpha': 13.3}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,3,20,0.5427,0.5427,{'alpha': 1.55}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,4,20,0.5424,0.5427,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,5,20,0.5424,0.5427,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,6,20,0.5424,0.5427,{'alpha': 0.000255}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,7,20,0.5385,0.5427,{'alpha': 116.0}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,8,20,0.5428,0.5428,{'alpha': 1.61}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,9,20,0.5422,0.5428,{'alpha': 9.05}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,10,20,0.5424,0.5428,{'alpha': 0.0967}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,11,20,0.5427,0.5428,{'alpha': 1.16}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,12,20,0.5428,0.5428,{'alpha': 1.36}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,13,20,0.5424,0.5428,{'alpha': 0.0196}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,14,20,0.5422,0.5428,{'alpha': 12.8}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,15,20,0.5425,0.5428,{'alpha': 0.329}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,16,20,0.5426,0.5428,{'alpha': 1.85}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,17,20,0.5403,0.5428,{'alpha': 67.9}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,18,20,0.5425,0.5428,{'alpha': 0.212}
-outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,19,20,0.5424,0.5428,{'alpha': 0.0137}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,1,20,0.5415,0.5424,{'alpha': 452.0}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,2,20,0.5428,0.5428,{'alpha': 13.3}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,3,20,0.5424,0.5428,{'alpha': 1.55}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,4,20,0.5424,0.5428,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,5,20,0.5424,0.5428,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,6,20,0.5424,0.5428,{'alpha': 0.000255}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,7,20,0.5421,0.5428,{'alpha': 116.0}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,8,20,0.5424,0.5428,{'alpha': 1.61}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,9,20,0.5426,0.5428,{'alpha': 9.05}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,10,20,0.5424,0.5428,{'alpha': 0.0176}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,11,20,0.5425,0.5428,{'alpha': 22.0}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,12,20,0.5427,0.5428,{'alpha': 7.46}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,13,20,0.5424,0.5428,{'alpha': 0.208}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,14,20,0.5426,0.5428,{'alpha': 20.4}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,15,20,0.5424,0.5428,{'alpha': 1.8}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,16,20,0.5418,0.5428,{'alpha': 529.0}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,17,20,0.5422,0.5428,{'alpha': 109.0}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,18,20,0.5424,0.5428,{'alpha': 0.29}
+outer_fold_1,1,6predictor_pr,ridge,6,nested,spearman,19,20,0.5426,0.5428,{'alpha': 5.28}
 outer_fold_1,1,6predictor_pr,xgboost,6,nested,spearman,0,20,0.458,0.458,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_1,1,6predictor_pr,xgboost,6,nested,spearman,1,20,0.4859,0.4859,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_1,1,6predictor_pr,xgboost,6,nested,spearman,2,20,0.4792,0.4859,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -199,26 +199,26 @@ outer_fold_1,1,6predictor_pr,xgboost,6,nested,spearman,16,20,0.5097,0.5193,"{'le
 outer_fold_1,1,6predictor_pr,xgboost,6,nested,spearman,17,20,0.5222,0.5222,"{'learning_rate': 0.0049, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.564}"
 outer_fold_1,1,6predictor_pr,xgboost,6,nested,spearman,18,20,0.5062,0.5222,"{'learning_rate': 0.00592, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.55}"
 outer_fold_1,1,6predictor_pr,xgboost,6,nested,spearman,19,20,0.4854,0.5222,"{'learning_rate': 0.0212, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.708}"
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5266,0.5266,{'alpha': 0.0419}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5116,0.5266,{'alpha': 452.0}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5365,0.5365,{'alpha': 13.3}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5315,0.5365,{'alpha': 1.55}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5267,0.5365,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5267,0.5365,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5267,0.5365,{'alpha': 0.000255}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5296,0.5365,{'alpha': 116.0}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5315,0.5365,{'alpha': 1.61}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5359,0.5365,{'alpha': 9.05}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5266,0.5365,{'alpha': 0.0176}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5372,0.5372,{'alpha': 22.0}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5299,0.5372,{'alpha': 113.0}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5366,0.5372,{'alpha': 14.4}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5369,0.5372,{'alpha': 17.6}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5268,0.5372,{'alpha': 0.074}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5297,0.5372,{'alpha': 0.701}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5065,0.5372,{'alpha': 618.0}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5376,0.5376,{'alpha': 34.7}
-outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5331,0.5376,{'alpha': 3.21}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5267,0.5267,{'alpha': 0.0419}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5373,0.5373,{'alpha': 452.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5312,0.5373,{'alpha': 13.3}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5273,0.5373,{'alpha': 1.55}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5267,0.5373,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5267,0.5373,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5267,0.5373,{'alpha': 0.000255}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5364,0.5373,{'alpha': 116.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5273,0.5373,{'alpha': 1.61}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5304,0.5373,{'alpha': 9.05}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.535,0.5373,{'alpha': 719.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5367,0.5373,{'alpha': 515.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5357,0.5373,{'alpha': 612.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5345,0.5373,{'alpha': 50.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5266,0.5373,{'alpha': 0.0625}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5364,0.5373,{'alpha': 124.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5343,0.5373,{'alpha': 806.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5309,0.5373,{'alpha': 11.0}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5267,0.5373,{'alpha': 0.29}
+outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.535,0.5373,{'alpha': 59.3}
 outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,0,20,0.453,0.453,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,1,20,0.4816,0.4816,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,2,20,0.4656,0.4816,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -239,26 +239,26 @@ outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested
 outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,17,20,0.5214,0.5214,"{'learning_rate': 0.0049, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.564}"
 outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,18,20,0.5037,0.5214,"{'learning_rate': 0.00592, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.55}"
 outer_fold_1,1,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,19,20,0.4876,0.5214,"{'learning_rate': 0.0212, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.708}"
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5304,0.5304,{'alpha': 0.0419}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5298,0.5304,{'alpha': 452.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5429,0.5429,{'alpha': 13.3}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5365,0.5429,{'alpha': 1.55}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5305,0.5429,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5305,0.5429,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5305,0.5429,{'alpha': 0.000255}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5397,0.5429,{'alpha': 116.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5365,0.5429,{'alpha': 1.61}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.542,0.5429,{'alpha': 9.05}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5305,0.5429,{'alpha': 0.0176}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5441,0.5441,{'alpha': 22.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5398,0.5441,{'alpha': 113.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5426,0.5441,{'alpha': 14.4}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5315,0.5441,{'alpha': 0.216}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5434,0.5441,{'alpha': 17.9}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5276,0.5441,{'alpha': 611.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5385,0.5441,{'alpha': 2.34}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5415,0.5441,{'alpha': 84.6}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5311,0.5441,{'alpha': 0.121}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5305,0.5305,{'alpha': 0.0419}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5444,0.5444,{'alpha': 452.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5349,0.5444,{'alpha': 13.3}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5313,0.5444,{'alpha': 1.55}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5305,0.5444,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5305,0.5444,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5305,0.5444,{'alpha': 0.000255}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5402,0.5444,{'alpha': 116.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5313,0.5444,{'alpha': 1.61}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5337,0.5444,{'alpha': 9.05}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5449,0.5449,{'alpha': 719.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.544,0.5449,{'alpha': 339.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5447,0.5449,{'alpha': 612.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5375,0.5449,{'alpha': 42.8}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5441,0.5449,{'alpha': 865.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5304,0.5449,{'alpha': 0.0255}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5372,0.5449,{'alpha': 35.8}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5305,0.5449,{'alpha': 0.353}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5406,0.5449,{'alpha': 131.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5318,0.5449,{'alpha': 3.21}
 outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,0,20,0.4563,0.4563,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,1,20,0.5222,0.5222,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,2,20,0.491,0.5222,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -279,26 +279,26 @@ outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgbo
 outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5135,0.5302,"{'learning_rate': 0.0196, 'max_depth': 3, 'n_estimators': 350, 'subsample': 0.6}"
 outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5299,0.5302,"{'learning_rate': 0.00594, 'max_depth': 2, 'n_estimators': 450, 'subsample': 0.677}"
 outer_fold_1,1,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.4341,0.5302,"{'learning_rate': 0.131, 'max_depth': 4, 'n_estimators': 500, 'subsample': 0.78}"
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5391,0.5391,{'alpha': 0.0419}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.4973,0.5391,{'alpha': 452.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5461,0.5461,{'alpha': 13.3}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5431,0.5461,{'alpha': 1.55}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5388,0.5461,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5388,0.5461,{'alpha': 0.00124}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5388,0.5461,{'alpha': 0.000255}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5331,0.5461,{'alpha': 116.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5433,0.5461,{'alpha': 1.61}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5468,0.5468,{'alpha': 9.05}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5389,0.5468,{'alpha': 0.0151}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5461,0.5468,{'alpha': 22.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5467,0.5468,{'alpha': 7.46}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5404,0.5468,{'alpha': 0.385}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5461,0.5468,{'alpha': 15.8}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5461,0.5468,{'alpha': 3.63}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5394,0.5468,{'alpha': 0.115}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5334,0.5468,{'alpha': 114.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.4968,0.5468,{'alpha': 457.0}
-outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5406,0.5468,{'alpha': 0.485}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5388,0.5388,{'alpha': 0.0419}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5487,0.5487,{'alpha': 452.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5449,0.5487,{'alpha': 13.3}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5407,0.5487,{'alpha': 1.55}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5388,0.5487,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5388,0.5487,{'alpha': 0.00124}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5388,0.5487,{'alpha': 0.000255}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5485,0.5487,{'alpha': 116.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5406,0.5487,{'alpha': 1.61}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5437,0.5487,{'alpha': 9.05}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5491,0.5491,{'alpha': 719.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5484,0.5491,{'alpha': 339.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5492,0.5492,{'alpha': 612.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5471,0.5492,{'alpha': 42.8}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5487,0.5492,{'alpha': 865.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5388,0.5492,{'alpha': 0.0255}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5467,0.5492,{'alpha': 35.8}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5395,0.5492,{'alpha': 0.353}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5484,0.5492,{'alpha': 131.0}
+outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5414,0.5492,{'alpha': 3.21}
 outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5239,0.5239,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5275,0.5275,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5136,0.5275,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -320,25 +320,25 @@ outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarc
 outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,18,20,0.5484,0.559,"{'learning_rate': 0.00419, 'max_depth': 6, 'n_estimators': 600, 'subsample': 0.655}"
 outer_fold_1,1,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,19,20,0.5409,0.559,"{'learning_rate': 0.00221, 'max_depth': 7, 'n_estimators': 600, 'subsample': 0.708}"
 outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,0,20,0.5421,0.5421,{'alpha': 0.0419}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,1,20,0.5376,0.5421,{'alpha': 452.0}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,2,20,0.5427,0.5427,{'alpha': 13.3}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,3,20,0.5428,0.5428,{'alpha': 1.55}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,4,20,0.5421,0.5428,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,5,20,0.5421,0.5428,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,6,20,0.5421,0.5428,{'alpha': 0.000255}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,7,20,0.541,0.5428,{'alpha': 116.0}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,8,20,0.5428,0.5428,{'alpha': 1.61}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,9,20,0.5425,0.5428,{'alpha': 9.05}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,10,20,0.542,0.5428,{'alpha': 0.0942}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,11,20,0.5427,0.5428,{'alpha': 1.16}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,12,20,0.5426,0.5428,{'alpha': 1.36}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,13,20,0.542,0.5428,{'alpha': 0.019}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,14,20,0.5429,0.5429,{'alpha': 14.5}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,15,20,0.5433,0.5433,{'alpha': 34.1}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,16,20,0.5435,0.5435,{'alpha': 45.2}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,17,20,0.5369,0.5435,{'alpha': 647.0}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,18,20,0.5416,0.5435,{'alpha': 91.1}
-outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,19,20,0.5435,0.5435,{'alpha': 18.4}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,1,20,0.5434,0.5434,{'alpha': 452.0}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,2,20,0.5426,0.5434,{'alpha': 13.3}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,3,20,0.542,0.5434,{'alpha': 1.55}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,4,20,0.5421,0.5434,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,5,20,0.5421,0.5434,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,6,20,0.5421,0.5434,{'alpha': 0.000255}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,7,20,0.5426,0.5434,{'alpha': 116.0}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,8,20,0.5419,0.5434,{'alpha': 1.61}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,9,20,0.5424,0.5434,{'alpha': 9.05}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,10,20,0.543,0.5434,{'alpha': 719.0}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,11,20,0.5432,0.5434,{'alpha': 339.0}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,12,20,0.543,0.5434,{'alpha': 714.0}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,13,20,0.5424,0.5434,{'alpha': 58.7}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,14,20,0.5421,0.5434,{'alpha': 0.0655}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,15,20,0.5424,0.5434,{'alpha': 105.0}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,16,20,0.5427,0.5434,{'alpha': 766.0}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,17,20,0.5421,0.5434,{'alpha': 0.429}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,18,20,0.5427,0.5434,{'alpha': 16.3}
+outer_fold_2,2,6predictor_pr,ridge,6,nested,spearman,19,20,0.5425,0.5434,{'alpha': 83.2}
 outer_fold_2,2,6predictor_pr,xgboost,6,nested,spearman,0,20,0.4683,0.4683,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_2,2,6predictor_pr,xgboost,6,nested,spearman,1,20,0.4793,0.4793,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_2,2,6predictor_pr,xgboost,6,nested,spearman,2,20,0.4982,0.4982,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -359,26 +359,26 @@ outer_fold_2,2,6predictor_pr,xgboost,6,nested,spearman,16,20,0.5291,0.5308,"{'le
 outer_fold_2,2,6predictor_pr,xgboost,6,nested,spearman,17,20,0.5259,0.5308,"{'learning_rate': 0.00206, 'max_depth': 6, 'n_estimators': 150, 'subsample': 0.543}"
 outer_fold_2,2,6predictor_pr,xgboost,6,nested,spearman,18,20,0.524,0.5308,"{'learning_rate': 0.00594, 'max_depth': 3, 'n_estimators': 500, 'subsample': 0.822}"
 outer_fold_2,2,6predictor_pr,xgboost,6,nested,spearman,19,20,0.508,0.5308,"{'learning_rate': 0.0316, 'max_depth': 4, 'n_estimators': 200, 'subsample': 0.567}"
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.529,0.529,{'alpha': 0.0419}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5249,0.529,{'alpha': 452.0}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5438,0.5438,{'alpha': 13.3}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5354,0.5438,{'alpha': 1.55}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5285,0.5438,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5285,0.5438,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5285,0.5438,{'alpha': 0.000255}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5416,0.5438,{'alpha': 116.0}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5355,0.5438,{'alpha': 1.61}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5423,0.5438,{'alpha': 9.05}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5288,0.5438,{'alpha': 0.0176}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5454,0.5454,{'alpha': 22.0}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5416,0.5454,{'alpha': 113.0}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5438,0.5454,{'alpha': 14.4}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5444,0.5454,{'alpha': 17.6}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5291,0.5454,{'alpha': 0.074}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5328,0.5454,{'alpha': 0.701}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5217,0.5454,{'alpha': 618.0}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5461,0.5461,{'alpha': 34.7}
-outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5377,0.5461,{'alpha': 3.21}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5285,0.5285,{'alpha': 0.0419}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5457,0.5457,{'alpha': 452.0}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5338,0.5457,{'alpha': 13.3}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5298,0.5457,{'alpha': 1.55}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5285,0.5457,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5285,0.5457,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5284,0.5457,{'alpha': 0.000255}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.542,0.5457,{'alpha': 116.0}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5299,0.5457,{'alpha': 1.61}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5327,0.5457,{'alpha': 9.05}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5443,0.5457,{'alpha': 719.0}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5457,0.5457,{'alpha': 339.0}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5443,0.5457,{'alpha': 714.0}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5396,0.5457,{'alpha': 58.7}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5285,0.5457,{'alpha': 0.0655}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5415,0.5457,{'alpha': 105.0}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.544,0.5457,{'alpha': 766.0}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.529,0.5457,{'alpha': 0.429}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5349,0.5457,{'alpha': 16.3}
+outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5407,0.5457,{'alpha': 83.2}
 outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,0,20,0.4572,0.4572,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,1,20,0.4731,0.4731,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,2,20,0.4782,0.4782,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -399,26 +399,26 @@ outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested
 outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,17,20,0.4711,0.524,"{'learning_rate': 0.0165, 'max_depth': 6, 'n_estimators': 600, 'subsample': 0.675}"
 outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,18,20,0.5174,0.524,"{'learning_rate': 0.00165, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.652}"
 outer_fold_2,2,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,19,20,0.5211,0.524,"{'learning_rate': 0.00649, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.741}"
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5302,0.5302,{'alpha': 0.0419}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5412,0.5412,{'alpha': 452.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.548,0.548,{'alpha': 13.3}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5373,0.548,{'alpha': 1.55}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5297,0.548,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5297,0.548,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5297,0.548,{'alpha': 0.000255}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5501,0.5501,{'alpha': 116.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5374,0.5501,{'alpha': 1.61}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5462,0.5501,{'alpha': 9.05}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.537,0.5501,{'alpha': 711.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5517,0.5517,{'alpha': 65.1}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.549,0.5517,{'alpha': 152.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5519,0.5519,{'alpha': 45.7}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5303,0.5519,{'alpha': 0.0603}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5495,0.5519,{'alpha': 19.9}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5319,0.5519,{'alpha': 0.276}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5522,0.5522,{'alpha': 52.9}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5397,0.5522,{'alpha': 2.44}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5354,0.5522,{'alpha': 932.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5297,0.5297,{'alpha': 0.0419}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5515,0.5515,{'alpha': 452.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5353,0.5515,{'alpha': 13.3}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5309,0.5515,{'alpha': 1.55}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5297,0.5515,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5297,0.5515,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5297,0.5515,{'alpha': 0.000255}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5461,0.5515,{'alpha': 116.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5308,0.5515,{'alpha': 1.61}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5341,0.5515,{'alpha': 9.05}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5527,0.5527,{'alpha': 719.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5511,0.5527,{'alpha': 339.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5524,0.5527,{'alpha': 612.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5409,0.5527,{'alpha': 42.8}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5529,0.5529,{'alpha': 865.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5297,0.5529,{'alpha': 0.0255}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5419,0.5529,{'alpha': 51.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5303,0.5529,{'alpha': 0.605}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5353,0.5529,{'alpha': 13.5}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5528,0.5529,{'alpha': 964.0}
 outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,0,20,0.4806,0.4806,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,1,20,0.5173,0.5173,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,2,20,0.4897,0.5173,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -439,26 +439,26 @@ outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgbo
 outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5384,0.5384,"{'learning_rate': 0.0049, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.564}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5165,0.5384,"{'learning_rate': 0.00592, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.55}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.5011,0.5384,"{'learning_rate': 0.0212, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.708}"
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5458,0.5458,{'alpha': 0.0419}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5213,0.5458,{'alpha': 452.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5587,0.5587,{'alpha': 13.3}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5523,0.5587,{'alpha': 1.55}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5455,0.5587,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5455,0.5587,{'alpha': 0.00124}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5455,0.5587,{'alpha': 0.000255}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5515,0.5587,{'alpha': 116.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5525,0.5587,{'alpha': 1.61}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5582,0.5587,{'alpha': 9.05}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5456,0.5587,{'alpha': 0.0176}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5586,0.5587,{'alpha': 22.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5517,0.5587,{'alpha': 113.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.559,0.559,{'alpha': 14.4}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5473,0.559,{'alpha': 0.216}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5584,0.559,{'alpha': 10.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5501,0.559,{'alpha': 0.787}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5106,0.559,{'alpha': 574.0}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5582,0.559,{'alpha': 30.7}
-outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5461,0.559,{'alpha': 0.0803}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5456,0.5456,{'alpha': 0.0419}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5567,0.5567,{'alpha': 452.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5519,0.5567,{'alpha': 13.3}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5474,0.5567,{'alpha': 1.55}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5456,0.5567,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5456,0.5567,{'alpha': 0.00124}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5456,0.5567,{'alpha': 0.000255}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5566,0.5567,{'alpha': 116.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5475,0.5567,{'alpha': 1.61}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5508,0.5567,{'alpha': 9.05}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5574,0.5574,{'alpha': 719.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5566,0.5574,{'alpha': 339.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5574,0.5574,{'alpha': 612.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5556,0.5574,{'alpha': 42.8}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5572,0.5574,{'alpha': 865.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5456,0.5574,{'alpha': 0.0255}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5549,0.5574,{'alpha': 35.8}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5461,0.5574,{'alpha': 0.353}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5565,0.5574,{'alpha': 131.0}
+outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5484,0.5574,{'alpha': 3.21}
 outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5625,0.5625,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5246,0.5625,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5243,0.5625,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -479,26 +479,26 @@ outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarc
 outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,17,20,0.574,0.5826,"{'learning_rate': 0.00626, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.64}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,18,20,0.5654,0.5826,"{'learning_rate': 0.0027, 'max_depth': 5, 'n_estimators': 450, 'subsample': 0.616}"
 outer_fold_2,2,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,19,20,0.5631,0.5826,"{'learning_rate': 0.0345, 'max_depth': 7, 'n_estimators': 550, 'subsample': 0.501}"
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,0,20,0.5599,0.5599,{'alpha': 0.0419}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,1,20,0.5558,0.5599,{'alpha': 452.0}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,2,20,0.5621,0.5621,{'alpha': 13.3}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,3,20,0.5606,0.5621,{'alpha': 1.55}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,4,20,0.5598,0.5621,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,5,20,0.5598,0.5621,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,6,20,0.5598,0.5621,{'alpha': 0.000255}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,7,20,0.5596,0.5621,{'alpha': 116.0}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,8,20,0.5606,0.5621,{'alpha': 1.61}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,9,20,0.5618,0.5621,{'alpha': 9.05}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,10,20,0.5599,0.5621,{'alpha': 0.0176}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,11,20,0.5619,0.5621,{'alpha': 22.0}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,12,20,0.5596,0.5621,{'alpha': 113.0}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,13,20,0.5618,0.5621,{'alpha': 14.4}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,14,20,0.5601,0.5621,{'alpha': 0.216}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,15,20,0.5619,0.5621,{'alpha': 17.9}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,16,20,0.5608,0.5621,{'alpha': 2.16}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,17,20,0.5553,0.5621,{'alpha': 574.0}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,18,20,0.56,0.5621,{'alpha': 0.161}
-outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,19,20,0.5616,0.5621,{'alpha': 4.95}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,0,20,0.5598,0.5598,{'alpha': 0.0419}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,1,20,0.5613,0.5613,{'alpha': 452.0}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,2,20,0.5605,0.5613,{'alpha': 13.3}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,3,20,0.5599,0.5613,{'alpha': 1.55}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,4,20,0.5598,0.5613,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,5,20,0.5598,0.5613,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,6,20,0.5598,0.5613,{'alpha': 0.000255}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,7,20,0.5618,0.5618,{'alpha': 116.0}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,8,20,0.5599,0.5618,{'alpha': 1.61}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,9,20,0.5603,0.5618,{'alpha': 9.05}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,10,20,0.5616,0.5618,{'alpha': 711.0}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,11,20,0.5617,0.5618,{'alpha': 333.0}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,12,20,0.5621,0.5621,{'alpha': 173.0}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,13,20,0.5614,0.5621,{'alpha': 46.0}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,14,20,0.5598,0.5621,{'alpha': 0.0603}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,15,20,0.5616,0.5621,{'alpha': 58.3}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,16,20,0.5617,0.5621,{'alpha': 68.4}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,17,20,0.5599,0.5621,{'alpha': 0.42}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,18,20,0.5601,0.5621,{'alpha': 5.51}
+outer_fold_3,3,6predictor_pr,ridge,6,nested,spearman,19,20,0.5598,0.5621,{'alpha': 0.0454}
 outer_fold_3,3,6predictor_pr,xgboost,6,nested,spearman,0,20,0.5,0.5,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_3,3,6predictor_pr,xgboost,6,nested,spearman,1,20,0.538,0.538,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_3,3,6predictor_pr,xgboost,6,nested,spearman,2,20,0.538,0.538,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -519,26 +519,26 @@ outer_fold_3,3,6predictor_pr,xgboost,6,nested,spearman,16,20,0.5514,0.5561,"{'le
 outer_fold_3,3,6predictor_pr,xgboost,6,nested,spearman,17,20,0.5579,0.5579,"{'learning_rate': 0.0049, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.564}"
 outer_fold_3,3,6predictor_pr,xgboost,6,nested,spearman,18,20,0.549,0.5579,"{'learning_rate': 0.00173, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.556}"
 outer_fold_3,3,6predictor_pr,xgboost,6,nested,spearman,19,20,0.5199,0.5579,"{'learning_rate': 0.0305, 'max_depth': 5, 'n_estimators': 450, 'subsample': 0.591}"
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5503,0.5503,{'alpha': 0.0419}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5302,0.5503,{'alpha': 452.0}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5584,0.5584,{'alpha': 13.3}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5529,0.5584,{'alpha': 1.55}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5502,0.5584,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5502,0.5584,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5502,0.5584,{'alpha': 0.000255}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5513,0.5584,{'alpha': 116.0}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5531,0.5584,{'alpha': 1.61}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5574,0.5584,{'alpha': 9.05}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5501,0.5584,{'alpha': 0.0176}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5589,0.5589,{'alpha': 22.0}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5516,0.5589,{'alpha': 113.0}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5585,0.5589,{'alpha': 14.4}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5584,0.5589,{'alpha': 17.6}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5506,0.5589,{'alpha': 0.074}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5516,0.5589,{'alpha': 0.677}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5246,0.5589,{'alpha': 618.0}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.554,0.5589,{'alpha': 84.6}
-outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5567,0.5589,{'alpha': 7.04}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5502,0.5502,{'alpha': 0.0419}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5567,0.5567,{'alpha': 452.0}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5529,0.5567,{'alpha': 13.3}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5508,0.5567,{'alpha': 1.55}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5502,0.5567,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5502,0.5567,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5502,0.5567,{'alpha': 0.000255}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5578,0.5578,{'alpha': 116.0}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5507,0.5578,{'alpha': 1.61}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.552,0.5578,{'alpha': 9.05}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5555,0.5578,{'alpha': 711.0}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5563,0.5578,{'alpha': 515.0}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5554,0.5578,{'alpha': 51.7}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.558,0.558,{'alpha': 124.0}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5502,0.558,{'alpha': 0.0603}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5558,0.558,{'alpha': 58.3}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5564,0.558,{'alpha': 65.7}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5502,0.558,{'alpha': 0.33}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5513,0.558,{'alpha': 4.47}
+outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5502,0.558,{'alpha': 0.175}
 outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,0,20,0.5022,0.5022,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,1,20,0.5332,0.5332,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,2,20,0.5252,0.5332,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -559,26 +559,26 @@ outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested
 outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,17,20,0.5408,0.5542,"{'learning_rate': 0.0049, 'max_depth': 6, 'n_estimators': 600, 'subsample': 0.817}"
 outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,18,20,0.5313,0.5542,"{'learning_rate': 0.017, 'max_depth': 5, 'n_estimators': 450, 'subsample': 0.617}"
 outer_fold_3,3,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,19,20,0.4884,0.5542,"{'learning_rate': 0.131, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.565}"
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.551,0.551,{'alpha': 0.0419}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.552,0.552,{'alpha': 452.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5626,0.5626,{'alpha': 13.3}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5552,0.5626,{'alpha': 1.55}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5506,0.5626,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5506,0.5626,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5507,0.5626,{'alpha': 0.000255}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5618,0.5626,{'alpha': 116.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5553,0.5626,{'alpha': 1.61}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5612,0.5626,{'alpha': 9.05}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5507,0.5626,{'alpha': 0.0176}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5597,0.5626,{'alpha': 180.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5628,0.5628,{'alpha': 14.1}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5627,0.5628,{'alpha': 14.4}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5637,0.5637,{'alpha': 21.2}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.564,0.564,{'alpha': 49.7}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5516,0.564,{'alpha': 0.185}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5636,0.564,{'alpha': 73.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.555,0.564,{'alpha': 1.48}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5453,0.564,{'alpha': 931.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5506,0.5506,{'alpha': 0.0419}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5632,0.5632,{'alpha': 452.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5538,0.5632,{'alpha': 13.3}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5514,0.5632,{'alpha': 1.55}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5507,0.5632,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5507,0.5632,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5507,0.5632,{'alpha': 0.000255}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5601,0.5632,{'alpha': 116.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5515,0.5632,{'alpha': 1.61}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5533,0.5632,{'alpha': 9.05}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5643,0.5643,{'alpha': 719.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5628,0.5643,{'alpha': 339.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.564,0.5643,{'alpha': 612.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5573,0.5643,{'alpha': 42.8}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5643,0.5643,{'alpha': 865.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5506,0.5643,{'alpha': 0.0255}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5581,0.5643,{'alpha': 51.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5509,0.5643,{'alpha': 0.605}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5537,0.5643,{'alpha': 13.5}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5646,0.5646,{'alpha': 964.0}
 outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,0,20,0.4834,0.4834,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,1,20,0.5378,0.5378,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,2,20,0.493,0.5378,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -599,26 +599,26 @@ outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgbo
 outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5537,0.5547,"{'learning_rate': 0.0182, 'max_depth': 3, 'n_estimators': 200, 'subsample': 0.725}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5195,0.5547,"{'learning_rate': 0.123, 'max_depth': 2, 'n_estimators': 200, 'subsample': 0.843}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.5279,0.5547,"{'learning_rate': 0.0177, 'max_depth': 5, 'n_estimators': 350, 'subsample': 0.721}"
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5658,0.5658,{'alpha': 0.0419}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5223,0.5658,{'alpha': 452.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5738,0.5738,{'alpha': 13.3}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5685,0.5738,{'alpha': 1.55}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.565,0.5738,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.565,0.5738,{'alpha': 0.00124}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.565,0.5738,{'alpha': 0.000255}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5633,0.5738,{'alpha': 116.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5686,0.5738,{'alpha': 1.61}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5728,0.5738,{'alpha': 9.05}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5652,0.5738,{'alpha': 0.0176}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5744,0.5744,{'alpha': 22.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5638,0.5744,{'alpha': 113.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5739,0.5744,{'alpha': 14.4}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5742,0.5744,{'alpha': 17.6}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.566,0.5744,{'alpha': 0.074}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5672,0.5744,{'alpha': 0.701}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5045,0.5744,{'alpha': 618.0}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5733,0.5744,{'alpha': 34.7}
-outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5705,0.5744,{'alpha': 3.21}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5651,0.5651,{'alpha': 0.0419}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5707,0.5707,{'alpha': 452.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5688,0.5707,{'alpha': 13.3}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5661,0.5707,{'alpha': 1.55}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5651,0.5707,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5651,0.5707,{'alpha': 0.00124}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5651,0.5707,{'alpha': 0.000255}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5704,0.5707,{'alpha': 116.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5661,0.5707,{'alpha': 1.61}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.568,0.5707,{'alpha': 9.05}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5709,0.5709,{'alpha': 719.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5704,0.5709,{'alpha': 339.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5705,0.5709,{'alpha': 612.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5708,0.5709,{'alpha': 50.0}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5697,0.5709,{'alpha': 34.7}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5651,0.5709,{'alpha': 0.0255}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5705,0.5709,{'alpha': 77.7}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5666,0.5709,{'alpha': 2.34}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5653,0.5709,{'alpha': 0.0938}
+outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5706,0.5709,{'alpha': 927.0}
 outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5693,0.5693,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5461,0.5693,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5348,0.5693,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -639,26 +639,26 @@ outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarc
 outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,17,20,0.6,0.6031,"{'learning_rate': 0.0195, 'max_depth': 6, 'n_estimators': 500, 'subsample': 0.547}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,18,20,0.5804,0.6031,"{'learning_rate': 0.0948, 'max_depth': 6, 'n_estimators': 500, 'subsample': 0.556}"
 outer_fold_3,3,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,19,20,0.5906,0.6031,"{'learning_rate': 0.0196, 'max_depth': 7, 'n_estimators': 450, 'subsample': 0.649}"
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,0,20,0.5626,0.5626,{'alpha': 0.0419}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,1,20,0.5543,0.5626,{'alpha': 452.0}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,2,20,0.5632,0.5632,{'alpha': 13.3}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,3,20,0.5622,0.5632,{'alpha': 1.55}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,4,20,0.5625,0.5632,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,5,20,0.5625,0.5632,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,6,20,0.5625,0.5632,{'alpha': 0.000255}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,7,20,0.5583,0.5632,{'alpha': 116.0}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,8,20,0.5621,0.5632,{'alpha': 1.61}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,9,20,0.5634,0.5634,{'alpha': 9.05}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,10,20,0.5625,0.5634,{'alpha': 0.0151}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,11,20,0.5629,0.5634,{'alpha': 22.0}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,12,20,0.5631,0.5634,{'alpha': 7.46}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,13,20,0.5626,0.5634,{'alpha': 0.208}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,14,20,0.5615,0.5634,{'alpha': 45.8}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,15,20,0.5634,0.5634,{'alpha': 4.82}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,16,20,0.5623,0.5634,{'alpha': 0.777}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,17,20,0.5541,0.5634,{'alpha': 537.0}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,18,20,0.5626,0.5634,{'alpha': 0.0544}
-outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,19,20,0.5627,0.5634,{'alpha': 3.79}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,0,20,0.5625,0.5625,{'alpha': 0.0419}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,1,20,0.5623,0.5625,{'alpha': 452.0}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,2,20,0.5625,0.5625,{'alpha': 13.3}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,3,20,0.5625,0.5625,{'alpha': 1.55}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,4,20,0.5625,0.5625,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,5,20,0.5625,0.5625,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,6,20,0.5625,0.5625,{'alpha': 0.000255}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,7,20,0.5633,0.5633,{'alpha': 116.0}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,8,20,0.5625,0.5633,{'alpha': 1.61}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,9,20,0.5623,0.5633,{'alpha': 9.05}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,10,20,0.5609,0.5633,{'alpha': 711.0}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,11,20,0.5625,0.5633,{'alpha': 0.187}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,12,20,0.5625,0.5633,{'alpha': 0.0531}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,13,20,0.5632,0.5633,{'alpha': 52.5}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,14,20,0.5632,0.5633,{'alpha': 65.8}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,15,20,0.5632,0.5633,{'alpha': 75.3}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,16,20,0.5632,0.5633,{'alpha': 78.1}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,17,20,0.5625,0.5633,{'alpha': 5.67}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,18,20,0.5629,0.5633,{'alpha': 198.0}
+outer_fold_4,4,6predictor_pr,ridge,6,nested,spearman,19,20,0.5622,0.5633,{'alpha': 19.6}
 outer_fold_4,4,6predictor_pr,xgboost,6,nested,spearman,0,20,0.509,0.509,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_4,4,6predictor_pr,xgboost,6,nested,spearman,1,20,0.5272,0.5272,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_4,4,6predictor_pr,xgboost,6,nested,spearman,2,20,0.5201,0.5272,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -679,26 +679,26 @@ outer_fold_4,4,6predictor_pr,xgboost,6,nested,spearman,16,20,0.5474,0.5525,"{'le
 outer_fold_4,4,6predictor_pr,xgboost,6,nested,spearman,17,20,0.557,0.557,"{'learning_rate': 0.0049, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.564}"
 outer_fold_4,4,6predictor_pr,xgboost,6,nested,spearman,18,20,0.5443,0.557,"{'learning_rate': 0.00592, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.55}"
 outer_fold_4,4,6predictor_pr,xgboost,6,nested,spearman,19,20,0.5248,0.557,"{'learning_rate': 0.0212, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.708}"
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5455,0.5455,{'alpha': 0.0419}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5228,0.5455,{'alpha': 452.0}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5573,0.5573,{'alpha': 13.3}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5503,0.5573,{'alpha': 1.55}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5451,0.5573,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5451,0.5573,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5451,0.5573,{'alpha': 0.000255}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5476,0.5573,{'alpha': 116.0}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5503,0.5573,{'alpha': 1.61}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5563,0.5573,{'alpha': 9.05}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5452,0.5573,{'alpha': 0.0176}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5573,0.5573,{'alpha': 22.0}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.548,0.5573,{'alpha': 113.0}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5572,0.5573,{'alpha': 14.4}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5465,0.5573,{'alpha': 0.216}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5573,0.5573,{'alpha': 17.9}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5177,0.5573,{'alpha': 611.0}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5516,0.5573,{'alpha': 2.34}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5509,0.5573,{'alpha': 84.6}
-outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5459,0.5573,{'alpha': 0.121}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5452,0.5452,{'alpha': 0.0419}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5551,0.5551,{'alpha': 452.0}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5495,0.5551,{'alpha': 13.3}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.546,0.5551,{'alpha': 1.55}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5451,0.5551,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5451,0.5551,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5451,0.5551,{'alpha': 0.000255}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5562,0.5562,{'alpha': 116.0}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.546,0.5562,{'alpha': 1.61}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5489,0.5562,{'alpha': 9.05}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.553,0.5562,{'alpha': 711.0}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5545,0.5562,{'alpha': 515.0}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5544,0.5562,{'alpha': 51.7}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5563,0.5563,{'alpha': 124.0}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5452,0.5563,{'alpha': 0.0603}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.555,0.5563,{'alpha': 58.3}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5551,0.5563,{'alpha': 65.7}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5454,0.5563,{'alpha': 0.33}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5472,0.5563,{'alpha': 4.47}
+outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5452,0.5563,{'alpha': 0.175}
 outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,0,20,0.4697,0.4697,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,1,20,0.5213,0.5213,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,2,20,0.488,0.5213,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -719,26 +719,26 @@ outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested
 outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,17,20,0.5391,0.554,"{'learning_rate': 0.0646, 'max_depth': 2, 'n_estimators': 250, 'subsample': 0.571}"
 outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,18,20,0.5497,0.554,"{'learning_rate': 0.0201, 'max_depth': 3, 'n_estimators': 200, 'subsample': 0.843}"
 outer_fold_4,4,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,19,20,0.5375,0.554,"{'learning_rate': 0.0166, 'max_depth': 3, 'n_estimators': 100, 'subsample': 0.859}"
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5522,0.5522,{'alpha': 0.0419}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5458,0.5522,{'alpha': 452.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5649,0.5649,{'alpha': 13.3}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5578,0.5649,{'alpha': 1.55}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5515,0.5649,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5515,0.5649,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5515,0.5649,{'alpha': 0.000255}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5604,0.5649,{'alpha': 116.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.558,0.5649,{'alpha': 1.61}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5642,0.5649,{'alpha': 9.05}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5518,0.5649,{'alpha': 0.0176}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.565,0.565,{'alpha': 22.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5606,0.565,{'alpha': 113.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.565,0.565,{'alpha': 14.4}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5648,0.565,{'alpha': 17.6}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5523,0.565,{'alpha': 0.074}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5553,0.565,{'alpha': 0.677}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5427,0.565,{'alpha': 618.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5621,0.565,{'alpha': 84.6}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5631,0.565,{'alpha': 7.04}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5515,0.5515,{'alpha': 0.0419}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5641,0.5641,{'alpha': 452.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5568,0.5641,{'alpha': 13.3}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5524,0.5641,{'alpha': 1.55}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5515,0.5641,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5515,0.5641,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5515,0.5641,{'alpha': 0.000255}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5634,0.5641,{'alpha': 116.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5524,0.5641,{'alpha': 1.61}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5556,0.5641,{'alpha': 9.05}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5641,0.5641,{'alpha': 719.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5643,0.5643,{'alpha': 339.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5643,0.5643,{'alpha': 735.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5614,0.5643,{'alpha': 50.9}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5515,0.5643,{'alpha': 0.0708}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5635,0.5643,{'alpha': 105.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5642,0.5643,{'alpha': 818.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5562,0.5643,{'alpha': 11.4}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5519,0.5643,{'alpha': 0.681}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5515,0.5643,{'alpha': 0.0454}
 outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,0,20,0.4977,0.4977,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,1,20,0.5381,0.5381,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,2,20,0.5054,0.5381,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -759,26 +759,26 @@ outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgbo
 outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5259,0.56,"{'learning_rate': 0.00783, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.798}"
 outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5445,0.56,"{'learning_rate': 0.00184, 'max_depth': 6, 'n_estimators': 500, 'subsample': 0.617}"
 outer_fold_4,4,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.4531,0.56,"{'learning_rate': 0.183, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.565}"
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5616,0.5616,{'alpha': 0.0419}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5194,0.5616,{'alpha': 452.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5725,0.5725,{'alpha': 13.3}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5676,0.5725,{'alpha': 1.55}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5609,0.5725,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5609,0.5725,{'alpha': 0.00124}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5609,0.5725,{'alpha': 0.000255}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.558,0.5725,{'alpha': 116.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5676,0.5725,{'alpha': 1.61}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.572,0.5725,{'alpha': 9.05}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5611,0.5725,{'alpha': 0.0176}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5718,0.5725,{'alpha': 22.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5719,0.5725,{'alpha': 7.46}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5625,0.5725,{'alpha': 0.208}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5681,0.5725,{'alpha': 45.8}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5702,0.5725,{'alpha': 4.82}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5097,0.5725,{'alpha': 548.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5625,0.5725,{'alpha': 0.206}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5646,0.5725,{'alpha': 70.0}
-outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5648,0.5725,{'alpha': 0.728}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5611,0.5611,{'alpha': 0.0419}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5681,0.5681,{'alpha': 452.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5691,0.5691,{'alpha': 13.3}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5629,0.5691,{'alpha': 1.55}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5609,0.5691,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5609,0.5691,{'alpha': 0.00124}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5609,0.5691,{'alpha': 0.000255}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5711,0.5711,{'alpha': 116.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5631,0.5711,{'alpha': 1.61}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5674,0.5711,{'alpha': 9.05}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5669,0.5711,{'alpha': 711.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5711,0.5711,{'alpha': 65.1}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5707,0.5711,{'alpha': 152.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5717,0.5717,{'alpha': 45.7}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5611,0.5717,{'alpha': 0.0603}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5709,0.5717,{'alpha': 27.3}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5635,0.5717,{'alpha': 1.97}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5615,0.5717,{'alpha': 0.247}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5708,0.5717,{'alpha': 147.0}
+outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5665,0.5717,{'alpha': 926.0}
 outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5588,0.5588,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5399,0.5588,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5341,0.5588,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -800,25 +800,25 @@ outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarc
 outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,18,20,0.5682,0.5934,"{'learning_rate': 0.00843, 'max_depth': 3, 'n_estimators': 300, 'subsample': 0.886}"
 outer_fold_4,4,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,19,20,0.5788,0.5934,"{'learning_rate': 0.0197, 'max_depth': 4, 'n_estimators': 200, 'subsample': 0.809}"
 full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,0,20,0.556,0.556,{'alpha': 0.0419}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,1,20,0.5482,0.556,{'alpha': 452.0}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,2,20,0.5563,0.5563,{'alpha': 13.3}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,3,20,0.5562,0.5563,{'alpha': 1.55}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,4,20,0.556,0.5563,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,5,20,0.556,0.5563,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,6,20,0.556,0.5563,{'alpha': 0.000255}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,7,20,0.5538,0.5563,{'alpha': 116.0}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,8,20,0.5562,0.5563,{'alpha': 1.61}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,9,20,0.5565,0.5565,{'alpha': 9.05}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,10,20,0.556,0.5565,{'alpha': 0.0151}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,11,20,0.5568,0.5568,{'alpha': 22.0}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,12,20,0.5565,0.5568,{'alpha': 7.46}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,13,20,0.5562,0.5568,{'alpha': 45.9}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,14,20,0.5561,0.5568,{'alpha': 0.324}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,15,20,0.5562,0.5568,{'alpha': 2.61}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,16,20,0.5476,0.5568,{'alpha': 574.0}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,17,20,0.5561,0.5568,{'alpha': 0.175}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,18,20,0.5559,0.5568,{'alpha': 62.9}
-full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,19,20,0.5564,0.5568,{'alpha': 14.8}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,1,20,0.5564,0.5564,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,2,20,0.5561,0.5564,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,3,20,0.5561,0.5564,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,4,20,0.556,0.5564,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,5,20,0.556,0.5564,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,6,20,0.556,0.5564,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,7,20,0.5566,0.5566,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,8,20,0.5561,0.5566,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,9,20,0.5562,0.5566,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,10,20,0.556,0.5566,{'alpha': 711.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,11,20,0.5565,0.5566,{'alpha': 515.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,12,20,0.5564,0.5566,{'alpha': 173.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,13,20,0.5564,0.5566,{'alpha': 52.5}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,14,20,0.556,0.5566,{'alpha': 0.0603}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,15,20,0.5564,0.5566,{'alpha': 51.3}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,16,20,0.5557,0.5566,{'alpha': 806.0}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,17,20,0.5559,0.5566,{'alpha': 0.43}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,18,20,0.5562,0.5566,{'alpha': 35.6}
+full_labeled_data,,6predictor_pr,ridge,6,nested,spearman,19,20,0.556,0.5566,{'alpha': 5.79}
 full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,0,20,0.4898,0.4898,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,1,20,0.5212,0.5212,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,2,20,0.5226,0.5226,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -839,26 +839,26 @@ full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,16,20,0.5396,0.5499,"
 full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,17,20,0.5526,0.5526,"{'learning_rate': 0.0049, 'max_depth': 3, 'n_estimators': 450, 'subsample': 0.564}"
 full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,18,20,0.5342,0.5526,"{'learning_rate': 0.00592, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.55}"
 full_labeled_data,,6predictor_pr,xgboost,6,nested,spearman,19,20,0.5171,0.5526,"{'learning_rate': 0.0212, 'max_depth': 4, 'n_estimators': 450, 'subsample': 0.708}"
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5593,0.5593,{'alpha': 0.0419}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.535,0.5593,{'alpha': 452.0}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.5611,0.5611,{'alpha': 13.3}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.56,0.5611,{'alpha': 1.55}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5591,0.5611,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5591,0.5611,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5591,0.5611,{'alpha': 0.000255}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5534,0.5611,{'alpha': 116.0}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5601,0.5611,{'alpha': 1.61}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5609,0.5611,{'alpha': 9.05}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5593,0.5611,{'alpha': 0.0176}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5609,0.5611,{'alpha': 22.0}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5606,0.5611,{'alpha': 7.46}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5595,0.5611,{'alpha': 0.208}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5597,0.5611,{'alpha': 45.8}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.5609,0.5611,{'alpha': 4.82}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5323,0.5611,{'alpha': 548.0}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5595,0.5611,{'alpha': 0.206}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5576,0.5611,{'alpha': 70.0}
-full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5599,0.5611,{'alpha': 0.728}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,0,20,0.5592,0.5592,{'alpha': 0.0419}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,1,20,0.5605,0.5605,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,2,20,0.56,0.5605,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,3,20,0.5594,0.5605,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,4,20,0.5591,0.5605,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,5,20,0.5591,0.5605,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,6,20,0.5591,0.5605,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,7,20,0.5611,0.5611,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,8,20,0.5594,0.5611,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,9,20,0.5599,0.5611,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,10,20,0.5579,0.5611,{'alpha': 711.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,11,20,0.5598,0.5611,{'alpha': 515.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,12,20,0.5611,0.5611,{'alpha': 51.7}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,13,20,0.5611,0.5611,{'alpha': 45.0}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,14,20,0.5592,0.5611,{'alpha': 0.0603}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,15,20,0.561,0.5611,{'alpha': 34.1}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,16,20,0.5593,0.5611,{'alpha': 0.677}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,17,20,0.5611,0.5611,{'alpha': 52.8}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,18,20,0.5592,0.5611,{'alpha': 0.0994}
+full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,ridge,20,nested,spearman,19,20,0.5596,0.5611,{'alpha': 3.21}
 full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,0,20,0.4809,0.4809,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,1,20,0.5138,0.5138,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,2,20,0.5211,0.5211,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -879,26 +879,26 @@ full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,ne
 full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,17,20,0.5422,0.5542,"{'learning_rate': 0.00206, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.849}"
 full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,18,20,0.5091,0.5542,"{'learning_rate': 0.0173, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.631}"
 full_labeled_data,,6predictor_pr_plus_hxnx_hierarchical_tminus1_pr,xgboost,20,nested,spearman,19,20,0.4478,0.5542,"{'learning_rate': 0.131, 'max_depth': 4, 'n_estimators': 600, 'subsample': 0.695}"
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5597,0.5597,{'alpha': 0.0419}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5518,0.5597,{'alpha': 452.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5651,0.5651,{'alpha': 13.3}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5636,0.5651,{'alpha': 1.55}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5592,0.5651,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5592,0.5651,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5592,0.5651,{'alpha': 0.000255}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.562,0.5651,{'alpha': 116.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5636,0.5651,{'alpha': 1.61}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5651,0.5651,{'alpha': 9.05}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5594,0.5651,{'alpha': 0.0176}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5652,0.5652,{'alpha': 22.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5623,0.5652,{'alpha': 113.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5656,0.5656,{'alpha': 14.4}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5653,0.5656,{'alpha': 17.6}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5638,0.5656,{'alpha': 1.91}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.561,0.5656,{'alpha': 0.169}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5492,0.5656,{'alpha': 581.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5637,0.5656,{'alpha': 68.3}
-full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5626,0.5656,{'alpha': 0.485}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,0,20,0.5592,0.5592,{'alpha': 0.0419}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,1,20,0.5655,0.5655,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,2,20,0.5618,0.5655,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,3,20,0.5597,0.5655,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,4,20,0.5592,0.5655,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,5,20,0.5592,0.5655,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,6,20,0.5592,0.5655,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,7,20,0.5647,0.5655,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,8,20,0.5597,0.5655,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,9,20,0.5614,0.5655,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,10,20,0.5654,0.5655,{'alpha': 719.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,11,20,0.5654,0.5655,{'alpha': 339.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,12,20,0.5654,0.5655,{'alpha': 714.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,13,20,0.5642,0.5655,{'alpha': 58.7}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,14,20,0.5592,0.5655,{'alpha': 0.0655}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,15,20,0.5648,0.5655,{'alpha': 105.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,16,20,0.5655,0.5655,{'alpha': 766.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,17,20,0.5616,0.5655,{'alpha': 11.4}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,18,20,0.5592,0.5655,{'alpha': 0.29}
+full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,ridge,29,nested,spearman,19,20,0.5641,0.5655,{'alpha': 69.2}
 full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,0,20,0.4972,0.4972,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,1,20,0.5215,0.5215,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,2,20,0.5299,0.5299,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"
@@ -919,26 +919,26 @@ full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,
 full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,17,20,0.5119,0.5556,"{'learning_rate': 0.0165, 'max_depth': 6, 'n_estimators': 450, 'subsample': 0.545}"
 full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,18,20,0.5514,0.5556,"{'learning_rate': 0.00556, 'max_depth': 4, 'n_estimators': 550, 'subsample': 0.624}"
 full_labeled_data,,6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr,xgboost,29,nested,spearman,19,20,0.5475,0.5556,"{'learning_rate': 0.00178, 'max_depth': 3, 'n_estimators': 550, 'subsample': 0.691}"
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5659,0.5659,{'alpha': 0.0419}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5363,0.5659,{'alpha': 452.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5721,0.5721,{'alpha': 13.3}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5695,0.5721,{'alpha': 1.55}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5651,0.5721,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5651,0.5721,{'alpha': 0.00124}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5651,0.5721,{'alpha': 0.000255}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.5655,0.5721,{'alpha': 116.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5696,0.5721,{'alpha': 1.61}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5718,0.5721,{'alpha': 9.05}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5655,0.5721,{'alpha': 0.0176}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5721,0.5721,{'alpha': 22.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5654,0.5721,{'alpha': 113.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5723,0.5723,{'alpha': 14.4}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5722,0.5723,{'alpha': 17.6}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5699,0.5723,{'alpha': 1.91}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5666,0.5723,{'alpha': 0.169}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5265,0.5723,{'alpha': 581.0}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5692,0.5723,{'alpha': 68.3}
-full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.568,0.5723,{'alpha': 0.485}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,0,20,0.5652,0.5652,{'alpha': 0.0419}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,1,20,0.5715,0.5715,{'alpha': 452.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,2,20,0.5699,0.5715,{'alpha': 13.3}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,3,20,0.5663,0.5715,{'alpha': 1.55}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,4,20,0.5651,0.5715,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,5,20,0.5651,0.5715,{'alpha': 0.00124}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,6,20,0.5651,0.5715,{'alpha': 0.000255}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,7,20,0.574,0.574,{'alpha': 116.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,8,20,0.5663,0.574,{'alpha': 1.61}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,9,20,0.5691,0.574,{'alpha': 9.05}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,10,20,0.5707,0.574,{'alpha': 711.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,11,20,0.5711,0.574,{'alpha': 515.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,12,20,0.5734,0.574,{'alpha': 51.7}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,13,20,0.5733,0.574,{'alpha': 45.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,14,20,0.5652,0.574,{'alpha': 0.0603}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,15,20,0.5737,0.574,{'alpha': 56.4}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,16,20,0.5737,0.574,{'alpha': 78.7}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,17,20,0.5655,0.574,{'alpha': 0.44}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,18,20,0.5738,0.574,{'alpha': 130.0}
+full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,ridge,42,nested,spearman,19,20,0.5679,0.574,{'alpha': 5.79}
 full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,0,20,0.5784,0.5784,"{'learning_rate': 0.065, 'max_depth': 8, 'n_estimators': 300, 'subsample': 0.799}"
 full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,1,20,0.5313,0.5784,"{'learning_rate': 0.00139, 'max_depth': 3, 'n_estimators': 150, 'subsample': 0.933}"
 full_labeled_data,,6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr,xgboost,42,nested,spearman,2,20,0.5402,0.5784,"{'learning_rate': 0.00112, 'max_depth': 6, 'n_estimators': 400, 'subsample': 0.985}"

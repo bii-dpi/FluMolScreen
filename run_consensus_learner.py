@@ -86,6 +86,10 @@ def main(config: dict) -> None:
         ensemble_size_m=resolved_config["ENSEMBLE_SIZE_M"],
         interval_coverage=resolved_config["INTERVAL_COVERAGE"],
         inference_random_seed=resolved_config["INFERENCE_RANDOM_SEED"],
+        standardize_features=resolved_config["STANDARDIZE_FEATURES"],
+        hit_threshold_pkd=resolved_config["HIT_THRESHOLD_PKD"],
+        enrichment_top_fractions=resolved_config["ENRICHMENT_TOP_FRACTIONS"],
+        precision_at_n_values=resolved_config["PRECISION_AT_N_VALUES"],
     )
 
     print_cv_summary(
@@ -106,6 +110,10 @@ def main(config: dict) -> None:
         calibration_fraction=resolved_config["CALIBRATION_FRACTION"],
         ensemble_size_m=resolved_config["ENSEMBLE_SIZE_M"],
         interval_coverage=resolved_config["INTERVAL_COVERAGE"],
+        standardize_features=resolved_config["STANDARDIZE_FEATURES"],
+        hit_threshold_pkd=resolved_config["HIT_THRESHOLD_PKD"],
+        enrichment_top_fractions=resolved_config["ENRICHMENT_TOP_FRACTIONS"],
+        precision_at_n_values=resolved_config["PRECISION_AT_N_VALUES"],
     )
 
 

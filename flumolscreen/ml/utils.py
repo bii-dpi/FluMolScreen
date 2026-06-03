@@ -8,6 +8,8 @@ from typing import Any
 import pandas as pd
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.linear_model import Ridge
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from xgboost import XGBRegressor
 
 __all__ = [
@@ -21,6 +23,7 @@ __all__ = [
     "evaluation_base_name",
     "format_model_params",
     "inference_file_name",
+    "make_regression_pipeline",
     "make_regression_model",
     "merge_inference_predictions",
     "prepare_result_dirs",
@@ -222,8 +225,8 @@ def round_metrics(df: pd.DataFrame) -> pd.DataFrame:
     """Round common metric columns to 4 decimals before saving."""
     # Keep saved metrics concise and consistent across result tables.
     out = df.copy()
-    for column in ("rmse", "mae", "r2", "spearman", "tuning_score"):
-        if column in out.columns:
+    for column in out.columns:
+        if pd.api.types.is_float_dtype(out[column]):
             out[column] = out[column].round(4)
     return out
 
@@ -261,3 +264,20 @@ def make_regression_model(
         return XGBRegressor(**resolved_params)
 
     raise ValueError(f"Unsupported model_type: {model_type}")
+
+
+def make_regression_pipeline(
+    model_type: str,
+    model_params: dict[str, Any] | None = None,
+    standardize_features: bool = False,
+):
+    """Instantiate a supported regression pipeline with optional feature scaling."""
+    model = make_regression_model(model_type=model_type, model_params=model_params)
+    if not standardize_features:
+        return model
+    return Pipeline(
+        steps=[
+            ("scaler", StandardScaler()),
+            ("model", model),
+        ]
+    )
