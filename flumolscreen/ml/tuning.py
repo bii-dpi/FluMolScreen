@@ -6,6 +6,7 @@ from typing import Any
 
 import pandas as pd
 
+from flumolscreen.console import print_progress
 from flumolscreen.ml.evaluation import run_split_evaluation
 from flumolscreen.ml.model_registry import get_tuning_space, suggest_model_params
 from flumolscreen.ml.splits import make_splits
@@ -192,12 +193,15 @@ def _optimize_candidate(
         )
         return base_model_params, score, 0, False
 
-    print(
-        "[tuning-start] "
-        f"scope={selection_scope} | comparison={candidate['comparison_name']} | "
-        f"model={candidate['model_type']} | mode={tuning_mode} | "
-        f"n_trials={max(int(n_trials), 1)}",
-        flush=True,
+    print_progress(
+        "[tuning-start]",
+        [
+            ("scope", selection_scope),
+            ("comparison", candidate["comparison_name"]),
+            ("model", candidate["model_type"]),
+            ("mode", tuning_mode),
+            ("n_trials", max(int(n_trials), 1)),
+        ],
     )
 
     def _append_trace_row(study: Any, trial: Any) -> None:
@@ -254,12 +258,16 @@ def _optimize_candidate(
     )
 
     best_params = dict(study.best_trial.user_attrs["model_params"])
-    print(
-        "[tuning-done] "
-        f"scope={selection_scope} | comparison={candidate['comparison_name']} | "
-        f"model={candidate['model_type']} | best_{tuning_metric}={float(study.best_value):.4f} | "
-        f"trials={len(study.trials)} | params={format_model_params(best_params)}",
-        flush=True,
+    print_progress(
+        "[tuning-done]",
+        [
+            ("scope", selection_scope),
+            ("comparison", candidate["comparison_name"]),
+            ("model", candidate["model_type"]),
+            (f"best_{tuning_metric}", f"{float(study.best_value):.4f}"),
+            ("trials", len(study.trials)),
+            ("params", format_model_params(best_params)),
+        ],
     )
     return best_params, float(study.best_value), len(study.trials), True
 

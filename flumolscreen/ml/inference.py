@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from flumolscreen.console import print_progress
 from flumolscreen.ml.conformal import (
     compute_symmetric_conformal_half_width,
     compute_absolute_standardized_residuals,
@@ -43,10 +44,9 @@ def _build_inference_output_path(
     )
 
 
-def _print_inference_progress(message: str) -> None:
+def _print_inference_progress(tag: str, fields: list[tuple[str, object]]) -> None:
     """Print one inference progress line with flushing for long-running jobs."""
-    # Flush immediately so progress stays visible during longer ensemble fits.
-    print(message, flush=True)
+    print_progress(tag, fields)
 
 
 def _summarize_calibration_errors(
@@ -67,10 +67,16 @@ def _summarize_calibration_errors(
         prediction_std=calibration_predictions["prediction_std"],
     )
     _print_inference_progress(
-        "[inference-progress] calibration error stats "
-        f"| raw_abs_err_median={calibration_absolute_errors.median():.4f} "
-        f"| raw_abs_err_q={calibration_absolute_errors.quantile(interval_coverage):.4f} "
-        f"| standardized_err_median={z_scores.median():.4f}"
+        "[inference-progress]",
+        [
+            ("phase", "calibration_error_stats"),
+            ("raw_abs_err_median", f"{calibration_absolute_errors.median():.4f}"),
+            (
+                "raw_abs_err_q",
+                f"{calibration_absolute_errors.quantile(interval_coverage):.4f}",
+            ),
+            ("standardized_err_median", f"{z_scores.median():.4f}"),
+        ],
     )
     return calibration_absolute_errors, z_scores
 
@@ -214,9 +220,15 @@ def _fit_and_save_adaptive_conformal_inference(
 
     # Report the candidate and settings before the uncertainty pipeline begins.
     _print_inference_progress(
-        f"[inference-start] comparison={comparison_name} | model={model_type} "
-        f"| mode=adaptive_conformal | coverage={interval_coverage:.2f} "
-        f"| n_bootstrap={n_bootstrap} | calibration_fraction={calibration_fraction:.2f}",
+        "[inference-start]",
+        [
+            ("comparison", comparison_name),
+            ("model", model_type),
+            ("mode", "adaptive_conformal"),
+            ("coverage", f"{interval_coverage:.2f}"),
+            ("n_bootstrap", n_bootstrap),
+            ("calibration_fraction", f"{calibration_fraction:.2f}"),
+        ],
     )
 
     # Split labeled data into proper-train and calibration subsets.
@@ -229,14 +241,22 @@ def _fit_and_save_adaptive_conformal_inference(
     proper_train_df = training_df.iloc[proper_train_idx].reset_index(drop=True)
     calibration_df = training_df.iloc[calibration_idx].reset_index(drop=True)
     _print_inference_progress(
-        f"[inference-progress] split labeled data: n_proper_train={len(proper_train_df)} "
-        f"| n_calibration={len(calibration_df)}"
+        "[inference-progress]",
+        [
+            ("phase", "split_labeled_data"),
+            ("n_proper_train", len(proper_train_df)),
+            ("n_calibration", len(calibration_df)),
+        ],
     )
 
     # Fit the bootstrap ensemble on proper-train only.
     _print_inference_progress(
-        f"[inference-progress] fitting bootstrap ensemble on proper_train "
-        f"| n_bootstrap={n_bootstrap}"
+        "[inference-progress]",
+        [
+            ("phase", "fit_bootstrap_ensemble"),
+            ("split", "proper_train"),
+            ("n_bootstrap", n_bootstrap),
+        ],
     )
     models, feature_columns = fit_bootstrap_ensemble(
         training_df=proper_train_df,
@@ -249,7 +269,8 @@ def _fit_and_save_adaptive_conformal_inference(
 
     # Predict calibration rows and estimate the conformal multiplier q.
     _print_inference_progress(
-        "[inference-progress] predicting calibration rows and fitting conformal scaler"
+        "[inference-progress]",
+        [("phase", "predict_calibration_and_fit_conformal_scaler")],
     )
     calibration_predictions = predict_bootstrap_ensemble(
         models=models,
@@ -266,12 +287,17 @@ def _fit_and_save_adaptive_conformal_inference(
         interval_coverage=interval_coverage,
     )
     _print_inference_progress(
-        f"[inference-progress] selected conformal scaler | standardized_err_q={q:.4f}"
+        "[inference-progress]",
+        [
+            ("phase", "selected_conformal_scaler"),
+            ("standardized_err_q", f"{q:.4f}"),
+        ],
     )
 
     # Predict inference rows with the same ensemble and convert spread into error bars.
     _print_inference_progress(
-        "[inference-progress] predicting inference rows and converting spread to prediction_err"
+        "[inference-progress]",
+        [("phase", "predict_inference_and_convert_spread")],
     )
     inference_predictions = predict_bootstrap_ensemble(
         models=models,
@@ -300,9 +326,16 @@ def _fit_and_save_adaptive_conformal_inference(
     )
     inference_df.to_csv(output_path, index=False)
     _print_inference_progress(
-        f"[inference-done] saved {output_path} | conformal error interval: "
-        f"prediction_mean +/- prediction_err | standardized_err_q={q:.4f} | "
-        f"prediction_err_range=[{prediction_err.min():.4f}, {prediction_err.max():.4f}]"
+        "[inference-done]",
+        [
+            ("saved", output_path),
+            ("interval", "prediction_mean +/- prediction_err"),
+            ("standardized_err_q", f"{q:.4f}"),
+            (
+                "prediction_err_range",
+                f"[{prediction_err.min():.4f}, {prediction_err.max():.4f}]",
+            ),
+        ],
     )
     return output_path
 

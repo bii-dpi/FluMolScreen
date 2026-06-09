@@ -6,6 +6,12 @@ from pathlib import Path
 
 import pandas as pd
 
+from flumolscreen.console import (
+    console,
+    make_key_value_table,
+    make_list_table,
+    print_rule,
+)
 from flumolscreen.ml.evaluation import (
     compute_regression_metrics,
     fit_regression_model,
@@ -472,52 +478,76 @@ def print_cv_summary(
     """Print a compact summary of the CV run for IDE execution."""
     display_tuning_mode = DISPLAY_TUNING_MODES.get(tuning_mode, str(tuning_mode))
 
-    # Report the run configuration first so saved outputs are interpretable.
-    print("CV settings:")
-    print(f"- train_round_id: {train_round_id}")
-    print(f"- dataset_mode: {dataset_mode}")
-    if dataset_mode == "single_target":
-        print(f"- target_id: {target_id}")
-    else:
-        print(f"- family_key: {family_key}")
-    if output_label is not None:
-        print(f"- output_label: {output_label}")
-    print(f"- outer_split_type: {outer_split_type}")
-    print(f"- tuning_mode: {display_tuning_mode}")
-    print(f"- tuning_metric: {tuning_metric}")
-    print(f"- standardize_features: {standardize_features}")
-    print(f"- inference_mode: {inference_mode}")
+    target_row = (
+        ("target_id", target_id)
+        if dataset_mode == "single_target"
+        else ("family_key", family_key)
+    )
+    settings_rows = [
+        ("train_round_id", train_round_id),
+        ("dataset_mode", dataset_mode),
+        target_row,
+        ("output_label", output_label),
+        ("outer_split_type", outer_split_type),
+        ("tuning_mode", display_tuning_mode),
+        ("tuning_metric", tuning_metric),
+        ("standardize_features", standardize_features),
+        ("inference_mode", inference_mode),
+    ]
     if hit_threshold_pkd is not None:
-        print(f"- hit_threshold_pkd: {hit_threshold_pkd}")
-        print(f"- enrichment_top_fractions: {enrichment_top_fractions}")
-        print(f"- precision_at_n_values: {precision_at_n_values}")
+        settings_rows.extend(
+            [
+                ("hit_threshold_pkd", hit_threshold_pkd),
+                ("enrichment_top_fractions", enrichment_top_fractions),
+                ("precision_at_n_values", precision_at_n_values),
+            ]
+        )
     if tuning_mode is not None:
-        print(f"- tuning_n_trials: {tuning_n_trials}")
+        settings_rows.append(("tuning_n_trials", tuning_n_trials))
     if tuning_mode == "holdout":
-        print(f"- holdout_validation_fraction: {holdout_validation_fraction}")
+        settings_rows.append(("holdout_validation_fraction", holdout_validation_fraction))
     if inner_split_type is not None:
-        print(f"- inner_split_type: {inner_split_type}")
+        settings_rows.append(("inner_split_type", inner_split_type))
     if inference_mode == "adaptive_conformal":
-        print(f"- calibration_fraction: {calibration_fraction}")
-        print(f"- ensemble_size_m: {ensemble_size_m}")
-        print(f"- interval_coverage: {interval_coverage}")
-    print()
+        settings_rows.extend(
+            [
+                ("calibration_fraction", calibration_fraction),
+                ("ensemble_size_m", ensemble_size_m),
+                ("interval_coverage", interval_coverage),
+            ]
+        )
 
-    # Show the full ablation grid being evaluated.
-    print("Comparisons:")
-    for comparison in comparisons:
-        print(f"- {comparison['name']}")
-    print()
-    print("Model runs:")
-    for model_run in model_runs:
-        print(f"- {model_run['model_type']}: {model_run.get('model_params', {})}")
-    print()
+    print_rule("Cross-validation summary")
+    console.print(make_key_value_table("CV Settings", settings_rows))
+    console.print(
+        make_list_table(
+            "Comparisons",
+            ["Name"],
+            [(comparison["name"],) for comparison in comparisons],
+        )
+    )
+    console.print(
+        make_list_table(
+            "Model Runs",
+            ["Model", "Parameters"],
+            [
+                (model_run["model_type"], model_run.get("model_params", {}))
+                for model_run in model_runs
+            ],
+        )
+    )
 
-    # Surface the main saved tables and per-candidate inference files.
-    print("Saved outputs:")
-    print(f"- fold_metrics: {results['fold_path']}")
-    print(f"- summary: {results['summary_path']}")
-    print(f"- trace: {results['trace_path']}")
-    print(f"- merged_inference: {results['merged_inference_path']}")
-    for (comparison_name, model_type), path in results["inference_paths"].items():
-        print(f"- inference [{comparison_name}, {model_type}]: {path}")
+    output_rows = [
+        ("fold_metrics", results["fold_path"]),
+        ("summary", results["summary_path"]),
+        ("trace", results["trace_path"]),
+        ("merged_inference", results["merged_inference_path"]),
+    ]
+    output_rows.extend(
+        (
+            f"inference [{comparison_name}, {model_type}]",
+            path,
+        )
+        for (comparison_name, model_type), path in results["inference_paths"].items()
+    )
+    console.print(make_key_value_table("Saved Outputs", output_rows))
