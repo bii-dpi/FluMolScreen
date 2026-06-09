@@ -41,43 +41,49 @@ model_runs:
     n_estimators: 300
     max_depth: 4
   standardize_features: false
-name: single_targets:furin
-dataset_mode: single_target
-target: furin
-target_class: null
-comparison_preset: single_target_standard
+name: pa_family_current
+dataset_mode: target_class
+target: null
+target_class: pa
+comparison_preset: family_hierarchical
 comparisons:
 - name: method_scores
   feature_requests:
   - feature_set: method_scores
-- name: method_scores_plus_glide_uncertainty
+- name: method_scores_plus_target_context
+  feature_requests:
+  - feature_set: method_scores
+  - feature_set: target_context
+    base_feature_set: method_scores
+- name: method_scores_plus_glide_uncertainty_plus_target_context
   feature_requests:
   - feature_set: method_scores
   - feature_set: glide_uncertainty
-- name: method_ranks
-  feature_requests:
-  - feature_set: method_ranks
-- name: method_scores_plus_method_ranks
-  feature_requests:
-  - feature_set: method_scores
-  - feature_set: method_ranks
-- name: method_scores_plus_method_ranks_plus_rank_summary
+  - feature_set: target_context
+    base_feature_set: method_scores
+- name: method_scores_plus_method_ranks_plus_rank_summary_plus_target_context
   feature_requests:
   - feature_set: method_scores
   - feature_set: method_ranks
   - feature_set: method_rank_summary
+  - feature_set: target_context
+    base_feature_set: method_scores
 - name: chemical_descriptors
   feature_requests:
   - feature_set: chemical_descriptors
-- name: method_scores_plus_chemical_descriptors
+- name: method_scores_plus_chemical_descriptors_plus_target_context
   feature_requests:
   - feature_set: method_scores
   - feature_set: chemical_descriptors
-- name: method_scores_plus_method_ranks_plus_rank_summary_plus_glide_uncertainty_plus_chemical_descriptors
+  - feature_set: target_context
+    base_feature_set: method_scores
+- name: method_scores_plus_method_ranks_plus_rank_summary_plus_glide_uncertainty_plus_chemical_descriptors_plus_target_context
   feature_requests:
   - feature_set: method_scores
   - feature_set: method_ranks
   - feature_set: method_rank_summary
   - feature_set: glide_uncertainty
   - feature_set: chemical_descriptors
-output_label: furin
+  - feature_set: target_context
+    base_feature_set: method_scores
+output_label: pa
