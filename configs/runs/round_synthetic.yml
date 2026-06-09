@@ -1,0 +1,15 @@
+defaults: ../defaults.yml
+
+settings:
+  train_round_id: round_synthetic
+
+jobs:
+  - name: single_targets
+    dataset_mode: single_target
+    targets: [furin]
+    comparison_preset: single_target_standard
+
+  - name: pooled_families
+    dataset_mode: target_family
+    families: [pa]
+    comparison_preset: family_hierarchical

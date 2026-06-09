@@ -1,0 +1,38 @@
+comparisons:
+  - name: 6predictor_pr
+    feature_requests:
+      - feature_set: 6predictor_pr
+        source: shared
+
+  - name: 6predictor_pr_plus_hxnx_hierarchical_tminus1_pr
+    feature_requests:
+      - feature_set: 6predictor_pr
+        source: shared
+      - feature_set: hxnx_hierarchical_tminus1_pr
+        source: shared
+        feature_generator: hierarchical_perstrain
+        base_feature_set: 6predictor_pr
+
+  - name: 6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr
+    feature_requests:
+      - feature_set: 6predictor_pr
+        source: shared
+      - feature_set: 6predictor_pr_derived
+        source: shared
+      - feature_set: hxnx_hierarchical_tminus1_pr
+        source: shared
+        feature_generator: hierarchical_perstrain
+        base_feature_set: 6predictor_pr
+
+  - name: 6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr
+    feature_requests:
+      - feature_set: 6predictor_pr
+        source: shared
+      - feature_set: 6predictor_pr_derived
+        source: shared
+      - feature_set: chemdescriptors
+        source: shared
+      - feature_set: hxnx_hierarchical_tminus1_pr
+        source: shared
+        feature_generator: hierarchical_perstrain
+        base_feature_set: 6predictor_pr

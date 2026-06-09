@@ -309,6 +309,7 @@ def run_cv_workflow(
     hit_threshold_pkd: float | None = None,
     enrichment_top_fractions: list[float] | None = None,
     precision_at_n_values: list[int] | None = None,
+    output_label: str | None = None,
 ) -> dict:
     """Run the general outer-loop scaffold across all candidate ablations."""
     result_dirs = prepare_result_dirs(results_dir, train_round_id)
@@ -329,7 +330,11 @@ def run_cv_workflow(
     _validate_candidate_row_alignment(candidates)
     # Save outputs under a dataset-level stem: target_id for single-target runs
     # and family_key for pooled target-family runs.
-    dataset_label = target_id if dataset_mode == "single_target" else family_key
+    dataset_label = (
+        output_label
+        if output_label is not None
+        else target_id if dataset_mode == "single_target" else family_key
+    )
     if dataset_label is None:
         raise ValueError("A dataset label could not be resolved for workflow outputs.")
 
@@ -426,6 +431,7 @@ def run_cv_workflow(
     return {
         "candidates": candidates,
         "dataset_label": dataset_label,
+        "output_label": output_label,
         "dataset_mode": dataset_mode,
         "fold_df": fold_df,
         "summary_df": summary_df,
@@ -461,6 +467,7 @@ def print_cv_summary(
     hit_threshold_pkd: float | None = None,
     enrichment_top_fractions: list[float] | None = None,
     precision_at_n_values: list[int] | None = None,
+    output_label: str | None = None,
 ) -> None:
     """Print a compact summary of the CV run for IDE execution."""
     display_tuning_mode = DISPLAY_TUNING_MODES.get(tuning_mode, str(tuning_mode))
@@ -473,6 +480,8 @@ def print_cv_summary(
         print(f"- target_id: {target_id}")
     else:
         print(f"- family_key: {family_key}")
+    if output_label is not None:
+        print(f"- output_label: {output_label}")
     print(f"- outer_split_type: {outer_split_type}")
     print(f"- tuning_mode: {display_tuning_mode}")
     print(f"- tuning_metric: {tuning_metric}")

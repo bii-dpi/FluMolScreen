@@ -1,0 +1,7 @@
+defaults: ../defaults.yml
+
+jobs:
+  - name: furin_single
+    dataset_mode: single_target
+    target_id: furin
+    comparison_preset: single_target_standard
