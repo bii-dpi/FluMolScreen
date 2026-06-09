@@ -6,26 +6,23 @@ FluMolScreen is a modular modeling workspace for prioritizing compounds against 
 
 - Build a reusable modeling pipeline that can train on assay labels collected over successive rounds and perform inference over a larger screening library.
 - Start from six predictor outputs per compound-target pair and replace the current hand-weighted consensus with supervised consensus learners.
-- Support both target-specific prioritization and broader multi-strain prioritization, beginning with furin and influenza A PA.
+- Support both target-specific prioritization and broader multi-strain prioritization across furin, FASN, influenza A PA, and influenza A NA.
 - Keep the system extensible to additional target classes, feature families, and future rounds of real experimental data.
 
 ## Target scope
 
-The current implemented scope includes:
+The target scope includes four target classes and eight constituent targets:
 
 - `furin`
+- `fasn`
 - `pa_ph1n1`
 - `pa_h3n2`
 - `pa_h5n1`
-
-The modeling framework is intended to extend to additional targets and target families such as:
-
-- `fasn`
 - `na_ph1n1`
 - `na_h3n2`
 - `na_h5n1`
 
-The current hierarchical per-strain workflow is designed so the same pattern used for pooled PA targets can later be reused for other multi-strain target families such as NA.
+Furin and FASN use the single-target workflow. PA and NA use the pooled target-family workflow with per-strain hierarchical features.
 
 ## Modeling setup
 
@@ -143,88 +140,73 @@ The repo is organized around:
 
 ## Running the learner
 
-`run_consensus_learner.py` uses:
+`run_consensus_learner.py` uses YAML run configs by default:
 
-- default settings from [flumolscreen/learner_config.py](/Users/charmainechia/Documents/projects/FluMolScreen/flumolscreen/learner_config.py)
-- optional local overrides at the top of [run_consensus_learner.py](/Users/charmainechia/Documents/projects/FluMolScreen/run_consensus_learner.py)
+- shared defaults from `configs/defaults.yml`
+- reusable feature-ablation presets from `configs/comparison_presets/`
+- named run batches from `configs/runs/`
 
-The override precedence is:
+The merge precedence is:
 
-1. values set in `run_consensus_learner.py`
-2. otherwise the defaults in `learner_config.py`
+1. `configs/defaults.yml`
+2. run-level `settings` in the selected run YAML
+3. job-level `settings` in the selected run YAML
 
-### Config defaults
-
-In `flumolscreen/learner_config.py`, the main dataset-selection settings are:
-
-- `DATASET_MODE = "single_target"` or `"target_family"`
-- `TARGET_ID = "furin"` for single-target runs
-- `FAMILY_KEY = "pa"` or `"na"` for pooled target-family runs
-
-The comparison lists are split by mode:
-
-- `COMPARISONS_SINGLE_TARGET`
-- `COMPARISONS_TARGET_FAMILY`
-
-### Runner overrides
-
-At the top of `run_consensus_learner.py`, set:
-
-- `DATASET_MODE_OVERRIDE`
-- `TARGET_ID_OVERRIDE`
-- `FAMILY_KEY_OVERRIDE`
-
-Leave an override as `None` to use the config default.
-
-### Single-target mode
-
-To run a target such as `furin`, set:
-
-```python
-DATASET_MODE_OVERRIDE = "single_target"
-TARGET_ID_OVERRIDE = "furin"
-FAMILY_KEY_OVERRIDE = None
-```
-
-Then run:
+The no-argument command defaults to `configs/runs/current.yml`, which reproduces the current pooled PA learner run:
 
 ```bash
 python run_consensus_learner.py
 ```
 
-This uses:
-
-- `COMPARISONS_SINGLE_TARGET`
-- output filename stems based on `TARGET_ID`, for example `furin_...`
-
-### Target-family mode
-
-To run the pooled PA hierarchical workflow, set:
-
-```python
-DATASET_MODE_OVERRIDE = "target_family"
-TARGET_ID_OVERRIDE = None
-FAMILY_KEY_OVERRIDE = "pa"
-```
-
-Then run:
+To inspect the concrete jobs without fitting models, use dry-run mode:
 
 ```bash
-python run_consensus_learner.py
+python run_consensus_learner.py --config configs/runs/current.yml --dry-run
+python run_consensus_learner.py --config configs/runs/furin_single.yml --dry-run
+python run_consensus_learner.py --config configs/runs/round_synthetic.yml --dry-run
 ```
 
-This uses:
+### Run configs
 
-- `COMPARISONS_TARGET_FAMILY`
-- hierarchical family defaults from `HIERARCHICAL_TARGET_FAMILY_REGISTRY`
-- output filename stems based on `FAMILY_KEY`, for example `pa_...`
+Single-target jobs use `target_id` or `targets`:
 
-For NA, use:
+```yaml
+jobs:
+  - name: furin_single
+    dataset_mode: single_target
+    target_id: furin
+    comparison_preset: single_target_standard
+```
 
-```python
-DATASET_MODE_OVERRIDE = "target_family"
-TARGET_ID_OVERRIDE = None
-FAMILY_KEY_OVERRIDE = "na"
+Target-family jobs use `family_key` or `families`:
+
+```yaml
+jobs:
+  - name: pa_family
+    dataset_mode: target_family
+    family_key: pa
+    comparison_preset: family_hierarchical
+```
+
+Batch jobs can expand arrays without creating one YAML file per target/preset combination:
+
+```yaml
+jobs:
+  - name: single_targets
+    dataset_mode: single_target
+    targets: [furin, fasn]
+    comparison_preset: single_target_standard
+
+  - name: pooled_families
+    dataset_mode: target_family
+    families: [pa, na]
+    comparison_preset: family_hierarchical
+```
+
+Each executed job saves its fully resolved config beside the results:
+
+```text
+results/<train_round_id>/configs/<output_label>_resolved_config.yml
 ```
 
 ### Output paths

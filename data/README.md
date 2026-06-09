@@ -36,6 +36,7 @@ Use this for full-library feature tables that are stable across rounds.
 These are typically features computed from frozen upstream models or other shared representations, for example:
 
 - `furin_6predictor_pr.csv`
+- `fasn_6predictor_pr.csv`
 - `furin_chemdescriptors.csv`
 - `furin_plmembeddings.csv`
 
@@ -48,7 +49,9 @@ File naming convention:
 Examples:
 
 - `furin_6predictor_pr.csv`
+- `fasn_6predictor_pr.csv`
 - `pa_h3n2_chemdescriptors.csv`
+- `na_h3n2_chemdescriptors.csv`
 
 This is the default source for both:
 
@@ -88,7 +91,9 @@ Use this for label-bearing tables for a specific real round.
 Examples:
 
 - `furin.csv`
+- `fasn.csv`
 - `pa_ph1n1.csv`
+- `na_ph1n1.csv`
 
 ### `round_k/features/`
 
@@ -118,7 +123,9 @@ These are convenience snapshots rather than the canonical storage location for r
 Examples:
 
 - `furin_6predictor_pr_chemdescriptors_train.csv`
+- `fasn_6predictor_pr_chemdescriptors_train.csv`
 - `pa_h3n2_6predictor_pr.csv`
+- `na_h3n2_6predictor_pr.csv`
 
 These datasets may contain labels plus one or more feature families combined into a model-ready table.
 
