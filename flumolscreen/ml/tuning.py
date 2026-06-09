@@ -175,6 +175,7 @@ def _optimize_candidate(
         import optuna
     except Exception as exc:
         raise ImportError("Optuna is required for hyperparameter tuning.") from exc
+    optuna.logging.set_verbosity(optuna.logging.WARNING)
 
     tuning_space = get_tuning_space(candidate["model_type"])
     base_model_params = candidate.get("base_model_params") or {}
@@ -253,6 +254,13 @@ def _optimize_candidate(
     )
 
     best_params = dict(study.best_trial.user_attrs["model_params"])
+    print(
+        "[tuning-done] "
+        f"scope={selection_scope} | comparison={candidate['comparison_name']} | "
+        f"model={candidate['model_type']} | best_{tuning_metric}={float(study.best_value):.4f} | "
+        f"trials={len(study.trials)} | params={format_model_params(best_params)}",
+        flush=True,
+    )
     return best_params, float(study.best_value), len(study.trials), True
 
 
