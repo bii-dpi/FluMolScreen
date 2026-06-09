@@ -219,3 +219,6 @@ __marimo__/
 
 # macOS Finder metadata
 .DS_Store
+
+# User-specified files and folders
+tests/
