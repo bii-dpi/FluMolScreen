@@ -7,17 +7,18 @@ from pathlib import Path
 import pandas as pd
 
 from flumolscreen.feature_registry import FEATURE_REGISTRY
+from flumolscreen.features.source_features import build_target_library
 from flumolscreen.loaders import load_assay_data, load_feature_table
 
 DATASET_METADATA_COLUMNS = [
-    "compound_id",
-    "target_id",
-    "isomeric_smiles",
+    "id",
+    "target",
+    "target_class",
+    "strain",
+    "smiles",
 ]
 
 NON_ESSENTIAL_ASSEMBLY_COLUMNS = {
-    "target_class",
-    "strain",
     "label_source",
     "round_id",
 }
@@ -38,7 +39,7 @@ def _merge_feature_frames(
 
 def assemble_features(
     data_dir: Path | str,
-    target_id: str,
+    target: str,
     feature_requests: list[dict],
     round_id: str | None = None,
 ) -> pd.DataFrame:
@@ -55,11 +56,13 @@ def assemble_features(
 
         feature_frame = load_feature_table(
             data_dir=data_dir,
-            target_id=target_id,
+            target=target,
             feature_set=feature_set,
             round_id=round_id,
             source=source,
             columns=columns,
+            base_feature_set=request.get("base_feature_set"),
+            feature_columns=request.get("feature_columns"),
         )
         feature_frames.append(feature_frame)
         feature_sets.append(feature_set)
@@ -84,17 +87,17 @@ def _standardize_dataset_frame(
 def assemble_training_data(
     data_dir: Path | str,
     round_id: str,
-    target_id: str,
+    target: str,
     feature_requests: list[dict],
 ) -> pd.DataFrame:
     assay_df = load_assay_data(
         data_dir=data_dir,
         round_id=round_id,
-        target_id=target_id,
+        target=target,
     )
     feature_df = assemble_features(
         data_dir=data_dir,
-        target_id=target_id,
+        target=target,
         feature_requests=feature_requests,
         round_id=round_id,
     )
@@ -105,19 +108,9 @@ def assemble_training_data(
         if col in assay_df.columns
     ]
     assay_base_df = assay_df.loc[:, assay_base_columns].copy()
-    feature_columns_to_keep = [
-        col
-        for col in feature_df.columns
-        if col not in DATASET_METADATA_COLUMNS or col in {"compound_id", "target_id"}
-    ]
-    feature_df = feature_df.loc[:, feature_columns_to_keep].copy()
-    merge_keys = [
-        col for col in ["compound_id", "target_id"] if col in feature_df.columns
-    ]
-
     training_df = assay_base_df.merge(
         feature_df,
-        on=merge_keys,
+        on=["id", "target"],
         how="inner",
     )
     return _standardize_dataset_frame(training_df, include_label=True)
@@ -126,18 +119,21 @@ def assemble_training_data(
 def assemble_inference_data(
     data_dir: Path | str,
     round_id: str,
-    target_id: str,
+    target: str,
     feature_requests: list[dict],
 ) -> pd.DataFrame:
-    inference_df = assemble_features(
+    target_library_df = build_target_library(data_dir=data_dir, target=target)
+    feature_df = assemble_features(
         data_dir=data_dir,
-        target_id=target_id,
+        target=target,
         feature_requests=feature_requests,
         round_id=round_id,
     )
-    if "target_id" not in inference_df.columns:
-        inference_df = inference_df.copy()
-        inference_df["target_id"] = target_id
+    inference_df = target_library_df.merge(
+        feature_df,
+        on=["id", "target"],
+        how="inner",
+    )
     return _standardize_dataset_frame(inference_df, include_label=False)
 
 
@@ -166,14 +162,15 @@ def save_dataset(
 
 def _feature_requests_are_shared_only(feature_requests: list[dict]) -> bool:
     return all(
-        request.get("source", "auto") == "shared" for request in feature_requests
+        request.get("source", "auto") in {"auto", "shared"}
+        for request in feature_requests
     )
 
 
 def build_target_datasets(
     data_dir: Path | str,
     round_id: str,
-    target_id: str,
+    target: str,
     feature_requests: list[dict],
     training_dataset_name: str | None = None,
     inference_dataset_name: str | None = None,
@@ -181,13 +178,13 @@ def build_target_datasets(
     training_df = assemble_training_data(
         data_dir=data_dir,
         round_id=round_id,
-        target_id=target_id,
+        target=target,
         feature_requests=feature_requests,
     )
     inference_df = assemble_inference_data(
         data_dir=data_dir,
         round_id=round_id,
-        target_id=target_id,
+        target=target,
         feature_requests=feature_requests,
     )
 

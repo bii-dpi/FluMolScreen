@@ -1,0 +1,83 @@
+data_dir: data
+results_dir: results
+train_round_id: round_synthetic
+outer_split_type: random_kfold
+outer_split_params:
+  n_splits: 5
+  shuffle: true
+  random_state: 42
+inner_split_type: random_kfold
+inner_split_params:
+  n_splits: 3
+  shuffle: true
+  random_state: 43
+holdout_validation_fraction: 0.2
+tuning_mode: nested
+tuning_metric: spearman
+tuning_n_trials: 2
+tuning_random_seed: 42
+standardize_features: false
+hit_threshold_pkd: 5.0
+enrichment_top_fractions:
+- 0.01
+- 0.05
+- 0.1
+precision_at_n_values:
+- 10
+- 25
+- 50
+calibration_fraction: 0.2
+ensemble_size_m: 10
+interval_coverage: 0.9
+inference_mode: adaptive_conformal
+inference_random_seed: 42
+model_runs:
+- model_type: ridge
+  model_params:
+    alpha: 1.0
+  standardize_features: true
+- model_type: xgboost
+  model_params:
+    n_estimators: 300
+    max_depth: 4
+  standardize_features: false
+name: furin_single
+dataset_mode: single_target
+target: furin
+target_class: null
+comparison_preset: single_target_standard
+comparisons:
+- name: method_scores
+  feature_requests:
+  - feature_set: method_scores
+- name: method_scores_plus_glide_uncertainty
+  feature_requests:
+  - feature_set: method_scores
+  - feature_set: glide_uncertainty
+- name: method_ranks
+  feature_requests:
+  - feature_set: method_ranks
+- name: method_scores_plus_method_ranks
+  feature_requests:
+  - feature_set: method_scores
+  - feature_set: method_ranks
+- name: method_scores_plus_method_ranks_plus_rank_summary
+  feature_requests:
+  - feature_set: method_scores
+  - feature_set: method_ranks
+  - feature_set: method_rank_summary
+- name: chemical_descriptors
+  feature_requests:
+  - feature_set: chemical_descriptors
+- name: method_scores_plus_chemical_descriptors
+  feature_requests:
+  - feature_set: method_scores
+  - feature_set: chemical_descriptors
+- name: method_scores_plus_method_ranks_plus_rank_summary_plus_glide_uncertainty_plus_chemical_descriptors
+  feature_requests:
+  - feature_set: method_scores
+  - feature_set: method_ranks
+  - feature_set: method_rank_summary
+  - feature_set: glide_uncertainty
+  - feature_set: chemical_descriptors
+output_label: furin

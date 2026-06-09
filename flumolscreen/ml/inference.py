@@ -32,13 +32,13 @@ __all__ = [
 
 def _build_inference_output_path(
     inference_dir: Path,
-    target_id: str,
+    target: str,
     candidate: dict,
 ) -> Path:
     """Return the standard output path for one candidate inference file."""
     # Keep inference filenames consistent across point and uncertainty-aware modes.
     return inference_dir / inference_file_name(
-        target_id=target_id,
+        target=target,
         comparison_name=candidate["comparison_name"],
         model_type=candidate["model_type"],
     )
@@ -88,7 +88,7 @@ def _build_uncertainty_inference_df(
 ) -> pd.DataFrame:
     """Build the compact uncertainty-aware inference payload."""
     # Keep only stable IDs plus the calibrated prediction center and half-width.
-    inference_df = inference_source_df.loc[:, ["compound_id", "target_id"]].copy()
+    inference_df = inference_source_df.loc[:, ["id", "target"]].copy()
     inference_df["pred_mean"] = prediction_mean.round(4)
     inference_df["pred_err"] = prediction_err.round(4)
     return inference_df
@@ -163,7 +163,7 @@ def predict_bootstrap_ensemble(
 
 def _fit_and_save_point_inference(
     inference_dir: Path,
-    target_id: str,
+    target: str,
     candidate: dict,
     tuned_model_params: dict | None,
 ) -> Path:
@@ -185,7 +185,7 @@ def _fit_and_save_point_inference(
     ).round(4)
 
     # Save either plain point predictions or GP-style mean/error outputs.
-    inference_df = candidate["inference_df"].loc[:, ["compound_id", "target_id"]].copy()
+    inference_df = candidate["inference_df"].loc[:, ["id", "target"]].copy()
     if "prediction_err" in predictions.columns:
         inference_df["pred_mean"] = predictions["prediction_mean"]
         inference_df["pred_err"] = predictions["prediction_err"]
@@ -197,7 +197,7 @@ def _fit_and_save_point_inference(
     )
     output_path = _build_inference_output_path(
         inference_dir=inference_dir,
-        target_id=target_id,
+        target=target,
         candidate=candidate,
     )
     inference_df.to_csv(output_path, index=False)
@@ -206,7 +206,7 @@ def _fit_and_save_point_inference(
 
 def _fit_and_save_adaptive_conformal_inference(
     inference_dir: Path,
-    target_id: str,
+    target: str,
     candidate: dict,
     tuned_model_params: dict | None,
     calibration_fraction: float,
@@ -321,7 +321,7 @@ def _fit_and_save_adaptive_conformal_inference(
     )
     output_path = _build_inference_output_path(
         inference_dir=inference_dir,
-        target_id=target_id,
+        target=target,
         candidate=candidate,
     )
     inference_df.to_csv(output_path, index=False)
@@ -342,7 +342,7 @@ def _fit_and_save_adaptive_conformal_inference(
 
 def fit_final_candidate_and_save_inference(
     inference_dir: Path,
-    target_id: str,
+    target: str,
     candidate: dict,
     tuned_model_params: dict | None,
     inference_mode: str = "point",
@@ -356,14 +356,14 @@ def fit_final_candidate_and_save_inference(
     if inference_mode == "point":
         return _fit_and_save_point_inference(
             inference_dir=inference_dir,
-            target_id=target_id,
+            target=target,
             candidate=candidate,
             tuned_model_params=tuned_model_params,
         )
     if inference_mode == "adaptive_conformal":
         return _fit_and_save_adaptive_conformal_inference(
             inference_dir=inference_dir,
-            target_id=target_id,
+            target=target,
             candidate=candidate,
             tuned_model_params=tuned_model_params,
             calibration_fraction=calibration_fraction,

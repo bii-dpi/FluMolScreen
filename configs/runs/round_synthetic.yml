@@ -9,7 +9,7 @@ jobs:
     targets: [furin, fasn]
     comparison_preset: single_target_standard
 
-  - name: pooled_families
-    dataset_mode: target_family
-    families: [pa, na]
+  - name: pooled_target_classes
+    dataset_mode: target_class
+    target_classes: [pa, na]
     comparison_preset: family_hierarchical

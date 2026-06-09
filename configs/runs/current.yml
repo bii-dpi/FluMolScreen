@@ -2,6 +2,6 @@ defaults: ../defaults.yml
 
 jobs:
   - name: pa_family_current
-    dataset_mode: target_family
-    family_key: pa
+    dataset_mode: target_class
+    target_class: pa
     comparison_preset: family_hierarchical

@@ -15,9 +15,9 @@ WORKFLOW_ARGUMENT_KEYS = (
     "data_dir",
     "results_dir",
     "train_round_id",
-    "target_id",
+    "target",
     "dataset_mode",
-    "family_key",
+    "target_class",
     "comparisons",
     "model_runs",
     "outer_split_type",
@@ -43,9 +43,9 @@ WORKFLOW_ARGUMENT_KEYS = (
 
 SUMMARY_ARGUMENT_KEYS = (
     "train_round_id",
-    "target_id",
+    "target",
     "dataset_mode",
-    "family_key",
+    "target_class",
     "comparisons",
     "model_runs",
     "outer_split_type",

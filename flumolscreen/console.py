@@ -100,9 +100,9 @@ def print_job_summary(
     print_rule(f"{title_prefix}: {job['name']}", target_console=resolved_console)
 
     target_field = (
-        ("target_id", job["target_id"])
+        ("target", job["target"])
         if job["dataset_mode"] == "single_target"
-        else ("family_key", job["family_key"])
+        else ("target_class", job["target_class"])
     )
     resolved_console.print(
         make_key_value_table(

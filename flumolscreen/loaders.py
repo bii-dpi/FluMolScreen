@@ -6,11 +6,9 @@ from pathlib import Path
 
 import pandas as pd
 
-from flumolscreen.feature_registry import FEATURE_REGISTRY
+from flumolscreen.features.source_features import build_feature_table
 from flumolscreen.schema import ASSAY_DATA_REQUIRED_COLUMNS, DATASET_REQUIRED_COLUMNS
 from flumolscreen.target_registry import TARGET_REGISTRY
-
-FEATURE_CONTEXT_COLUMNS = ["isomeric_smiles"]
 
 
 def _normalize_data_dir(data_dir: Path | str) -> Path:
@@ -30,12 +28,7 @@ def _select_columns(
         )
 
     if selected_columns is None:
-        ordered_columns = [
-            *required_columns,
-            *[col for col in FEATURE_CONTEXT_COLUMNS if col in df.columns],
-        ]
-        ordered_columns = list(dict.fromkeys(ordered_columns))
-        return df.loc[:, ordered_columns].copy()
+        return df.loc[:, required_columns].copy()
 
     requested = list(dict.fromkeys(required_columns + selected_columns))
     missing_requested = [col for col in requested if col not in df.columns]
@@ -43,32 +36,20 @@ def _select_columns(
         raise ValueError(
             f"{table_name} is missing requested column(s): {missing_requested}"
         )
-
     return df.loc[:, requested].copy()
-
-
-def _feature_file_name(target_id: str, feature_set: str) -> str:
-    return f"{target_id}_{feature_set}.csv"
-
-
-def _feature_table_columns(feature_set: str, columns: list[str] | None) -> list[str]:
-    feature_spec = FEATURE_REGISTRY[feature_set]
-    join_keys = feature_spec["join_keys"]
-    default_columns = feature_spec["default_columns"]
-    requested = default_columns if columns is None else columns
-    return list(dict.fromkeys(join_keys + requested))
 
 
 def load_assay_data(
     data_dir: Path | str,
     round_id: str,
-    target_id: str,
+    target: str,
     columns: list[str] | None = None,
 ) -> pd.DataFrame:
-    if target_id not in TARGET_REGISTRY:
-        raise ValueError(f"Unknown target_id: {target_id}")
+    """Load label-bearing assay data for one target."""
+    if target not in TARGET_REGISTRY:
+        raise ValueError(f"Unknown target: {target}")
 
-    path = _normalize_data_dir(data_dir) / round_id / "assay_data" / f"{target_id}.csv"
+    path = _normalize_data_dir(data_dir) / round_id / "assay_data" / f"{target}.csv"
     if not path.exists():
         raise FileNotFoundError(f"Assay data file not found: {path}")
 
@@ -83,92 +64,50 @@ def load_assay_data(
 
 def load_shared_feature_table(
     data_dir: Path | str,
-    target_id: str,
+    target: str,
     feature_set: str,
     columns: list[str] | None = None,
+    base_feature_set: str | None = None,
+    feature_columns: list[str] | None = None,
 ) -> pd.DataFrame:
-    if target_id not in TARGET_REGISTRY:
-        raise ValueError(f"Unknown target_id: {target_id}")
-    if feature_set not in FEATURE_REGISTRY:
-        raise ValueError(f"Unknown feature_set: {feature_set}")
-
-    path = _normalize_data_dir(data_dir) / "shared" / "features" / _feature_file_name(
-        target_id, feature_set
-    )
-    if not path.exists():
-        raise FileNotFoundError(f"Shared feature file not found: {path}")
-
-    df = pd.read_csv(path)
-    required_columns = _feature_table_columns(feature_set, columns)
-    return _select_columns(
-        df=df,
-        required_columns=required_columns,
-        selected_columns=columns,
-        table_name=str(path),
-    )
-
-
-def load_round_feature_table(
-    data_dir: Path | str,
-    round_id: str,
-    target_id: str,
-    feature_set: str,
-    columns: list[str] | None = None,
-) -> pd.DataFrame:
-    if target_id not in TARGET_REGISTRY:
-        raise ValueError(f"Unknown target_id: {target_id}")
-    if feature_set not in FEATURE_REGISTRY:
-        raise ValueError(f"Unknown feature_set: {feature_set}")
-
-    path = (
-        _normalize_data_dir(data_dir)
-        / round_id
-        / "features"
-        / _feature_file_name(target_id, feature_set)
-    )
-    if not path.exists():
-        raise FileNotFoundError(f"Round-specific feature file not found: {path}")
-
-    df = pd.read_csv(path)
-    required_columns = _feature_table_columns(feature_set, columns)
-    return _select_columns(
-        df=df,
-        required_columns=required_columns,
-        selected_columns=columns,
-        table_name=str(path),
+    """Build a shared source-native feature table for one target."""
+    return build_feature_table(
+        data_dir=data_dir,
+        target=target,
+        feature_set=feature_set,
+        columns=columns,
+        base_feature_set=base_feature_set,
+        feature_columns=feature_columns,
     )
 
 
 def load_feature_table(
     data_dir: Path | str,
-    target_id: str,
+    target: str,
     feature_set: str,
     round_id: str | None = None,
     source: str = "auto",
     columns: list[str] | None = None,
+    base_feature_set: str | None = None,
+    feature_columns: list[str] | None = None,
 ) -> pd.DataFrame:
-    if source not in {"auto", "shared", "round"}:
-        raise ValueError("source must be one of: 'auto', 'shared', 'round'")
+    """Load or build one feature table.
 
-    if source == "shared":
-        return load_shared_feature_table(data_dir, target_id, feature_set, columns)
+    Source-native features are shared across rounds; ``round_id`` is accepted for
+    call-site compatibility but is not used.
+    """
+    if source not in {"auto", "shared"}:
+        raise ValueError("source-native feature sets support only 'auto' or 'shared'")
 
-    if source == "round":
-        if round_id is None:
-            raise ValueError("round_id is required when source='round'")
-        return load_round_feature_table(
-            data_dir, round_id, target_id, feature_set, columns
-        )
+    return load_shared_feature_table(
+        data_dir=data_dir,
+        target=target,
+        feature_set=feature_set,
+        columns=columns,
+        base_feature_set=base_feature_set,
+        feature_columns=feature_columns,
+    )
 
-    if round_id is not None:
-        try:
-            return load_round_feature_table(
-                data_dir, round_id, target_id, feature_set, columns
-            )
-        except FileNotFoundError:
-            pass
-
-    return load_shared_feature_table(data_dir, target_id, feature_set, columns)
 
 def load_shared_dataset(
     data_dir: Path | str,

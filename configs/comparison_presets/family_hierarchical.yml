@@ -1,38 +1,46 @@
 comparisons:
-  - name: 6predictor_pr
+  - name: method_scores
     feature_requests:
-      - feature_set: 6predictor_pr
-        source: shared
+      - feature_set: method_scores
 
-  - name: 6predictor_pr_plus_hxnx_hierarchical_tminus1_pr
+  - name: method_scores_plus_target_context
     feature_requests:
-      - feature_set: 6predictor_pr
-        source: shared
-      - feature_set: hxnx_hierarchical_tminus1_pr
-        source: shared
-        feature_generator: hierarchical_perstrain
-        base_feature_set: 6predictor_pr
+      - feature_set: method_scores
+      - feature_set: target_context
+        base_feature_set: method_scores
 
-  - name: 6predictor_pr_plus_derived_plus_hxnx_hierarchical_tminus1_pr
+  - name: method_scores_plus_glide_uncertainty_plus_target_context
     feature_requests:
-      - feature_set: 6predictor_pr
-        source: shared
-      - feature_set: 6predictor_pr_derived
-        source: shared
-      - feature_set: hxnx_hierarchical_tminus1_pr
-        source: shared
-        feature_generator: hierarchical_perstrain
-        base_feature_set: 6predictor_pr
+      - feature_set: method_scores
+      - feature_set: glide_uncertainty
+      - feature_set: target_context
+        base_feature_set: method_scores
 
-  - name: 6predictor_pr_plus_derived_plus_chemdescriptors_plus_hxnx_hierarchical_tminus1_pr
+  - name: method_scores_plus_method_ranks_plus_rank_summary_plus_target_context
     feature_requests:
-      - feature_set: 6predictor_pr
-        source: shared
-      - feature_set: 6predictor_pr_derived
-        source: shared
-      - feature_set: chemdescriptors
-        source: shared
-      - feature_set: hxnx_hierarchical_tminus1_pr
-        source: shared
-        feature_generator: hierarchical_perstrain
-        base_feature_set: 6predictor_pr
+      - feature_set: method_scores
+      - feature_set: method_ranks
+      - feature_set: method_rank_summary
+      - feature_set: target_context
+        base_feature_set: method_scores
+
+  - name: chemical_descriptors
+    feature_requests:
+      - feature_set: chemical_descriptors
+
+  - name: method_scores_plus_chemical_descriptors_plus_target_context
+    feature_requests:
+      - feature_set: method_scores
+      - feature_set: chemical_descriptors
+      - feature_set: target_context
+        base_feature_set: method_scores
+
+  - name: method_scores_plus_method_ranks_plus_rank_summary_plus_glide_uncertainty_plus_chemical_descriptors_plus_target_context
+    feature_requests:
+      - feature_set: method_scores
+      - feature_set: method_ranks
+      - feature_set: method_rank_summary
+      - feature_set: glide_uncertainty
+      - feature_set: chemical_descriptors
+      - feature_set: target_context
+        base_feature_set: method_scores

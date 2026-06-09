@@ -14,7 +14,7 @@ __all__ = [
     "write_chemical_cluster_table",
 ]
 
-COMPOUND_KEY_COLUMNS = ["compound_id"]
+COMPOUND_KEY_COLUMNS = ["id"]
 
 
 def _load_rdkit_modules():
@@ -45,19 +45,19 @@ def _deduplicate_compounds(
     _validate_required_columns(df, [*COMPOUND_KEY_COLUMNS, smiles_column])
 
     compound_smiles_df = df.loc[:, [*COMPOUND_KEY_COLUMNS, smiles_column]].drop_duplicates()
-    smiles_counts = compound_smiles_df.groupby("compound_id")[smiles_column].nunique()
-    conflicting_compound_ids = smiles_counts[smiles_counts > 1].index.tolist()
-    if conflicting_compound_ids:
+    smiles_counts = compound_smiles_df.groupby("id")[smiles_column].nunique()
+    conflicting_ids = smiles_counts[smiles_counts > 1].index.tolist()
+    if conflicting_ids:
         raise ValueError(
-            "Each compound_id must map to exactly one SMILES string for clustering. "
-            f"Found conflicts for: {conflicting_compound_ids[:10]}"
+            "Each id must map to exactly one SMILES string for clustering. "
+            f"Found conflicts for: {conflicting_ids[:10]}"
         )
     return compound_smiles_df.reset_index(drop=True)
 
 
 def smiles_to_morgan_fingerprints(
     df: pd.DataFrame,
-    smiles_column: str = "isomeric_smiles",
+    smiles_column: str = "smiles",
     radius: int = 2,
     n_bits: int = 2048,
 ) -> pd.DataFrame:
@@ -71,14 +71,14 @@ def smiles_to_morgan_fingerprints(
 
     records = []
     for record in compound_df.to_dict(orient="records"):
-        compound_id = record["compound_id"]
+        id = record["id"]
         smiles = record[smiles_column]
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
-            raise ValueError(f"Could not parse SMILES for compound_id={compound_id}")
+            raise ValueError(f"Could not parse SMILES for id={id}")
         records.append(
             {
-                "compound_id": compound_id,
+                "id": id,
                 smiles_column: smiles,
                 "fingerprint": generator.GetFingerprint(mol),
             }
@@ -97,7 +97,7 @@ def compute_tanimoto_distance_matrix(
         [*COMPOUND_KEY_COLUMNS, fingerprint_column],
     )
 
-    compound_ids = fingerprint_df["compound_id"].tolist()
+    ids = fingerprint_df["id"].tolist()
     fingerprints = fingerprint_df[fingerprint_column].tolist()
     n_compounds = len(fingerprints)
     distance_matrix = np.zeros((n_compounds, n_compounds), dtype=float)
@@ -113,7 +113,7 @@ def compute_tanimoto_distance_matrix(
             distance_matrix[idx, jdx] = distance
             distance_matrix[jdx, idx] = distance
 
-    return pd.DataFrame(distance_matrix, index=compound_ids, columns=compound_ids)
+    return pd.DataFrame(distance_matrix, index=ids, columns=ids)
 
 
 def _initialize_kmedoids(
@@ -216,7 +216,7 @@ def _run_kmedoids(
 def build_chemical_cluster_table(
     df: pd.DataFrame,
     n_clusters: int,
-    smiles_column: str = "isomeric_smiles",
+    smiles_column: str = "smiles",
     radius: int = 2,
     n_bits: int = 2048,
     max_iter: int = 100,
@@ -244,14 +244,14 @@ def build_chemical_cluster_table(
         right_index=True,
         how="left",
     )
-    return cluster_df.sort_values(["chem_cluster_id", "compound_id"]).reset_index(drop=True)
+    return cluster_df.sort_values(["chem_cluster_id", "id"]).reset_index(drop=True)
 
 
 def write_chemical_cluster_table(
     input_path: Path | str,
     output_path: Path | str,
     n_clusters: int,
-    smiles_column: str = "isomeric_smiles",
+    smiles_column: str = "smiles",
     radius: int = 2,
     n_bits: int = 2048,
     max_iter: int = 100,

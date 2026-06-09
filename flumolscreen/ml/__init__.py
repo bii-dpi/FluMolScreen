@@ -20,7 +20,6 @@ from flumolscreen.ml.inference import (
 )
 from flumolscreen.ml.load_dataset import (
     compose_candidate_datasets,
-    infer_feature_generation_settings,
 )
 from flumolscreen.ml.model_registry import (
     get_tuning_space,
@@ -84,7 +83,6 @@ __all__ = [
     "fit_symmetric_conformal_scaler",
     "fit_regression_model",
     "get_tuning_space",
-    "infer_feature_generation_settings",
     "inference_file_name",
     "make_bootstrap_sample_indices",
     "make_group_kfold_splits",

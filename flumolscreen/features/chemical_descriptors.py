@@ -37,12 +37,12 @@ def _load_rdkit_modules():
     return Chem, Crippen, Descriptors, Lipinski, QED, rdMolDescriptors
 
 
-def _build_descriptor_record(mol, compound_id, descriptor_modules) -> dict:
+def _build_descriptor_record(mol, compound_key, descriptor_modules) -> dict:
     Chem, Crippen, Descriptors, Lipinski, QED, rdMolDescriptors = descriptor_modules
     qed_properties = QED.properties(mol)
 
     return {
-        "compound_id": compound_id,
+        "id": compound_key,
         "exact_mol_wt": Descriptors.ExactMolWt(mol),
         "logp": Crippen.MolLogP(mol),
         "tpsa": rdMolDescriptors.CalcTPSA(mol),
@@ -61,9 +61,9 @@ def _build_descriptor_record(mol, compound_id, descriptor_modules) -> dict:
 
 def build_chemical_descriptor_features(
     df: pd.DataFrame,
-    smiles_column: str = "isomeric_smiles",
+    smiles_column: str = "smiles",
 ) -> pd.DataFrame:
-    required_columns = ["compound_id", smiles_column]
+    required_columns = ["id", smiles_column]
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         raise ValueError(
@@ -74,30 +74,30 @@ def build_chemical_descriptor_features(
     Chem = descriptor_modules[0]
 
     records = []
-    input_records = df.loc[:, ["compound_id", smiles_column]].to_dict(orient="records")
+    input_records = df.loc[:, ["id", smiles_column]].to_dict(orient="records")
 
     for record in input_records:
-        compound_id = record["compound_id"]
+        compound_key = record["id"]
         smiles = record[smiles_column]
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
-            raise ValueError(f"Could not parse SMILES for compound_id={compound_id}")
+            raise ValueError(f"Could not parse SMILES for id={compound_key}")
 
         records.append(
             _build_descriptor_record(
                 mol=mol,
-                compound_id=compound_id,
+                compound_key=compound_key,
                 descriptor_modules=descriptor_modules,
             )
         )
 
-    return pd.DataFrame.from_records(records, columns=["compound_id", *DESCRIPTOR_COLUMNS])
+    return pd.DataFrame.from_records(records, columns=["id", *DESCRIPTOR_COLUMNS])
 
 
 def write_chemical_descriptor_features(
     input_path: Path | str,
     output_path: Path | str,
-    smiles_column: str = "isomeric_smiles",
+    smiles_column: str = "smiles",
 ) -> Path:
     input_path = Path(input_path)
     output_path = Path(output_path)

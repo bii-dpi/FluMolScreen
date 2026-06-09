@@ -10,7 +10,6 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.linear_model import Ridge
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from xgboost import XGBRegressor
 
 __all__ = [
     "DEFAULT_MODEL_PARAMS",
@@ -32,9 +31,11 @@ __all__ = [
 ]
 
 NON_FEATURE_COLUMNS = {
-    "compound_id",
-    "target_id",
-    "isomeric_smiles",
+    "id",
+    "target",
+    "target_class",
+    "strain",
+    "smiles",
     "label_pkd",
 }
 
@@ -64,7 +65,7 @@ DISPLAY_TUNING_MODES = {
     "nested": "nested_tuning",
 }
 OVERLAP_COLUMN = "in_experimental_data"
-OVERLAP_KEY_COLUMNS = ["compound_id", "target_id"]
+OVERLAP_KEY_COLUMNS = ["id", "target"]
 
 
 def format_model_params(model_params: dict[str, Any] | None) -> str:
@@ -135,18 +136,18 @@ def prepare_result_dirs(results_dir: str, round_id: str) -> dict[str, Path]:
     return directories
 
 
-def inference_file_name(target_id: str, comparison_name: str, model_type: str) -> str:
+def inference_file_name(target: str, comparison_name: str, model_type: str) -> str:
     """Build the inference filename for one comparison/model pair."""
     # Encode the target, feature comparison, and learner in one stable filename.
-    return f"{target_id}_{comparison_name}_{model_type}_inference.csv"
+    return f"{target}_{comparison_name}_{model_type}_inference.csv"
 
 
 def build_merged_inference_path(
     inference_dir: Path,
-    target_id: str,
+    target: str,
 ) -> Path:
     """Return the standard output path for the merged inference comparison table."""
-    return inference_dir / f"{target_id}_merged_inference_predictions.csv"
+    return inference_dir / f"{target}_merged_inference_predictions.csv"
 
 
 def merge_inference_predictions(
@@ -209,13 +210,13 @@ def merge_inference_predictions(
 
 
 def evaluation_base_name(
-    target_id: str,
+    target: str,
     outer_split_type: str,
     tuning_mode: str | None,
 ) -> str:
     """Build the base filename stem for evaluation outputs."""
     # Encode the outer CV scaffold and, when relevant, the tuning strategy.
-    base_name = f"{target_id}_{outer_split_type}_cv"
+    base_name = f"{target}_{outer_split_type}_cv"
     if tuning_mode is None:
         return base_name
     return f"{base_name}_{DISPLAY_TUNING_MODES.get(tuning_mode, tuning_mode)}"
@@ -261,6 +262,13 @@ def make_regression_model(
     if model_type == "ridge":
         return Ridge(**resolved_params)
     if model_type == "xgboost":
+        try:
+            from xgboost import XGBRegressor
+        except ImportError as error:
+            raise ImportError(
+                "xgboost is required when model_type='xgboost'. "
+                "Install the project environment from consensus.yml first."
+            ) from error
         return XGBRegressor(**resolved_params)
 
     raise ValueError(f"Unsupported model_type: {model_type}")

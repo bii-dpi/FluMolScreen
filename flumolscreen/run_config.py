@@ -8,11 +8,8 @@ from typing import Any
 
 import yaml
 
-from flumolscreen.feature_registry import (
-    FEATURE_REGISTRY,
-    HIERARCHICAL_TARGET_FAMILY_REGISTRY,
-)
-from flumolscreen.target_registry import TARGET_REGISTRY
+from flumolscreen.feature_registry import FEATURE_REGISTRY
+from flumolscreen.target_registry import TARGET_CLASS_REGISTRY, TARGET_REGISTRY
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RUN_CONFIG_PATH = REPO_ROOT / "configs" / "runs" / "current.yml"
@@ -48,10 +45,10 @@ RUN_METADATA_KEYS = {"defaults", "settings", "jobs"}
 JOB_METADATA_KEYS = {
     "name",
     "dataset_mode",
-    "target_id",
+    "target",
     "targets",
-    "family_key",
-    "families",
+    "target_class",
+    "target_classes",
     "comparison_preset",
     "comparisons",
     "settings",
@@ -217,8 +214,8 @@ def _build_expanded_job(
     settings: dict[str, Any],
     raw_job: dict[str, Any],
     dataset_mode: str,
-    target_id: str | None,
-    family_key: str | None,
+    target: str | None,
+    target_class: str | None,
     comparisons: list[dict[str, Any]],
     comparison_preset: str | None,
     expanded_value: str,
@@ -239,8 +236,8 @@ def _build_expanded_job(
                 is_batch=is_batch,
             ),
             "dataset_mode": dataset_mode,
-            "target_id": target_id,
-            "family_key": family_key,
+            "target": target,
+            "target_class": target_class,
             "comparison_preset": comparison_preset,
             "comparisons": comparisons,
             "output_label": output_label,
@@ -255,20 +252,20 @@ def _expand_single_target_job(
     comparisons: list[dict[str, Any]],
     comparison_preset: str | None,
 ) -> list[dict[str, Any]]:
-    has_target_id = "target_id" in raw_job
+    has_target = "target" in raw_job
     has_targets = "targets" in raw_job
-    if has_target_id == has_targets:
-        raise ValueError("Single-target jobs must define exactly one of target_id/targets")
+    if has_target == has_targets:
+        raise ValueError("Single-target jobs must define exactly one of target/targets")
 
-    target_ids = _as_string_list(
-        raw_job["targets"] if has_targets else raw_job["target_id"],
-        "targets" if has_targets else "target_id",
+    targets = _as_string_list(
+        raw_job["targets"] if has_targets else raw_job["target"],
+        "targets" if has_targets else "target",
     )
-    for target_id in target_ids:
-        if target_id not in TARGET_REGISTRY:
-            raise ValueError(f"Unknown target_id: {target_id}")
+    for target in targets:
+        if target not in TARGET_REGISTRY:
+            raise ValueError(f"Unknown target: {target}")
 
-    if "output_label" in raw_job and len(target_ids) > 1:
+    if "output_label" in raw_job and len(targets) > 1:
         raise ValueError("'output_label' cannot be used with multi-target jobs")
 
     return [
@@ -276,52 +273,54 @@ def _expand_single_target_job(
             settings=settings,
             raw_job=raw_job,
             dataset_mode="single_target",
-            target_id=target_id,
-            family_key=None,
+            target=target,
+            target_class=None,
             comparisons=comparisons,
             comparison_preset=comparison_preset,
-            expanded_value=target_id,
-            is_batch=len(target_ids) > 1,
+            expanded_value=target,
+            is_batch=len(targets) > 1,
         )
-        for target_id in target_ids
+        for target in targets
     ]
 
 
-def _expand_target_family_job(
+def _expand_target_class_job(
     settings: dict[str, Any],
     raw_job: dict[str, Any],
     comparisons: list[dict[str, Any]],
     comparison_preset: str | None,
 ) -> list[dict[str, Any]]:
-    has_family_key = "family_key" in raw_job
-    has_families = "families" in raw_job
-    if has_family_key == has_families:
-        raise ValueError("Target-family jobs must define exactly one of family_key/families")
+    has_target_class = "target_class" in raw_job
+    has_target_classes = "target_classes" in raw_job
+    if has_target_class == has_target_classes:
+        raise ValueError(
+            "Target-class jobs must define exactly one of target_class/target_classes"
+        )
 
-    family_keys = _as_string_list(
-        raw_job["families"] if has_families else raw_job["family_key"],
-        "families" if has_families else "family_key",
+    target_classes = _as_string_list(
+        raw_job["target_classes"] if has_target_classes else raw_job["target_class"],
+        "target_classes" if has_target_classes else "target_class",
     )
-    for family_key in family_keys:
-        if family_key not in HIERARCHICAL_TARGET_FAMILY_REGISTRY:
-            raise ValueError(f"Unknown family_key: {family_key}")
+    for target_class in target_classes:
+        if target_class not in TARGET_CLASS_REGISTRY:
+            raise ValueError(f"Unknown target_class: {target_class}")
 
-    if "output_label" in raw_job and len(family_keys) > 1:
-        raise ValueError("'output_label' cannot be used with multi-family jobs")
+    if "output_label" in raw_job and len(target_classes) > 1:
+        raise ValueError("'output_label' cannot be used with multi-target-class jobs")
 
     return [
         _build_expanded_job(
             settings=settings,
             raw_job=raw_job,
-            dataset_mode="target_family",
-            target_id=None,
-            family_key=family_key,
+            dataset_mode="target_class",
+            target=None,
+            target_class=target_class,
             comparisons=comparisons,
             comparison_preset=comparison_preset,
-            expanded_value=family_key,
-            is_batch=len(family_keys) > 1,
+            expanded_value=target_class,
+            is_batch=len(target_classes) > 1,
         )
-        for family_key in family_keys
+        for target_class in target_classes
     ]
 
 
@@ -344,8 +343,8 @@ def _expand_job(
     _validate_settings(settings)
 
     dataset_mode = raw_job.get("dataset_mode")
-    if dataset_mode not in {"single_target", "target_family"}:
-        raise ValueError("dataset_mode must be one of: 'single_target', 'target_family'")
+    if dataset_mode not in {"single_target", "target_class"}:
+        raise ValueError("dataset_mode must be one of: 'single_target', 'target_class'")
 
     comparisons, comparison_preset = _load_comparisons(config_path, raw_job)
 
@@ -356,7 +355,7 @@ def _expand_job(
             comparisons=comparisons,
             comparison_preset=comparison_preset,
         )
-    return _expand_target_family_job(
+    return _expand_target_class_job(
         settings=settings,
         raw_job=raw_job,
         comparisons=comparisons,

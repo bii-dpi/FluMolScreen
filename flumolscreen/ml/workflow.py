@@ -32,7 +32,7 @@ from flumolscreen.ml.utils import (
 
 __all__ = ["print_cv_summary", "run_cv_workflow"]
 
-ROW_ALIGNMENT_KEY_COLUMNS = ["compound_id", "target_id", "label_pkd"]
+ROW_ALIGNMENT_KEY_COLUMNS = ["id", "target", "label_pkd"]
 
 
 def _build_fold_record(
@@ -102,7 +102,7 @@ def _initialize_trace_file(trace_path: Path) -> None:
 def _build_merged_inference_table(
     inference_paths: dict[tuple[str, str], Path],
     inference_dir: Path,
-    target_id: str,
+    target: str,
 ) -> Path:
     """Load per-candidate inference files, merge them, and save one wide table."""
     inference_tables = {
@@ -112,7 +112,7 @@ def _build_merged_inference_table(
     merged_df = merge_inference_predictions(inference_tables)
     merged_path = build_merged_inference_path(
         inference_dir=inference_dir,
-        target_id=target_id,
+        target=target,
     )
     merged_df.to_csv(merged_path, index=False)
     return merged_path
@@ -265,7 +265,7 @@ def build_cv_summary(fold_df: pd.DataFrame, tuning_df: pd.DataFrame) -> pd.DataF
 
 def save_cv_outputs(
     evaluation_dir,
-    target_id: str,
+    target: str,
     split_type: str,
     tuning_mode: str | None,
     fold_df: pd.DataFrame,
@@ -274,7 +274,7 @@ def save_cv_outputs(
 ) -> tuple[Path, Path, Path]:
     """Save the fold-level, summary, and live tuning trace tables."""
     # Reuse one naming stem across all evaluation outputs for this run.
-    base_name = evaluation_base_name(target_id, split_type, tuning_mode)
+    base_name = evaluation_base_name(target, split_type, tuning_mode)
 
     fold_path = evaluation_dir / f"{base_name}_fold_metrics.csv"
     summary_path = evaluation_dir / f"{base_name}_summary.csv"
@@ -292,7 +292,7 @@ def run_cv_workflow(
     data_dir: str,
     results_dir: str,
     train_round_id: str,
-    target_id: str | None,
+    target: str | None,
     comparisons: list[dict],
     model_runs: list[dict],
     outer_split_type: str,
@@ -300,7 +300,7 @@ def run_cv_workflow(
     tuning_mode: str | None,
     tuning_metric: str,
     dataset_mode: str = "single_target",
-    family_key: str | None = None,
+    target_class: str | None = None,
     holdout_validation_fraction: float = 0.2,
     inner_split_type: str | None = None,
     inner_split_params: dict | None = None,
@@ -326,20 +326,20 @@ def run_cv_workflow(
     candidates = compose_candidate_datasets(
         data_dir=data_dir,
         round_id=train_round_id,
-        target_id=target_id,
+        target=target,
         comparisons=comparisons,
         model_runs=model_runs,
         dataset_mode=dataset_mode,
-        family_key=family_key,
+        target_class=target_class,
         standardize_features=standardize_features,
     )
     _validate_candidate_row_alignment(candidates)
-    # Save outputs under a dataset-level stem: target_id for single-target runs
-    # and family_key for pooled target-family runs.
+    # Save outputs under a dataset-level stem: target for single-target runs
+    # and target_class for pooled target-class runs.
     dataset_label = (
         output_label
         if output_label is not None
-        else target_id if dataset_mode == "single_target" else family_key
+        else target if dataset_mode == "single_target" else target_class
     )
     if dataset_label is None:
         raise ValueError("A dataset label could not be resolved for workflow outputs.")
@@ -407,7 +407,7 @@ def run_cv_workflow(
         inference_paths[(candidate["comparison_name"], candidate["model_type"])] = (
             fit_final_candidate_and_save_inference(
                 inference_dir=result_dirs["inference"],
-                target_id=dataset_label,
+                target=dataset_label,
                 candidate=candidate,
                 tuned_model_params=model_params,
                 inference_mode=inference_mode,
@@ -422,11 +422,11 @@ def run_cv_workflow(
     merged_inference_path = _build_merged_inference_table(
         inference_paths=inference_paths,
         inference_dir=result_dirs["inference"],
-        target_id=dataset_label,
+        target=dataset_label,
     )
     fold_path, summary_path, trace_path = save_cv_outputs(
         evaluation_dir=result_dirs["evaluation"],
-        target_id=dataset_label,
+        target=dataset_label,
         split_type=outer_split_type,
         tuning_mode=tuning_mode,
         fold_df=fold_df,
@@ -454,9 +454,9 @@ def run_cv_workflow(
 def print_cv_summary(
     results: dict,
     train_round_id: str,
-    target_id: str | None,
+    target: str | None,
     dataset_mode: str,
-    family_key: str | None,
+    target_class: str | None,
     comparisons: list[dict],
     model_runs: list[dict],
     outer_split_type: str,
@@ -479,9 +479,9 @@ def print_cv_summary(
     display_tuning_mode = DISPLAY_TUNING_MODES.get(tuning_mode, str(tuning_mode))
 
     target_row = (
-        ("target_id", target_id)
+        ("target", target)
         if dataset_mode == "single_target"
-        else ("family_key", family_key)
+        else ("target_class", target_class)
     )
     settings_rows = [
         ("train_round_id", train_round_id),
