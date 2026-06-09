@@ -33,7 +33,7 @@ INNER_SPLIT_PARAMS = {
 HOLDOUT_VALIDATION_FRACTION = 0.2
 TUNING_MODE = "nested" # "holdout" # None
 TUNING_METRIC = "spearman"
-TUNING_N_TRIALS = 20
+TUNING_N_TRIALS = 100
 TUNING_RANDOM_SEED = 42
 
 # --- feature preprocessing and hit-ranking metrics ---
