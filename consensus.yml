@@ -1,0 +1,37 @@
+name: consensus
+channels:
+  - conda-forge
+dependencies:
+  # Core runtime
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - pyyaml
+
+  # Chemistry and molecular feature generation
+  - rdkit
+
+  # Modeling, tuning, and ML backends
+  - xgboost
+  - optuna
+  - pytorch
+  - transformers
+  - tokenizers
+  - sentencepiece
+
+  # Visualization and diagnostic exports
+  - matplotlib
+  - seaborn
+  - plotly
+  - shap
+  - umap-learn
+
+  # Development and verification
+  - pytest
+
+  # Plotly static image export is distributed through pip for this environment.
+  - pip:
+      - kaleido
