@@ -710,7 +710,7 @@ def write_chemical_space_interactive_plot(
             y=unassayed_df["umap_y"],
             mode="markers",
             name="Unassayed",
-            marker={"size": 4, "color": "#d0d0d0", "opacity": 0.35},
+            marker={"size": 4, "color": "#c8c8c8", "opacity": 0.35},
             customdata=unassayed_df.loc[:, hover_columns].fillna("").to_numpy(),
             hovertemplate=(
                 "ID=%{customdata[0]}<br>"
