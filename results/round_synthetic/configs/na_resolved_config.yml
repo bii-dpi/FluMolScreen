@@ -41,10 +41,10 @@ model_runs:
     n_estimators: 300
     max_depth: 4
   standardize_features: false
-name: pooled_target_classes:pa
+name: pooled_target_classes:na
 dataset_mode: target_class
 target: null
-target_class: pa
+target_class: na
 comparison_preset: family_hierarchical
 comparisons:
 - name: method_scores
@@ -86,4 +86,4 @@ comparisons:
   - feature_set: chemical_descriptors
   - feature_set: target_context
     base_feature_set: method_scores
-output_label: pa
+output_label: na

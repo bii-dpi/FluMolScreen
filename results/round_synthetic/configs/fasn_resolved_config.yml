@@ -41,49 +41,43 @@ model_runs:
     n_estimators: 300
     max_depth: 4
   standardize_features: false
-name: pooled_target_classes:pa
-dataset_mode: target_class
-target: null
-target_class: pa
-comparison_preset: family_hierarchical
+name: single_targets:fasn
+dataset_mode: single_target
+target: fasn
+target_class: null
+comparison_preset: single_target_standard
 comparisons:
 - name: method_scores
   feature_requests:
   - feature_set: method_scores
-- name: method_scores_plus_target_context
-  feature_requests:
-  - feature_set: method_scores
-  - feature_set: target_context
-    base_feature_set: method_scores
-- name: method_scores_plus_glide_uncertainty_plus_target_context
+- name: method_scores_plus_glide_uncertainty
   feature_requests:
   - feature_set: method_scores
   - feature_set: glide_uncertainty
-  - feature_set: target_context
-    base_feature_set: method_scores
-- name: method_scores_plus_method_ranks_plus_rank_summary_plus_target_context
+- name: method_ranks
+  feature_requests:
+  - feature_set: method_ranks
+- name: method_scores_plus_method_ranks
+  feature_requests:
+  - feature_set: method_scores
+  - feature_set: method_ranks
+- name: method_scores_plus_method_ranks_plus_rank_summary
   feature_requests:
   - feature_set: method_scores
   - feature_set: method_ranks
   - feature_set: method_rank_summary
-  - feature_set: target_context
-    base_feature_set: method_scores
 - name: chemical_descriptors
   feature_requests:
   - feature_set: chemical_descriptors
-- name: method_scores_plus_chemical_descriptors_plus_target_context
+- name: method_scores_plus_chemical_descriptors
   feature_requests:
   - feature_set: method_scores
   - feature_set: chemical_descriptors
-  - feature_set: target_context
-    base_feature_set: method_scores
-- name: method_scores_plus_method_ranks_plus_rank_summary_plus_glide_uncertainty_plus_chemical_descriptors_plus_target_context
+- name: method_scores_plus_method_ranks_plus_rank_summary_plus_glide_uncertainty_plus_chemical_descriptors
   feature_requests:
   - feature_set: method_scores
   - feature_set: method_ranks
   - feature_set: method_rank_summary
   - feature_set: glide_uncertainty
   - feature_set: chemical_descriptors
-  - feature_set: target_context
-    base_feature_set: method_scores
-output_label: pa
+output_label: fasn
