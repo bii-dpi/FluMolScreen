@@ -1,0 +1,28 @@
+dataset_label: na
+model_type: ridge
+comparison_name: method_scores_plus_method_ranks_plus_rank_summary_plus_target_context
+p: 35
+selection:
+  metric: spearman
+  rule: one_se_simpler
+  outer_cv_metric_mean: 0.9109
+  outer_cv_metric_std: 0.017297832234126894
+  outer_cv_metric_sem: 0.0077358257477789585
+  n_outer_folds: 5
+  best_metric_mean: 0.9109
+  best_metric_sem: 0.0077358257477789585
+  one_se_threshold: 0.9031641742522211
+  one_se_eligible_count: 2
+  best_candidate:
+    comparison_name: method_scores_plus_method_ranks_plus_rank_summary_plus_target_context
+    model_type: ridge
+    p: 35
+final_model_params:
+  alpha: 0.0419
+artifacts:
+  selected_model_summary: results/round_synthetic/selected_models/na_selected_model_summary.csv
+  selected_final_inference: results/round_synthetic/selected_models/na_selected_final_inference.csv
+  selected_oof_predictions: results/round_synthetic/selected_models/na_selected_oof_predictions.csv
+evidence_type: outer_cv_oof_selected_after_cv
+diagnostic_caveat: Selected OOF diagnostics are held out by outer CV for the selected
+  candidate after model selection. A later assay round is stronger external validation.

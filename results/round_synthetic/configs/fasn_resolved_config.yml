@@ -14,8 +14,12 @@ inner_split_params:
 holdout_validation_fraction: 0.2
 tuning_mode: nested
 tuning_metric: spearman
-tuning_n_trials: 10
+tuning_n_trials: 1
 tuning_random_seed: 42
+selection_metric: null
+selection_rule: one_se_simpler
+write_selected_outputs: true
+write_selected_oof_diagnostics: true
 standardize_features: false
 hit_threshold_pkd: 5.0
 enrichment_top_fractions:
