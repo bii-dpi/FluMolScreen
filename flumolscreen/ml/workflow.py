@@ -19,6 +19,7 @@ from flumolscreen.ml.evaluation import (
 )
 from flumolscreen.ml.inference import fit_final_candidate_and_save_inference
 from flumolscreen.ml.load_dataset import compose_candidate_datasets
+from flumolscreen.ml.selection import write_selected_model_artifacts
 from flumolscreen.ml.splits import make_splits
 from flumolscreen.ml.tuning import TRIAL_TRACE_COLUMNS, tune_candidate
 from flumolscreen.ml.utils import (
@@ -299,6 +300,10 @@ def run_cv_workflow(
     outer_split_params: dict | None,
     tuning_mode: str | None,
     tuning_metric: str,
+    selection_metric: str | None = None,
+    selection_rule: str = "one_se_simpler",
+    write_selected_outputs: bool = True,
+    write_selected_oof_diagnostics: bool = True,
     dataset_mode: str = "single_target",
     target_class: str | None = None,
     holdout_validation_fraction: float = 0.2,
@@ -424,6 +429,28 @@ def run_cv_workflow(
         inference_dir=result_dirs["inference"],
         target=dataset_label,
     )
+
+    selected_model_outputs = None
+    if write_selected_outputs:
+        selected_model_outputs = write_selected_model_artifacts(
+            output_dir=result_dirs["selected_models"],
+            dataset_label=dataset_label,
+            candidates=candidates,
+            fold_df=fold_df,
+            tuning_df=tuning_df,
+            final_tuning_df=final_tuning_df,
+            inference_paths=inference_paths,
+            outer_splits=outer_splits,
+            selection_metric=selection_metric or tuning_metric,
+            selection_rule=selection_rule,
+            inference_mode=inference_mode,
+            calibration_fraction=calibration_fraction,
+            n_bootstrap=ensemble_size_m,
+            interval_coverage=interval_coverage,
+            random_state=inference_random_seed,
+            write_selected_oof_diagnostics=write_selected_oof_diagnostics,
+        )
+
     fold_path, summary_path, trace_path = save_cv_outputs(
         evaluation_dir=result_dirs["evaluation"],
         target=dataset_label,
@@ -443,6 +470,7 @@ def run_cv_workflow(
         "summary_df": summary_df,
         "tuning_df": tuning_df,
         "final_tuning_df": final_tuning_df,
+        "selected_model_outputs": selected_model_outputs,
         "fold_path": fold_path,
         "summary_path": summary_path,
         "trace_path": trace_path,
@@ -462,6 +490,10 @@ def print_cv_summary(
     outer_split_type: str,
     tuning_mode: str | None,
     tuning_metric: str,
+    selection_metric: str | None = None,
+    selection_rule: str = "one_se_simpler",
+    write_selected_outputs: bool = True,
+    write_selected_oof_diagnostics: bool = True,
     holdout_validation_fraction: float = 0.2,
     inner_split_type: str | None = None,
     tuning_n_trials: int = 20,
@@ -491,6 +523,10 @@ def print_cv_summary(
         ("outer_split_type", outer_split_type),
         ("tuning_mode", display_tuning_mode),
         ("tuning_metric", tuning_metric),
+        ("selection_metric", selection_metric or tuning_metric),
+        ("selection_rule", selection_rule),
+        ("write_selected_outputs", write_selected_outputs),
+        ("write_selected_oof_diagnostics", write_selected_oof_diagnostics),
         ("standardize_features", standardize_features),
         ("inference_mode", inference_mode),
     ]
@@ -550,4 +586,38 @@ def print_cv_summary(
         )
         for (comparison_name, model_type), path in results["inference_paths"].items()
     )
+    selected_outputs = results.get("selected_model_outputs")
+    if selected_outputs is not None:
+        selected = selected_outputs["selected"]
+        selected_metric = selected["selection_metric"]
+        selected_rows = [
+            ("comparison_name", selected["comparison_name"]),
+            ("model_type", selected["model_type"]),
+            ("p", selected["p"]),
+            ("selection_rule", selected["selection_rule"]),
+            (
+                f"outer_cv_{selected_metric}_mean",
+                f"{selected[f'{selected_metric}_mean']:.4f}",
+            ),
+            (
+                f"outer_cv_{selected_metric}_sem",
+                f"{selected[f'{selected_metric}_sem']:.4f}",
+            ),
+            ("final_model_params", selected_outputs["final_model_params"]),
+        ]
+        console.print(make_key_value_table("Official Selected Model", selected_rows))
+        output_rows.extend(
+            [
+                ("selected_model_manifest", selected_outputs["manifest_path"]),
+                ("selected_model_summary", selected_outputs["summary_path"]),
+                (
+                    "selected_final_inference",
+                    selected_outputs["final_inference_path"],
+                ),
+            ]
+        )
+        if selected_outputs["oof_predictions_path"] is not None:
+            output_rows.append(
+                ("selected_oof_predictions", selected_outputs["oof_predictions_path"])
+            )
     console.print(make_key_value_table("Saved Outputs", output_rows))

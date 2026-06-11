@@ -130,6 +130,7 @@ def prepare_result_dirs(results_dir: str, round_id: str) -> dict[str, Path]:
     directories = {
         "evaluation": round_results_dir / "evaluation",
         "inference": round_results_dir / "inference",
+        "selected_models": round_results_dir / "selected_models",
     }
     for path in directories.values():
         path.mkdir(parents=True, exist_ok=True)
