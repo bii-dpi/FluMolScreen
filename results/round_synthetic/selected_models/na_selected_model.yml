@@ -1,24 +1,27 @@
 dataset_label: na
-model_type: ridge
-comparison_name: method_scores_plus_method_ranks_plus_rank_summary_plus_target_context
-p: 35
+model_type: xgboost
+comparison_name: method_scores_plus_target_context
+p: 20
 selection:
   metric: spearman
   rule: one_se_simpler
-  outer_cv_metric_mean: 0.9109
-  outer_cv_metric_std: 0.017297832234126894
-  outer_cv_metric_sem: 0.0077358257477789585
+  outer_cv_metric_mean: 0.90266
+  outer_cv_metric_std: 0.016043783842971702
+  outer_cv_metric_sem: 0.007174998257839507
   n_outer_folds: 5
-  best_metric_mean: 0.9109
-  best_metric_sem: 0.0077358257477789585
-  one_se_threshold: 0.9031641742522211
-  one_se_eligible_count: 2
+  best_metric_mean: 0.91006
+  best_metric_sem: 0.007612726187115894
+  one_se_threshold: 0.902447273812884
+  one_se_eligible_count: 5
   best_candidate:
     comparison_name: method_scores_plus_method_ranks_plus_rank_summary_plus_target_context
     model_type: ridge
     p: 35
 final_model_params:
-  alpha: 0.0419
+  learning_rate: 0.0381
+  max_depth: 2
+  n_estimators: 250
+  subsample: 0.523
 artifacts:
   selected_model_summary: results/round_synthetic/selected_models/na_selected_model_summary.csv
   selected_final_inference: results/round_synthetic/selected_models/na_selected_final_inference.csv

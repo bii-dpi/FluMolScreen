@@ -5,20 +5,20 @@ p: 6
 selection:
   metric: spearman
   rule: one_se_simpler
-  outer_cv_metric_mean: 0.8929199999999999
-  outer_cv_metric_std: 0.029124508579545155
-  outer_cv_metric_sem: 0.01302487619902776
+  outer_cv_metric_mean: 0.89298
+  outer_cv_metric_std: 0.028783102681955573
+  outer_cv_metric_sem: 0.012872194840041833
   n_outer_folds: 5
-  best_metric_mean: 0.8929199999999999
-  best_metric_sem: 0.01302487619902776
-  one_se_threshold: 0.8798951238009721
-  one_se_eligible_count: 3
+  best_metric_mean: 0.89298
+  best_metric_sem: 0.012872194840041833
+  one_se_threshold: 0.8801078051599581
+  one_se_eligible_count: 5
   best_candidate:
     comparison_name: method_ranks
     model_type: ridge
     p: 6
 final_model_params:
-  alpha: 0.0419
+  alpha: 0.29
 artifacts:
   selected_model_summary: results/round_synthetic/selected_models/fasn_selected_model_summary.csv
   selected_final_inference: results/round_synthetic/selected_models/fasn_selected_final_inference.csv

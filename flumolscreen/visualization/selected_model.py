@@ -12,15 +12,19 @@ import pandas as pd
 import yaml
 
 from flumolscreen.visualization.chemical_space import (
+    format_strain_label,
     format_target_class_label,
     format_target_label,
 )
+from flumolscreen.target_registry import resolve_target_class_targets
 
 SELECTED_MANIFEST_SUFFIX = "_selected_model.yml"
 SELECTED_SUMMARY_SUFFIX = "_selected_model_summary.csv"
 SELECTED_OOF_SUFFIX = "_selected_oof_predictions.csv"
+SELECTED_FINAL_INFERENCE_SUFFIX = "_selected_final_inference.csv"
 
 DEFAULT_DISAGREEMENT_COLUMN = "branch_rank_sd"
+CROSS_STRAIN_ORDER = ("ph1n1", "h3n2", "h5n1")
 DISAGREEMENT_COLUMNS = (
     "branch_rank_sd",
     "method_rank_sd",
@@ -47,6 +51,11 @@ PLOTLY_TARGET_COLORS = (
     "#7f7f7f",
     "#bcbd22",
 )
+DIVERGENCE_COLORSCALE = [
+    [0.0, "#2166ac"],
+    [0.5, "#7b3294"],
+    [1.0, "#b2182b"],
+]
 REQUIRED_OOF_COLUMNS = (
     "dataset_label",
     "id",
@@ -83,6 +92,72 @@ PREDICTION_SUMMARY_COLUMNS = (
     "median_abs_error",
     "coverage",
 )
+CROSS_STRAIN_OOF_PAIR_COLUMNS = (
+    "dataset_label",
+    "dataset_display",
+    "id",
+    "target_a",
+    "target_b",
+    "strain_a",
+    "strain_b",
+    "strain_a_display",
+    "strain_b_display",
+    "strain_pair",
+    "label_pkd_a",
+    "label_pkd_b",
+    "pred_mean_a",
+    "pred_mean_b",
+    "observed_delta_pkd",
+    "predicted_delta_pkd",
+    "observed_pair_divergence",
+    "predicted_pair_divergence",
+    "delta_residual",
+    "abs_delta_error",
+    "outer_fold_a",
+    "outer_fold_b",
+)
+CROSS_STRAIN_OOF_TRIPLET_COLUMNS = (
+    "dataset_label",
+    "dataset_display",
+    "id",
+    "observed_mean_pkd",
+    "predicted_mean_pkd",
+    "observed_worst_strain",
+    "observed_worst_strain_display",
+    "predicted_worst_strain",
+    "predicted_worst_strain_display",
+    "observed_worst_pkd",
+    "predicted_worst_pkd",
+    "observed_strain_range",
+    "predicted_strain_range",
+    "heatmap_row",
+)
+CROSS_STRAIN_FINAL_TRIPLET_COLUMNS = (
+    "dataset_label",
+    "dataset_display",
+    "id",
+    "predicted_mean_pkd",
+    "predicted_middle_pkd",
+    "predicted_max_pkd",
+    "worst_strain",
+    "worst_strain_display",
+    "worst_strain_pred_pkd",
+    "predicted_strain_range",
+    "in_experimental_data_any",
+)
+CROSS_STRAIN_SUMMARY_COLUMNS = (
+    "summary_level",
+    "dataset_label",
+    "dataset_display",
+    "strain_pair",
+    "n",
+    "spearman",
+    "mae",
+    "oof_compounds",
+    "complete_oof_triplets",
+    "incomplete_oof_compounds",
+    "final_triplets",
+)
 
 
 @dataclass(frozen=True)
@@ -94,6 +169,7 @@ class SelectedModelRun:
     manifest_path: Path
     summary_path: Path
     oof_predictions_path: Path
+    final_inference_path: Path | None = None
 
 
 def resolve_output_dir(results_dir: Path | str, round_id: str) -> Path:
@@ -160,6 +236,9 @@ def discover_selected_model_runs(
 
         manifest_path = selected_dir / f"{dataset_label}{SELECTED_MANIFEST_SUFFIX}"
         summary_path = selected_dir / f"{dataset_label}{SELECTED_SUMMARY_SUFFIX}"
+        final_inference_path = (
+            selected_dir / f"{dataset_label}{SELECTED_FINAL_INFERENCE_SUFFIX}"
+        )
         for path in [manifest_path, summary_path]:
             if not path.exists():
                 missing_paths.append(path)
@@ -173,6 +252,9 @@ def discover_selected_model_runs(
                 manifest_path=manifest_path,
                 summary_path=summary_path,
                 oof_predictions_path=oof_predictions_path,
+                final_inference_path=(
+                    final_inference_path if final_inference_path.exists() else None
+                ),
             )
         )
 
@@ -235,6 +317,48 @@ def load_selected_oof_predictions(runs: list[SelectedModelRun]) -> pd.DataFrame:
     if not oof_frames:
         raise ValueError("runs must contain at least one selected-model run")
     return pd.concat(oof_frames, ignore_index=True)
+
+
+def load_selected_final_inferences(runs: list[SelectedModelRun]) -> pd.DataFrame:
+    """Load selected final inference tables into one dataframe when available."""
+    final_frames = []
+    for run in runs:
+        if run.final_inference_path is None:
+            continue
+        final_df = pd.read_csv(run.final_inference_path)
+        if "dataset_label" not in final_df.columns:
+            final_df.insert(0, "dataset_label", run.dataset_label)
+        final_df.insert(0, "selected_final_inference_path", str(run.final_inference_path))
+        _validate_required_columns(
+            final_df,
+            ["dataset_label", "id", "target", "pred_mean"],
+            table_name=str(run.final_inference_path),
+        )
+        final_frames.append(final_df)
+    if not final_frames:
+        return pd.DataFrame(
+            columns=[
+                "selected_final_inference_path",
+                "dataset_label",
+                "id",
+                "target",
+                "pred_mean",
+                "pred_err",
+                "in_experimental_data",
+            ]
+        )
+    out = pd.concat(final_frames, ignore_index=True)
+    out["dataset_label"] = out["dataset_label"].astype(str)
+    out["target"] = out["target"].astype(str)
+    out["pred_mean"] = pd.to_numeric(out["pred_mean"], errors="coerce")
+    if "pred_err" in out.columns:
+        out["pred_err"] = pd.to_numeric(out["pred_err"], errors="coerce")
+    if "in_experimental_data" in out.columns:
+        out["in_experimental_data"] = pd.to_numeric(
+            out["in_experimental_data"],
+            errors="coerce",
+        )
+    return out
 
 
 def available_disagreement_columns(df: pd.DataFrame) -> list[str]:
@@ -491,6 +615,424 @@ def build_disagreement_summary(
             )
 
     return pd.DataFrame(rows)
+
+
+def _cross_strain_target_order(dataset_label: str) -> list[str]:
+    try:
+        targets = resolve_target_class_targets(str(dataset_label))
+    except ValueError:
+        return []
+    target_by_strain: dict[str, str] = {}
+    for target in targets:
+        target_text = str(target)
+        prefix = f"{dataset_label}_"
+        if not target_text.startswith(prefix):
+            return []
+        strain = target_text.removeprefix(prefix)
+        if strain in CROSS_STRAIN_ORDER:
+            target_by_strain[strain] = target_text
+    if len(target_by_strain) != len(CROSS_STRAIN_ORDER):
+        return []
+    return [target_by_strain[strain] for strain in CROSS_STRAIN_ORDER]
+
+
+def _target_to_strain(target: str, dataset_label: str) -> str:
+    target_text = str(target)
+    prefix = f"{dataset_label}_"
+    return target_text.removeprefix(prefix) if target_text.startswith(prefix) else target_text
+
+
+def _strain_display(strain: str) -> str:
+    return format_strain_label(strain)
+
+
+def _eligible_cross_strain_dataset_labels(df: pd.DataFrame) -> list[str]:
+    if df.empty or "dataset_label" not in df.columns or "target" not in df.columns:
+        return []
+    labels = []
+    for dataset_label in sorted(df["dataset_label"].astype(str).unique(), key=format_dataset_label):
+        target_order = _cross_strain_target_order(dataset_label)
+        if not target_order:
+            continue
+        observed_targets = set(
+            df.loc[df["dataset_label"].astype(str).eq(dataset_label), "target"].astype(str)
+        )
+        if set(target_order).issubset(observed_targets):
+            labels.append(dataset_label)
+    return labels
+
+
+def _wide_by_target(
+    df: pd.DataFrame,
+    value_columns: list[str],
+) -> pd.DataFrame:
+    return df.pivot_table(
+        index="id",
+        columns="target",
+        values=value_columns,
+        aggfunc="first",
+    )
+
+
+def _wide_value(wide_df: pd.DataFrame, column: str, target: str) -> pd.Series:
+    if column not in wide_df.columns.get_level_values(0):
+        return pd.Series(np.nan, index=wide_df.index)
+    if target not in wide_df[column].columns:
+        return pd.Series(np.nan, index=wide_df.index)
+    return wide_df[(column, target)]
+
+
+def build_cross_strain_oof_pairs(oof_df: pd.DataFrame) -> pd.DataFrame:
+    """Build pairwise OOF strain-selectivity rows for eligible target classes."""
+    required_columns = [
+        "dataset_label",
+        "id",
+        "target",
+        "label_pkd",
+        "pred_mean",
+        "outer_fold",
+    ]
+    _validate_required_columns(oof_df, required_columns, table_name="oof_df")
+    rows: list[dict[str, Any]] = []
+    for dataset_label in _eligible_cross_strain_dataset_labels(oof_df):
+        target_order = _cross_strain_target_order(dataset_label)
+        dataset_df = oof_df.loc[
+            oof_df["dataset_label"].astype(str).eq(dataset_label)
+            & oof_df["target"].astype(str).isin(target_order)
+        ].copy()
+        for column in ["label_pkd", "pred_mean"]:
+            dataset_df[column] = pd.to_numeric(dataset_df[column], errors="coerce")
+        wide_df = _wide_by_target(
+            dataset_df,
+            ["label_pkd", "pred_mean", "outer_fold"],
+        )
+        for target_a_idx, target_a in enumerate(target_order):
+            for target_b in target_order[target_a_idx + 1 :]:
+                label_a = _wide_value(wide_df, "label_pkd", target_a)
+                label_b = _wide_value(wide_df, "label_pkd", target_b)
+                pred_a = _wide_value(wide_df, "pred_mean", target_a)
+                pred_b = _wide_value(wide_df, "pred_mean", target_b)
+                valid_mask = pd.concat([label_a, label_b, pred_a, pred_b], axis=1).notna().all(axis=1)
+                strain_a = _target_to_strain(target_a, dataset_label)
+                strain_b = _target_to_strain(target_b, dataset_label)
+                for compound_id in wide_df.index[valid_mask]:
+                    observed_delta = float(label_a.loc[compound_id] - label_b.loc[compound_id])
+                    predicted_delta = float(pred_a.loc[compound_id] - pred_b.loc[compound_id])
+                    rows.append(
+                        {
+                            "dataset_label": dataset_label,
+                            "dataset_display": format_dataset_label(dataset_label),
+                            "id": compound_id,
+                            "target_a": target_a,
+                            "target_b": target_b,
+                            "strain_a": strain_a,
+                            "strain_b": strain_b,
+                            "strain_a_display": _strain_display(strain_a),
+                            "strain_b_display": _strain_display(strain_b),
+                            "strain_pair": (
+                                f"{_strain_display(strain_a)} - {_strain_display(strain_b)}"
+                            ),
+                            "label_pkd_a": float(label_a.loc[compound_id]),
+                            "label_pkd_b": float(label_b.loc[compound_id]),
+                            "pred_mean_a": float(pred_a.loc[compound_id]),
+                            "pred_mean_b": float(pred_b.loc[compound_id]),
+                            "observed_delta_pkd": observed_delta,
+                            "predicted_delta_pkd": predicted_delta,
+                            "observed_pair_divergence": abs(observed_delta),
+                            "predicted_pair_divergence": abs(predicted_delta),
+                            "delta_residual": observed_delta - predicted_delta,
+                            "abs_delta_error": abs(observed_delta - predicted_delta),
+                            "outer_fold_a": _wide_value(wide_df, "outer_fold", target_a).loc[
+                                compound_id
+                            ],
+                            "outer_fold_b": _wide_value(wide_df, "outer_fold", target_b).loc[
+                                compound_id
+                            ],
+                        }
+                    )
+    return pd.DataFrame(rows, columns=CROSS_STRAIN_OOF_PAIR_COLUMNS)
+
+
+def build_cross_strain_oof_triplets(oof_df: pd.DataFrame) -> pd.DataFrame:
+    """Build complete OOF three-strain triplets for residual heatmaps."""
+    required_columns = [
+        "dataset_label",
+        "id",
+        "target",
+        "label_pkd",
+        "pred_mean",
+        "residual",
+        "abs_error",
+    ]
+    _validate_required_columns(oof_df, required_columns, table_name="oof_df")
+    rows: list[dict[str, Any]] = []
+    for dataset_label in _eligible_cross_strain_dataset_labels(oof_df):
+        target_order = _cross_strain_target_order(dataset_label)
+        dataset_df = oof_df.loc[
+            oof_df["dataset_label"].astype(str).eq(dataset_label)
+            & oof_df["target"].astype(str).isin(target_order)
+        ].copy()
+        for column in ["label_pkd", "pred_mean", "residual", "abs_error"]:
+            dataset_df[column] = pd.to_numeric(dataset_df[column], errors="coerce")
+        wide_df = _wide_by_target(
+            dataset_df,
+            ["label_pkd", "pred_mean", "residual", "abs_error"],
+        )
+        label_values = pd.concat(
+            [_wide_value(wide_df, "label_pkd", target) for target in target_order],
+            axis=1,
+        )
+        pred_values = pd.concat(
+            [_wide_value(wide_df, "pred_mean", target) for target in target_order],
+            axis=1,
+        )
+        complete_mask = label_values.notna().all(axis=1) & pred_values.notna().all(axis=1)
+        for compound_id in wide_df.index[complete_mask]:
+            label_row = {
+                _target_to_strain(target, dataset_label): float(
+                    _wide_value(wide_df, "label_pkd", target).loc[compound_id]
+                )
+                for target in target_order
+            }
+            pred_row = {
+                _target_to_strain(target, dataset_label): float(
+                    _wide_value(wide_df, "pred_mean", target).loc[compound_id]
+                )
+                for target in target_order
+            }
+            observed_worst_strain = min(label_row, key=label_row.get)
+            predicted_worst_strain = min(pred_row, key=pred_row.get)
+            row = {
+                "dataset_label": dataset_label,
+                "dataset_display": format_dataset_label(dataset_label),
+                "id": compound_id,
+                "observed_mean_pkd": float(np.mean(list(label_row.values()))),
+                "predicted_mean_pkd": float(np.mean(list(pred_row.values()))),
+                "observed_worst_strain": observed_worst_strain,
+                "observed_worst_strain_display": _strain_display(observed_worst_strain),
+                "predicted_worst_strain": predicted_worst_strain,
+                "predicted_worst_strain_display": _strain_display(predicted_worst_strain),
+                "observed_worst_pkd": float(min(label_row.values())),
+                "predicted_worst_pkd": float(min(pred_row.values())),
+                "observed_strain_range": float(max(label_row.values()) - min(label_row.values())),
+                "predicted_strain_range": float(max(pred_row.values()) - min(pred_row.values())),
+            }
+            for target in target_order:
+                strain = _target_to_strain(target, dataset_label)
+                row[f"label_pkd_{strain}"] = label_row[strain]
+                row[f"pred_mean_{strain}"] = pred_row[strain]
+                row[f"residual_{strain}"] = float(
+                    _wide_value(wide_df, "residual", target).loc[compound_id]
+                )
+                row[f"abs_error_{strain}"] = float(
+                    _wide_value(wide_df, "abs_error", target).loc[compound_id]
+                )
+            rows.append(row)
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return pd.DataFrame(columns=[*CROSS_STRAIN_OOF_TRIPLET_COLUMNS])
+    out = out.sort_values(
+        ["dataset_label", "observed_mean_pkd", "observed_strain_range", "id"],
+        ascending=[True, False, False, True],
+        kind="mergesort",
+    ).reset_index(drop=True)
+    out["heatmap_row"] = out.groupby("dataset_label").cumcount() + 1
+    ordered_columns = [
+        *CROSS_STRAIN_OOF_TRIPLET_COLUMNS,
+        *[
+            column
+            for strain in CROSS_STRAIN_ORDER
+            for column in [
+                f"label_pkd_{strain}",
+                f"pred_mean_{strain}",
+                f"residual_{strain}",
+                f"abs_error_{strain}",
+            ]
+            if column in out.columns
+        ],
+    ]
+    return out.loc[:, ordered_columns]
+
+
+def build_cross_strain_final_triplets(final_inference_df: pd.DataFrame) -> pd.DataFrame:
+    """Build full-data selected-inference predicted triplets for triage views."""
+    if final_inference_df.empty:
+        return pd.DataFrame(columns=CROSS_STRAIN_FINAL_TRIPLET_COLUMNS)
+    _validate_required_columns(
+        final_inference_df,
+        ["dataset_label", "id", "target", "pred_mean"],
+        table_name="final_inference_df",
+    )
+    rows: list[dict[str, Any]] = []
+    for dataset_label in _eligible_cross_strain_dataset_labels(final_inference_df):
+        target_order = _cross_strain_target_order(dataset_label)
+        dataset_df = final_inference_df.loc[
+            final_inference_df["dataset_label"].astype(str).eq(dataset_label)
+            & final_inference_df["target"].astype(str).isin(target_order)
+        ].copy()
+        dataset_df["pred_mean"] = pd.to_numeric(dataset_df["pred_mean"], errors="coerce")
+        wide_df = _wide_by_target(
+            dataset_df,
+            [
+                "pred_mean",
+                *(
+                    ["in_experimental_data"]
+                    if "in_experimental_data" in dataset_df.columns
+                    else []
+                ),
+            ],
+        )
+        pred_values = pd.concat(
+            [_wide_value(wide_df, "pred_mean", target) for target in target_order],
+            axis=1,
+        )
+        complete_mask = pred_values.notna().all(axis=1)
+        for compound_id in wide_df.index[complete_mask]:
+            pred_row = {
+                _target_to_strain(target, dataset_label): float(
+                    _wide_value(wide_df, "pred_mean", target).loc[compound_id]
+                )
+                for target in target_order
+            }
+            sorted_predictions = sorted(pred_row.values())
+            worst_strain = min(pred_row, key=pred_row.get)
+            if "in_experimental_data" in wide_df.columns.get_level_values(0):
+                in_experimental_data_any = int(
+                    pd.concat(
+                        [
+                            pd.Series(
+                                [
+                                    _wide_value(wide_df, "in_experimental_data", target).loc[
+                                        compound_id
+                                    ]
+                                ]
+                            )
+                            for target in target_order
+                        ],
+                        ignore_index=True,
+                    )
+                    .fillna(0)
+                    .astype(float)
+                    .max()
+                )
+            else:
+                in_experimental_data_any = 0
+            row = {
+                "dataset_label": dataset_label,
+                "dataset_display": format_dataset_label(dataset_label),
+                "id": compound_id,
+                "predicted_mean_pkd": float(np.mean(list(pred_row.values()))),
+                "predicted_middle_pkd": float(sorted_predictions[1]),
+                "predicted_max_pkd": float(sorted_predictions[2]),
+                "worst_strain": worst_strain,
+                "worst_strain_display": _strain_display(worst_strain),
+                "worst_strain_pred_pkd": float(pred_row[worst_strain]),
+                "predicted_strain_range": float(max(pred_row.values()) - min(pred_row.values())),
+                "in_experimental_data_any": in_experimental_data_any,
+            }
+            for strain in CROSS_STRAIN_ORDER:
+                row[f"pred_mean_{strain}"] = pred_row[strain]
+            rows.append(row)
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return pd.DataFrame(columns=[*CROSS_STRAIN_FINAL_TRIPLET_COLUMNS])
+    out = out.sort_values(
+        ["dataset_label", "worst_strain_pred_pkd", "predicted_mean_pkd", "id"],
+        ascending=[True, False, False, True],
+        kind="mergesort",
+    ).reset_index(drop=True)
+    ordered_columns = [
+        *CROSS_STRAIN_FINAL_TRIPLET_COLUMNS,
+        *[f"pred_mean_{strain}" for strain in CROSS_STRAIN_ORDER if f"pred_mean_{strain}" in out.columns],
+    ]
+    return out.loc[:, ordered_columns]
+
+
+def build_cross_strain_summary(
+    oof_df: pd.DataFrame,
+    oof_pairs_df: pd.DataFrame,
+    oof_triplets_df: pd.DataFrame,
+    final_triplets_df: pd.DataFrame,
+) -> pd.DataFrame:
+    """Summarize cross-strain selected-model diagnostic coverage and metrics."""
+    rows: list[dict[str, Any]] = []
+    labels = sorted(
+        set(oof_pairs_df.get("dataset_label", pd.Series(dtype=str)).astype(str))
+        | set(oof_triplets_df.get("dataset_label", pd.Series(dtype=str)).astype(str))
+        | set(final_triplets_df.get("dataset_label", pd.Series(dtype=str)).astype(str)),
+        key=format_dataset_label,
+    )
+    for dataset_label in labels:
+        target_order = _cross_strain_target_order(dataset_label)
+        dataset_oof_df = oof_df.loc[
+            oof_df["dataset_label"].astype(str).eq(dataset_label)
+            & oof_df["target"].astype(str).isin(target_order)
+        ]
+        oof_compounds = int(dataset_oof_df["id"].nunique()) if not dataset_oof_df.empty else 0
+        complete_oof_triplets = int(
+            len(
+                oof_triplets_df.loc[
+                    oof_triplets_df["dataset_label"].astype(str).eq(dataset_label)
+                ]
+            )
+        )
+        final_triplets = int(
+            len(
+                final_triplets_df.loc[
+                    final_triplets_df["dataset_label"].astype(str).eq(dataset_label)
+                ]
+            )
+        )
+        incomplete_oof_compounds = max(oof_compounds - complete_oof_triplets, 0)
+        dataset_pairs_df = oof_pairs_df.loc[
+            oof_pairs_df["dataset_label"].astype(str).eq(dataset_label)
+        ]
+        rows.append(
+            {
+                "summary_level": "dataset",
+                "dataset_label": dataset_label,
+                "dataset_display": format_dataset_label(dataset_label),
+                "strain_pair": "all",
+                "n": int(len(dataset_pairs_df)),
+                "spearman": _safe_corr(
+                    dataset_pairs_df["observed_delta_pkd"],
+                    dataset_pairs_df["predicted_delta_pkd"],
+                    "spearman",
+                )
+                if not dataset_pairs_df.empty
+                else float("nan"),
+                "mae": float(dataset_pairs_df["abs_delta_error"].mean())
+                if not dataset_pairs_df.empty
+                else float("nan"),
+                "oof_compounds": oof_compounds,
+                "complete_oof_triplets": complete_oof_triplets,
+                "incomplete_oof_compounds": incomplete_oof_compounds,
+                "final_triplets": final_triplets,
+            }
+        )
+        for strain_pair, pair_df in dataset_pairs_df.groupby("strain_pair", sort=True):
+            rows.append(
+                {
+                    "summary_level": "pair",
+                    "dataset_label": dataset_label,
+                    "dataset_display": format_dataset_label(dataset_label),
+                    "strain_pair": strain_pair,
+                    "n": int(len(pair_df)),
+                    "spearman": _safe_corr(
+                        pair_df["observed_delta_pkd"],
+                        pair_df["predicted_delta_pkd"],
+                        "spearman",
+                    ),
+                    "mae": float(pair_df["abs_delta_error"].mean())
+                    if not pair_df.empty
+                    else float("nan"),
+                    "oof_compounds": oof_compounds,
+                    "complete_oof_triplets": complete_oof_triplets,
+                    "incomplete_oof_compounds": incomplete_oof_compounds,
+                    "final_triplets": final_triplets,
+                }
+            )
+    return pd.DataFrame(rows, columns=CROSS_STRAIN_SUMMARY_COLUMNS)
 
 
 def _load_pyplot():
@@ -1144,6 +1686,388 @@ def write_residuals_vs_branch_disagreement_html_plot(
     return output_path
 
 
+def _cross_strain_pair_hover_columns() -> list[str]:
+    return [
+        "id",
+        "strain_pair",
+        "label_pkd_a",
+        "label_pkd_b",
+        "pred_mean_a",
+        "pred_mean_b",
+        "observed_delta_pkd",
+        "predicted_delta_pkd",
+        "outer_fold_a",
+        "outer_fold_b",
+        "predicted_pair_divergence",
+    ]
+
+
+def _cross_strain_pair_hover_template() -> str:
+    return (
+        "ID=%{customdata[0]}<br>"
+        "Strain pair=%{customdata[1]}<br>"
+        "Observed A=%{customdata[2]:.3f}<br>"
+        "Observed B=%{customdata[3]:.3f}<br>"
+        "Predicted A=%{customdata[4]:.3f}<br>"
+        "Predicted B=%{customdata[5]:.3f}<br>"
+        "Observed ΔpKd=%{customdata[6]:.3f}<br>"
+        "Predicted ΔpKd=%{customdata[7]:.3f}<br>"
+        "Outer fold A=%{customdata[8]}<br>"
+        "Outer fold B=%{customdata[9]}<br>"
+        "Predicted pair divergence=%{customdata[10]:.3f}<extra></extra>"
+    )
+
+
+def _cross_strain_pair_annotation(
+    cross_strain_summary_df: pd.DataFrame,
+    dataset_label: str,
+    strain_pair: str,
+) -> str:
+    summary_rows = cross_strain_summary_df.loc[
+        cross_strain_summary_df["summary_level"].astype(str).eq("pair")
+        & cross_strain_summary_df["dataset_label"].astype(str).eq(dataset_label)
+        & cross_strain_summary_df["strain_pair"].astype(str).eq(strain_pair)
+    ]
+    if summary_rows.empty:
+        return ""
+    row = summary_rows.iloc[0]
+    return (
+        f"n={int(row['n'])}<br>"
+        f"<i>r_s</i>={_format_metric(row['spearman'])}<br>"
+        f"MAE={_format_metric(row['mae'])}"
+    )
+
+
+def _write_cross_strain_pair_panel(
+    fig,
+    go,
+    pair_df: pd.DataFrame,
+    cross_strain_summary_df: pd.DataFrame,
+    dataset_label: str,
+    strain_pair: str,
+    row: int,
+    col: int,
+) -> None:
+    if pair_df.empty:
+        fig.add_annotation(
+            text="No paired OOF labels",
+            x=0.5,
+            y=0.5,
+            xref=_plotly_axis_ref("x", col, "domain"),
+            yref=_plotly_axis_ref("y", col, "domain"),
+            showarrow=False,
+        )
+        return
+    limits = _finite_limits(
+        pd.concat(
+            [pair_df["observed_delta_pkd"], pair_df["predicted_delta_pkd"]],
+            ignore_index=True,
+        )
+    )
+    if limits is None:
+        return
+    fig.add_shape(
+        type="line",
+        x0=limits[0],
+        y0=limits[0],
+        x1=limits[1],
+        y1=limits[1],
+        line={"color": "#4d4d4d", "width": 1.1, "dash": "dash"},
+        row=row,
+        col=col,
+    )
+    fig.add_shape(
+        type="line",
+        x0=0.0,
+        y0=limits[0],
+        x1=0.0,
+        y1=limits[1],
+        line={"color": "#999999", "width": 0.8, "dash": "dot"},
+        row=row,
+        col=col,
+    )
+    fig.add_shape(
+        type="line",
+        x0=limits[0],
+        y0=0.0,
+        x1=limits[1],
+        y1=0.0,
+        line={"color": "#999999", "width": 0.8, "dash": "dot"},
+        row=row,
+        col=col,
+    )
+    fig.add_trace(
+        go.Scattergl(
+            x=pair_df["observed_delta_pkd"],
+            y=pair_df["predicted_delta_pkd"],
+            mode="markers",
+            name=strain_pair,
+            showlegend=False,
+            marker={
+                "size": 7,
+                "color": pair_df["predicted_pair_divergence"],
+                "colorscale": DIVERGENCE_COLORSCALE,
+                "showscale": False,
+                "opacity": 0.62,
+            },
+            customdata=_oof_customdata(pair_df, _cross_strain_pair_hover_columns()),
+            hovertemplate=_cross_strain_pair_hover_template(),
+        ),
+        row=row,
+        col=col,
+    )
+    annotation = _cross_strain_pair_annotation(
+        cross_strain_summary_df,
+        dataset_label,
+        strain_pair,
+    )
+    if annotation:
+        fig.add_annotation(
+            text=annotation,
+            x=0.03,
+            y=0.97,
+            xref=_plotly_axis_ref("x", col, "domain"),
+            yref=_plotly_axis_ref("y", col, "domain"),
+            showarrow=False,
+            align="left",
+            bgcolor="rgba(255,255,255,0.76)",
+            bordercolor="rgba(0,0,0,0)",
+            font={"size": 11},
+        )
+    fig.update_xaxes(
+        title_text="Observed ΔpKd",
+        range=list(limits),
+        showgrid=True,
+        zeroline=False,
+        row=row,
+        col=col,
+    )
+    fig.update_yaxes(
+        title_text="Predicted ΔpKd" if col == 1 else "",
+        range=list(limits),
+        showgrid=True,
+        zeroline=False,
+        row=row,
+        col=col,
+    )
+
+
+def _cross_strain_dataset_summary(
+    cross_strain_summary_df: pd.DataFrame,
+    dataset_label: str,
+) -> pd.Series | None:
+    summary_rows = cross_strain_summary_df.loc[
+        cross_strain_summary_df["summary_level"].astype(str).eq("dataset")
+        & cross_strain_summary_df["dataset_label"].astype(str).eq(dataset_label)
+    ]
+    return None if summary_rows.empty else summary_rows.iloc[0]
+
+
+def _cross_strain_unassayed_hover_columns() -> list[str]:
+    return [
+        "id",
+        "unassayed_prediction_rank",
+        "pred_mean_ph1n1",
+        "pred_mean_h3n2",
+        "pred_mean_h5n1",
+        "predicted_mean_pkd",
+        "predicted_middle_pkd",
+        "predicted_max_pkd",
+        "predicted_strain_range",
+    ]
+
+
+def _cross_strain_unassayed_hover_template(stat_label: str) -> str:
+    return (
+        "ID=%{customdata[0]}<br>"
+        "Rank=%{customdata[1]}<br>"
+        f"{stat_label}=%{{y:.3f}}<br>"
+        "pH1N1 predicted=%{customdata[2]:.3f}<br>"
+        "H3N2 predicted=%{customdata[3]:.3f}<br>"
+        "H5N1 predicted=%{customdata[4]:.3f}<br>"
+        "Mean predicted pKd=%{customdata[5]:.3f}<br>"
+        "Middle predicted pKd=%{customdata[6]:.3f}<br>"
+        "Max predicted pKd=%{customdata[7]:.3f}<br>"
+        "Predicted strain range=%{customdata[8]:.3f}<extra></extra>"
+    )
+
+
+def _unassayed_prediction_profile_df(final_df: pd.DataFrame) -> pd.DataFrame:
+    if final_df.empty:
+        return final_df.copy()
+    profile_df = final_df.loc[
+        pd.to_numeric(final_df["in_experimental_data_any"], errors="coerce").fillna(0).eq(0)
+    ].copy()
+    if profile_df.empty:
+        return profile_df
+    profile_df = profile_df.sort_values(
+        ["predicted_mean_pkd", "predicted_middle_pkd", "predicted_max_pkd", "id"],
+        ascending=[False, False, False, True],
+        kind="mergesort",
+    ).reset_index(drop=True)
+    profile_df["unassayed_prediction_rank"] = np.arange(1, len(profile_df) + 1)
+    return profile_df
+
+
+def _write_cross_strain_unassayed_profile_panel(
+    fig,
+    go,
+    final_df: pd.DataFrame,
+    row: int,
+    col: int,
+) -> None:
+    profile_df = _unassayed_prediction_profile_df(final_df)
+    if profile_df.empty:
+        fig.add_annotation(
+            text="No complete unassayed predicted triplets",
+            x=0.5,
+            y=0.18,
+            xref="paper",
+            yref="paper",
+            showarrow=False,
+        )
+        return
+    stat_specs = [
+        ("predicted_mean_pkd", "Mean predicted pKd", "circle", 7),
+        ("predicted_middle_pkd", "Middle predicted pKd", "diamond", 6),
+        ("predicted_max_pkd", "Max predicted pKd", "triangle-up", 7),
+    ]
+    customdata = _oof_customdata(profile_df, _cross_strain_unassayed_hover_columns())
+    for y_column, trace_name, marker_symbol, marker_size in stat_specs:
+        fig.add_trace(
+            go.Scattergl(
+                x=profile_df["unassayed_prediction_rank"],
+                y=profile_df[y_column],
+                mode="markers",
+                name=trace_name,
+                legendgroup=trace_name,
+                marker={
+                    "size": marker_size,
+                    "symbol": marker_symbol,
+                    "color": profile_df["predicted_strain_range"],
+                    "colorscale": DIVERGENCE_COLORSCALE,
+                    "showscale": False,
+                    "opacity": 0.68,
+                },
+                customdata=customdata,
+                hovertemplate=_cross_strain_unassayed_hover_template(trace_name),
+            ),
+            row=row,
+            col=col,
+        )
+    xaxis_kwargs = {
+        "title_text": "Unassayed compound rank (by mean predicted pKd)",
+        "showgrid": True,
+        "zeroline": False,
+        "row": row,
+        "col": col,
+    }
+    yaxis_kwargs = {
+        "title_text": "Predicted pKd",
+        "showgrid": True,
+        "zeroline": False,
+        "row": row,
+        "col": col,
+    }
+    fig.update_xaxes(**xaxis_kwargs)
+    fig.update_yaxes(**yaxis_kwargs)
+
+
+def write_cross_strain_dashboard_html_plot(
+    dataset_label: str,
+    oof_pairs_df: pd.DataFrame,
+    oof_triplets_df: pd.DataFrame,
+    final_triplets_df: pd.DataFrame,
+    cross_strain_summary_df: pd.DataFrame,
+    output_path: Path | str,
+) -> Path:
+    """Write one Plotly selected-model cross-strain dashboard."""
+    go, make_subplots = _load_plotly()
+    output_path = _ensure_parent_dir(output_path)
+    target_order = _cross_strain_target_order(dataset_label)
+    if len(target_order) != len(CROSS_STRAIN_ORDER):
+        raise ValueError(f"Dataset is not an eligible three-strain target class: {dataset_label}")
+
+    pair_order = []
+    for idx, strain_a in enumerate(CROSS_STRAIN_ORDER):
+        for strain_b in CROSS_STRAIN_ORDER[idx + 1 :]:
+            pair_order.append(f"{_strain_display(strain_a)} - {_strain_display(strain_b)}")
+    subplot_titles = [
+        *[f"OOF ΔpKd: {pair}" for pair in pair_order],
+        "Unassayed selected-model mean/middle/max predicted pKd",
+    ]
+    fig = make_subplots(
+        rows=2,
+        cols=3,
+        specs=[
+            [{}, {}, {}],
+            [{"colspan": 3}, None, None],
+        ],
+        subplot_titles=subplot_titles,
+        horizontal_spacing=0.08,
+        vertical_spacing=0.16,
+    )
+
+    dataset_pairs_df = oof_pairs_df.loc[
+        oof_pairs_df["dataset_label"].astype(str).eq(dataset_label)
+    ].copy()
+    for col, pair in enumerate(pair_order, start=1):
+        _write_cross_strain_pair_panel(
+            fig=fig,
+            go=go,
+            pair_df=dataset_pairs_df.loc[dataset_pairs_df["strain_pair"].astype(str).eq(pair)],
+            cross_strain_summary_df=cross_strain_summary_df,
+            dataset_label=dataset_label,
+            strain_pair=pair,
+            row=1,
+            col=col,
+        )
+
+    dataset_final_df = final_triplets_df.loc[
+        final_triplets_df["dataset_label"].astype(str).eq(dataset_label)
+    ].copy()
+    _write_cross_strain_unassayed_profile_panel(
+        fig=fig,
+        go=go,
+        final_df=dataset_final_df,
+        row=2,
+        col=1,
+    )
+
+    dataset_summary = _cross_strain_dataset_summary(
+        cross_strain_summary_df,
+        dataset_label,
+    )
+    if dataset_summary is not None:
+        fig.add_annotation(
+            text=(
+                f"Complete OOF triplets={int(dataset_summary['complete_oof_triplets'])}; "
+                f"incomplete OOF compounds={int(dataset_summary['incomplete_oof_compounds'])}; "
+                f"all-compound predicted triplets={int(dataset_summary['final_triplets'])}"
+            ),
+            x=0.0,
+            y=0.48,
+            xref="paper",
+            yref="paper",
+            showarrow=False,
+            align="left",
+            bgcolor="rgba(255,255,255,0.76)",
+            bordercolor="rgba(0,0,0,0)",
+            font={"size": 11},
+        )
+
+    fig.update_layout(
+        title=f"{format_dataset_label(dataset_label)} selected-model OOF cross-strain dashboard",
+        template="plotly_white",
+        width=1380,
+        height=820,
+        legend_title_text="Worst predicted strain",
+        margin={"l": 80, "r": 40, "t": 110, "b": 70},
+    )
+    fig.write_html(output_path)
+    return output_path
+
+
 def write_residuals_vs_branch_disagreement_plot(
     oof_df: pd.DataFrame,
     disagreement_summary_df: pd.DataFrame,
@@ -1306,10 +2230,22 @@ def create_selected_model_diagnostics(
         raw_oof_df,
         disagreement_column=disagreement_column,
     )
+    final_inference_df = load_selected_final_inferences(runs)
     prediction_summary_df = build_prediction_summary(oof_df)
     disagreement_summary_df = build_disagreement_summary(
         oof_df,
         disagreement_column=disagreement_column,
+    )
+    cross_strain_oof_pairs_df = build_cross_strain_oof_pairs(oof_df)
+    cross_strain_oof_triplets_df = build_cross_strain_oof_triplets(oof_df)
+    cross_strain_final_triplets_df = build_cross_strain_final_triplets(
+        final_inference_df
+    )
+    cross_strain_summary_df = build_cross_strain_summary(
+        oof_df=oof_df,
+        oof_pairs_df=cross_strain_oof_pairs_df,
+        oof_triplets_df=cross_strain_oof_triplets_df,
+        final_triplets_df=cross_strain_final_triplets_df,
     )
 
     output_dir = resolve_output_dir(results_dir=results_dir, round_id=round_id)
@@ -1318,6 +2254,18 @@ def create_selected_model_diagnostics(
         "oof_predictions_csv": output_dir / "selected_model_oof_predictions.csv",
         "prediction_summary_csv": output_dir / "selected_model_prediction_summary.csv",
         "disagreement_summary_csv": output_dir / "selected_model_disagreement_summary.csv",
+        "cross_strain_oof_pairs_csv": (
+            output_dir / "selected_model_cross_strain_oof_pairs.csv"
+        ),
+        "cross_strain_oof_triplets_csv": (
+            output_dir / "selected_model_cross_strain_oof_triplets.csv"
+        ),
+        "cross_strain_final_triplets_csv": (
+            output_dir / "selected_model_cross_strain_final_triplets.csv"
+        ),
+        "cross_strain_summary_csv": (
+            output_dir / "selected_model_cross_strain_summary.csv"
+        ),
     }
     plot_paths = {
         "predicted_vs_observed_pkd_html": output_dir / "predicted_vs_observed_pkd.html",
@@ -1325,11 +2273,40 @@ def create_selected_model_diagnostics(
             output_dir / "residuals_vs_branch_disagreement.html"
         ),
     }
+    cross_strain_dashboard_labels = sorted(
+        cross_strain_summary_df.loc[
+            cross_strain_summary_df["summary_level"].astype(str).eq("dataset"),
+            "dataset_label",
+        ]
+        .astype(str)
+        .unique(),
+        key=format_dataset_label,
+    )
+    for dataset_label in cross_strain_dashboard_labels:
+        plot_paths[f"{dataset_label}_cross_strain_dashboard_html"] = (
+            output_dir / f"{dataset_label}_cross_strain_dashboard.html"
+        )
 
     oof_df.to_csv(data_paths["oof_predictions_csv"], index=False)
     prediction_summary_df.to_csv(data_paths["prediction_summary_csv"], index=False)
     disagreement_summary_df.to_csv(
         data_paths["disagreement_summary_csv"],
+        index=False,
+    )
+    cross_strain_oof_pairs_df.to_csv(
+        data_paths["cross_strain_oof_pairs_csv"],
+        index=False,
+    )
+    cross_strain_oof_triplets_df.to_csv(
+        data_paths["cross_strain_oof_triplets_csv"],
+        index=False,
+    )
+    cross_strain_final_triplets_df.to_csv(
+        data_paths["cross_strain_final_triplets_csv"],
+        index=False,
+    )
+    cross_strain_summary_df.to_csv(
+        data_paths["cross_strain_summary_csv"],
         index=False,
     )
 
@@ -1345,6 +2322,15 @@ def create_selected_model_diagnostics(
             output_path=plot_paths["residuals_vs_branch_disagreement_html"],
             disagreement_column=disagreement_column,
         )
+        for dataset_label in cross_strain_dashboard_labels:
+            write_cross_strain_dashboard_html_plot(
+                dataset_label=dataset_label,
+                oof_pairs_df=cross_strain_oof_pairs_df,
+                oof_triplets_df=cross_strain_oof_triplets_df,
+                final_triplets_df=cross_strain_final_triplets_df,
+                cross_strain_summary_df=cross_strain_summary_df,
+                output_path=plot_paths[f"{dataset_label}_cross_strain_dashboard_html"],
+            )
 
     return {
         "output_dir": output_dir,

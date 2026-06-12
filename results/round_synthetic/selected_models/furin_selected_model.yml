@@ -5,20 +5,20 @@ p: 13
 selection:
   metric: spearman
   rule: one_se_simpler
-  outer_cv_metric_mean: 0.0796
-  outer_cv_metric_std: 0.19085582254675912
-  outer_cv_metric_sem: 0.08535331862323808
+  outer_cv_metric_mean: 0.07511999999999999
+  outer_cv_metric_std: 0.12933032127076777
+  outer_cv_metric_sem: 0.05783827798266474
   n_outer_folds: 5
-  best_metric_mean: 0.09641999999999999
-  best_metric_sem: 0.044091375573914675
-  one_se_threshold: 0.05232862442608532
+  best_metric_mean: 0.08624
+  best_metric_sem: 0.0221151667414017
+  one_se_threshold: 0.0641248332585983
   one_se_eligible_count: 2
   best_candidate:
     comparison_name: method_scores_plus_chemical_descriptors
     model_type: xgboost
     p: 19
 final_model_params:
-  alpha: 0.0419
+  alpha: 3.31
 artifacts:
   selected_model_summary: results/round_synthetic/selected_models/furin_selected_model_summary.csv
   selected_final_inference: results/round_synthetic/selected_models/furin_selected_final_inference.csv
