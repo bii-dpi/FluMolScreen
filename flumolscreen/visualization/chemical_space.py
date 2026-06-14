@@ -23,6 +23,7 @@ DEFAULT_UMAP_N_NEIGHBORS = 30
 DEFAULT_UMAP_MIN_DIST = 0.1
 DEFAULT_UMAP_RANDOM_STATE = 42
 DEFAULT_TOP_N_SCAFFOLDS = 20
+UNASSAYED_POINT_COLOR = "#b0b0b0"
 STRAIN_DISPLAY_NAMES = {
     "ph1n1": "pH1N1",
     "h3n2": "H3N2",
@@ -637,8 +638,8 @@ def write_chemical_space_static_plot(
         unassayed_df["umap_x"],
         unassayed_df["umap_y"],
         s=9,
-        c="#d0d0d0",
-        alpha=0.35,
+        c=UNASSAYED_POINT_COLOR,
+        alpha=0.45,
         linewidths=0,
         label="Unassayed",
     )
@@ -691,6 +692,8 @@ def write_chemical_space_interactive_plot(
     output_path = Path(output_path)
     target_class_label = format_target_class_label(target_class)
     compound_df = _add_display_assay_targets(compound_df)
+    source_values = compound_df["source"].fillna("").astype(str).str.strip()
+    compound_df["source"] = source_values.mask(source_values.eq(""), "Unknown")
     fig = go.Figure()
     hover_columns = [
         "id",
@@ -703,22 +706,32 @@ def write_chemical_space_interactive_plot(
         "label_pkd_min",
     ]
 
+    def trace_arrays(trace_df: pd.DataFrame) -> dict[str, np.ndarray]:
+        return {
+            "x": trace_df["umap_x"].to_numpy(),
+            "y": trace_df["umap_y"].to_numpy(),
+            "customdata": trace_df.loc[:, hover_columns].fillna("").to_numpy(),
+        }
+
+    source_symbols = [
+        "circle",
+        "square",
+        "diamond",
+        "triangle-up",
+        "cross",
+        "x",
+        "triangle-down",
+        "star",
+        "hexagon",
+        "pentagon",
+    ]
+    sources = sorted(compound_df["source"].unique())
+    source_symbol_map = {
+        source: source_symbols[source_idx % len(source_symbols)]
+        for source_idx, source in enumerate(sources)
+    }
+
     unassayed_df = compound_df[~compound_df["assayed_any"].astype(bool)]
-    fig.add_trace(
-        go.Scattergl(
-            x=unassayed_df["umap_x"],
-            y=unassayed_df["umap_y"],
-            mode="markers",
-            name="Unassayed",
-            marker={"size": 4, "color": "#c8c8c8", "opacity": 0.35},
-            customdata=unassayed_df.loc[:, hover_columns].fillna("").to_numpy(),
-            hovertemplate=(
-                "ID=%{customdata[0]}<br>"
-                "Source=%{customdata[1]}<br>"
-                "Scaffold=%{customdata[2]}<extra></extra>"
-            ),
-        )
-    )
     assayed_df = compound_df[compound_df["assayed_any"].astype(bool)]
     palette = [
         "#0072B2",
@@ -729,23 +742,51 @@ def write_chemical_space_interactive_plot(
         "#56B4E9",
         "#000000",
     ]
+
+    assay_group_frames: list[tuple[str, pd.DataFrame]] = [("Unassayed", unassayed_df)]
+    assay_group_colors = {"Unassayed": UNASSAYED_POINT_COLOR}
+    assay_group_opacities = {"Unassayed": 0.45}
+    assay_group_sizes = {"Unassayed": 5}
     for color_idx, (group_name, group_df) in enumerate(
         assayed_df.groupby("assay_plot_group", sort=True)
     ):
+        assay_group_frames.append((group_name, group_df))
+        assay_group_colors[group_name] = palette[color_idx % len(palette)]
+        assay_group_opacities[group_name] = 0.9
+        assay_group_sizes[group_name] = 8
+
+    for source in sources:
         fig.add_trace(
             go.Scattergl(
-                x=group_df["umap_x"],
-                y=group_df["umap_y"],
+                x=[None],
+                y=[None],
                 mode="markers",
-                name=group_name,
+                name=source,
+                legendgroup=f"source::{source}",
+                meta={"filter_kind": "source_legend", "source": source},
                 marker={
-                    "size": 7,
-                    "color": palette[color_idx % len(palette)],
-                    "opacity": 0.9,
-                    "line": {"width": 0.5, "color": "white"},
+                    "size": 9,
+                    "color": "#555555",
+                    "opacity": 0.95,
+                    "symbol": source_symbol_map[source],
                 },
-                customdata=group_df.loc[:, hover_columns].fillna("").to_numpy(),
-                hovertemplate=(
+                hoverinfo="skip",
+            )
+        )
+
+    for source in sources:
+        for group_name, group_df in assay_group_frames:
+            source_group_df = group_df[group_df["source"].eq(source)]
+            if source_group_df.empty:
+                continue
+
+            group_arrays = trace_arrays(source_group_df)
+            hovertemplate = (
+                "ID=%{customdata[0]}<br>"
+                "Source=%{customdata[1]}<br>"
+                "Scaffold=%{customdata[2]}<extra></extra>"
+                if group_name == "Unassayed"
+                else (
                     "ID=%{customdata[0]}<br>"
                     "Source=%{customdata[1]}<br>"
                     "Scaffold=%{customdata[2]}<br>"
@@ -754,7 +795,53 @@ def write_chemical_space_interactive_plot(
                     "Label mean=%{customdata[5]}<br>"
                     "Label max=%{customdata[6]}<br>"
                     "Label min=%{customdata[7]}<extra></extra>"
-                ),
+                )
+            )
+            marker = {
+                "size": assay_group_sizes[group_name],
+                "color": assay_group_colors[group_name],
+                "opacity": assay_group_opacities[group_name],
+                "symbol": source_symbol_map[source],
+            }
+            if group_name != "Unassayed":
+                marker["line"] = {"width": 0.5, "color": "white"}
+
+            fig.add_trace(
+                go.Scattergl(
+                    x=group_arrays["x"],
+                    y=group_arrays["y"],
+                    mode="markers",
+                    name=f"{source} - {group_name}",
+                    legendgroup=f"source::{source}",
+                    showlegend=False,
+                    meta={
+                        "filter_kind": "data",
+                        "source": source,
+                        "assay_group": group_name,
+                    },
+                    marker=marker,
+                    customdata=group_arrays["customdata"],
+                    hovertemplate=hovertemplate,
+                )
+            )
+
+    for group_name, _ in assay_group_frames:
+        fig.add_trace(
+            go.Scattergl(
+                x=[None],
+                y=[None],
+                mode="markers",
+                name=group_name,
+                legend="legend2",
+                meta={"filter_kind": "assay_legend", "assay_group": group_name},
+                marker={
+                    "size": assay_group_sizes[group_name],
+                    "color": assay_group_colors[group_name],
+                    "opacity": assay_group_opacities[group_name],
+                    "symbol": "circle",
+                    "line": {"width": 0.5, "color": "white"},
+                },
+                hoverinfo="skip",
             )
         )
 
@@ -763,10 +850,93 @@ def write_chemical_space_interactive_plot(
         xaxis_title="UMAP 1",
         yaxis_title="UMAP 2",
         template="plotly_white",
-        legend_title_text="Assay coverage",
+        margin={"r": 220},
+        legend={
+            "title": {"text": "Compound source"},
+            "groupclick": "togglegroup",
+            "x": 1.02,
+            "xanchor": "left",
+            "y": 1.0,
+            "yanchor": "top",
+        },
+        legend2={
+            "title": {"text": "Assay coverage"},
+            "x": 1.02,
+            "xanchor": "left",
+            "y": 0.58,
+            "yanchor": "top",
+        },
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.write_html(output_path)
+    legend_filter_script = """
+const graphDiv = document.getElementById("{plot_id}");
+if (graphDiv && !graphDiv.__chemicalSpaceLegendFiltersInstalled) {
+    graphDiv.__chemicalSpaceLegendFiltersInstalled = true;
+    const sourceEnabled = {};
+    const assayEnabled = {};
+
+    function isEnabled(state, key) {
+        return state[key] !== false;
+    }
+
+    function traceMeta(trace) {
+        return trace && trace.meta ? trace.meta : {};
+    }
+
+    function initializeState() {
+        (graphDiv.data || []).forEach((trace) => {
+            const meta = traceMeta(trace);
+            if (meta.filter_kind === "source_legend") {
+                sourceEnabled[meta.source] = true;
+            }
+            if (meta.filter_kind === "assay_legend") {
+                assayEnabled[meta.assay_group] = true;
+            }
+        });
+    }
+
+    function visibilityForTrace(trace) {
+        const meta = traceMeta(trace);
+        if (meta.filter_kind === "source_legend") {
+            return isEnabled(sourceEnabled, meta.source) ? true : "legendonly";
+        }
+        if (meta.filter_kind === "assay_legend") {
+            return isEnabled(assayEnabled, meta.assay_group) ? true : "legendonly";
+        }
+        if (meta.filter_kind === "data") {
+            return (
+                isEnabled(sourceEnabled, meta.source) &&
+                isEnabled(assayEnabled, meta.assay_group)
+            ) ? true : "legendonly";
+        }
+        return true;
+    }
+
+    function applyVisibility() {
+        const traceIndices = (graphDiv.data || []).map((_, index) => index);
+        const visible = (graphDiv.data || []).map(visibilityForTrace);
+        Plotly.restyle(graphDiv, {visible: visible}, traceIndices);
+    }
+
+    initializeState();
+    graphDiv.on("plotly_legendclick", (eventData) => {
+        const meta = traceMeta((graphDiv.data || [])[eventData.curveNumber]);
+        if (meta.filter_kind === "source_legend") {
+            sourceEnabled[meta.source] = !isEnabled(sourceEnabled, meta.source);
+            applyVisibility();
+            return false;
+        }
+        if (meta.filter_kind === "assay_legend") {
+            assayEnabled[meta.assay_group] = !isEnabled(assayEnabled, meta.assay_group);
+            applyVisibility();
+            return false;
+        }
+        return false;
+    });
+    graphDiv.on("plotly_legenddoubleclick", () => false);
+}
+"""
+    fig.write_html(output_path, post_script=legend_filter_script)
     return output_path
 
 

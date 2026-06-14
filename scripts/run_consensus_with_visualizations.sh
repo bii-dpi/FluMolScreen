@@ -103,8 +103,8 @@ for job in resolved_config["jobs"]:
 PY
 )
 
-run_step "consensus learner" \
-  "${PYTHON_BIN}" run_consensus_learner.py --config "${config_path}"
+#run_step "consensus learner" \
+#  "${PYTHON_BIN}" run_consensus_learner.py --config "${config_path}"
 
 for context in "${visualization_contexts[@]}"; do
   IFS=$'\t' read -r data_dir results_dir round_id <<<"${context}"
