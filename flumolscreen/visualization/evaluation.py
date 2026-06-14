@@ -63,6 +63,43 @@ MODEL_TUNING_PARAMETER_AXES = {
         ("param_subsample", "Subsample", "numeric", "float"),
     ],
 }
+INNER_CV_LANDSCAPE_BIN_COUNT = 8
+MODEL_TUNING_LANDSCAPE_PARAMETERS = {
+    "ridge": [
+        {
+            "parameter": "log10_alpha",
+            "column": "param_log10_alpha",
+            "label": "log10(alpha)",
+            "binning": "continuous",
+        },
+    ],
+    "xgboost": [
+        {
+            "parameter": "log10_learning_rate",
+            "column": "param_log10_learning_rate",
+            "label": "log10(learning rate)",
+            "binning": "continuous",
+        },
+        {
+            "parameter": "max_depth",
+            "column": "param_max_depth",
+            "label": "Max depth",
+            "binning": "exact",
+        },
+        {
+            "parameter": "n_estimators",
+            "column": "param_n_estimators",
+            "label": "N estimators",
+            "binning": "exact",
+        },
+        {
+            "parameter": "subsample",
+            "column": "param_subsample",
+            "label": "Subsample",
+            "binning": "continuous",
+        },
+    ],
+}
 
 
 @dataclass(frozen=True)
@@ -996,6 +1033,432 @@ def write_inner_cv_tuning_score_parallel_coordinates_plot(
     )
 
 
+def _coerce_landscape_numeric_values(values: pd.Series) -> pd.Series:
+    return pd.to_numeric(values, errors="coerce").replace(
+        [np.inf, -np.inf],
+        np.nan,
+    )
+
+
+def _format_landscape_bin_number(value: float) -> str:
+    if pd.isna(value):
+        return ""
+    numeric_value = float(value)
+    rounded_value = round(numeric_value)
+    if np.isclose(numeric_value, rounded_value, atol=1e-9):
+        return f"{int(rounded_value)}"
+    return f"{numeric_value:.3g}"
+
+
+def _build_exact_landscape_bins(values: pd.Series) -> pd.DataFrame:
+    numeric_values = _coerce_landscape_numeric_values(values)
+    return pd.DataFrame(
+        {
+            "parameter_bin": numeric_values.map(_format_landscape_bin_number),
+            "parameter_bin_sort": numeric_values,
+            "parameter_bin_lower": numeric_values,
+            "parameter_bin_upper": numeric_values,
+        },
+        index=values.index,
+    )
+
+
+def _build_equal_width_landscape_bins(
+    values: pd.Series,
+    bin_count: int = INNER_CV_LANDSCAPE_BIN_COUNT,
+) -> pd.DataFrame:
+    numeric_values = _coerce_landscape_numeric_values(values)
+    bin_df = pd.DataFrame(
+        {
+            "parameter_bin": pd.NA,
+            "parameter_bin_sort": np.nan,
+            "parameter_bin_lower": np.nan,
+            "parameter_bin_upper": np.nan,
+        },
+        index=values.index,
+    )
+
+    finite_values = numeric_values.dropna()
+    if finite_values.empty:
+        return bin_df
+
+    lower = float(finite_values.min())
+    upper = float(finite_values.max())
+    if lower == upper:
+        padding = max(abs(lower) * 0.04, 0.05)
+        lower -= padding
+        upper += padding
+
+    edges = np.linspace(lower, upper, num=bin_count + 1)
+    labels = [
+        (
+            f"{_format_landscape_bin_number(edges[idx])} to "
+            f"{_format_landscape_bin_number(edges[idx + 1])}"
+        )
+        for idx in range(bin_count)
+    ]
+    mids = (edges[:-1] + edges[1:]) / 2.0
+
+    valid_values = numeric_values.dropna()
+    bin_positions = np.searchsorted(
+        edges,
+        valid_values.to_numpy(dtype=float),
+        side="right",
+    ) - 1
+    bin_positions = np.clip(bin_positions, 0, bin_count - 1)
+    bin_position_series = pd.Series(bin_positions, index=valid_values.index)
+
+    bin_df.loc[valid_values.index, "parameter_bin"] = bin_position_series.map(
+        lambda idx: labels[int(idx)]
+    )
+    bin_df.loc[valid_values.index, "parameter_bin_sort"] = bin_position_series.map(
+        lambda idx: float(mids[int(idx)])
+    )
+    bin_df.loc[valid_values.index, "parameter_bin_lower"] = bin_position_series.map(
+        lambda idx: float(edges[int(idx)])
+    )
+    bin_df.loc[valid_values.index, "parameter_bin_upper"] = bin_position_series.map(
+        lambda idx: float(edges[int(idx) + 1])
+    )
+    return bin_df
+
+
+def _build_landscape_parameter_bins(
+    values: pd.Series,
+    binning: str,
+    bin_count: int = INNER_CV_LANDSCAPE_BIN_COUNT,
+) -> pd.DataFrame:
+    if binning == "exact":
+        return _build_exact_landscape_bins(values)
+    if binning == "continuous":
+        return _build_equal_width_landscape_bins(values, bin_count=bin_count)
+    raise ValueError(f"Unknown landscape binning mode: {binning}")
+
+
+def _landscape_parameter_order() -> dict[str, int]:
+    parameters = [
+        spec["parameter"]
+        for specs in MODEL_TUNING_LANDSCAPE_PARAMETERS.values()
+        for spec in specs
+    ]
+    return {parameter: idx for idx, parameter in enumerate(parameters)}
+
+
+def build_inner_cv_tuning_score_landscape(
+    inner_cv_trials_df: pd.DataFrame,
+    bin_count: int = INNER_CV_LANDSCAPE_BIN_COUNT,
+) -> pd.DataFrame:
+    """Aggregate inner-CV tuning trials into model-parameter score landscapes."""
+    if bin_count < 1:
+        raise ValueError("bin_count must be at least 1")
+
+    required_columns = [
+        "dataset_label",
+        "comparison_name",
+        "feature_set_label",
+        "model_type",
+        "p",
+        "tuning_score",
+    ]
+    _validate_required_columns(
+        inner_cv_trials_df,
+        required_columns,
+        "inner_cv_trials_df",
+    )
+
+    trials_df = inner_cv_trials_df.copy()
+    if "target_class_label" not in trials_df.columns:
+        trials_df["target_class_label"] = trials_df["dataset_label"].map(
+            format_dataset_label
+        )
+    trials_df["tuning_score"] = pd.to_numeric(
+        trials_df["tuning_score"],
+        errors="coerce",
+    )
+
+    landscape_frames: list[pd.DataFrame] = []
+    for model_type, parameter_specs in MODEL_TUNING_LANDSCAPE_PARAMETERS.items():
+        model_df = trials_df.loc[
+            trials_df["model_type"].astype(str).eq(model_type)
+        ].copy()
+        if model_df.empty:
+            continue
+
+        for spec in parameter_specs:
+            column = spec["column"]
+            if column not in model_df.columns:
+                raise ValueError(
+                    "Inner-CV tuning trial table is missing required landscape "
+                    f"column for {model_type}: {column}"
+                )
+
+            parameter_values = _coerce_landscape_numeric_values(model_df[column])
+            parameter_df = model_df.loc[
+                model_df["tuning_score"].notna() & parameter_values.notna()
+            ].copy()
+            if parameter_df.empty:
+                continue
+
+            bin_df = _build_landscape_parameter_bins(
+                parameter_df[column],
+                binning=spec["binning"],
+                bin_count=bin_count,
+            )
+            parameter_df = pd.concat([parameter_df, bin_df], axis=1)
+            parameter_df["parameter"] = spec["parameter"]
+            parameter_df["parameter_label"] = spec["label"]
+
+            group_columns = [
+                "dataset_label",
+                "target_class_label",
+                "model_type",
+                "parameter",
+                "parameter_label",
+                "comparison_name",
+                "feature_set_label",
+                "p",
+                "parameter_bin",
+                "parameter_bin_sort",
+                "parameter_bin_lower",
+                "parameter_bin_upper",
+            ]
+            grouped_df = (
+                parameter_df.groupby(group_columns, dropna=False, as_index=False)
+                .agg(
+                    median_tuning_score=("tuning_score", "median"),
+                    trial_count=("tuning_score", "size"),
+                )
+            )
+            landscape_frames.append(grouped_df)
+
+    if not landscape_frames:
+        raise ValueError("No configured model-parameter inner-CV landscape rows found.")
+
+    landscape_df = pd.concat(landscape_frames, ignore_index=True)
+    parameter_rank = _landscape_parameter_order()
+    landscape_df["_parameter_rank"] = landscape_df["parameter"].map(parameter_rank)
+    return (
+        landscape_df.sort_values(
+            [
+                "dataset_label",
+                "model_type",
+                "_parameter_rank",
+                "p",
+                "feature_set_label",
+                "comparison_name",
+                "parameter_bin_sort",
+            ],
+            kind="mergesort",
+        )
+        .drop(columns="_parameter_rank")
+        .reset_index(drop=True)
+    )
+
+
+def _landscape_feature_order(landscape_df: pd.DataFrame) -> list[str]:
+    return (
+        landscape_df.loc[:, ["comparison_name", "feature_set_label", "p"]]
+        .drop_duplicates()
+        .sort_values(["p", "feature_set_label", "comparison_name"], kind="mergesort")
+        ["comparison_name"]
+        .tolist()
+    )
+
+
+def _landscape_bin_order(landscape_df: pd.DataFrame) -> list[str]:
+    return (
+        landscape_df.loc[:, ["parameter_bin", "parameter_bin_sort"]]
+        .drop_duplicates()
+        .sort_values(["parameter_bin_sort", "parameter_bin"], kind="mergesort")
+        ["parameter_bin"]
+        .astype(str)
+        .tolist()
+    )
+
+
+def _landscape_parameters_for_model(
+    model_type: str,
+    landscape_df: pd.DataFrame,
+) -> list[str]:
+    configured_order = [
+        spec["parameter"]
+        for spec in MODEL_TUNING_LANDSCAPE_PARAMETERS.get(model_type, [])
+    ]
+    observed_parameters = set(landscape_df["parameter"].astype(str))
+    ordered_parameters = [
+        parameter for parameter in configured_order if parameter in observed_parameters
+    ]
+    return [
+        *ordered_parameters,
+        *sorted(observed_parameters.difference(ordered_parameters)),
+    ]
+
+
+def write_inner_cv_tuning_score_landscape_plot(
+    landscape_df: pd.DataFrame,
+    output_path: Path | str,
+    model_type: str,
+    metric: str = DEFAULT_METRIC,
+) -> Path:
+    """Write a static faceted heatmap of aggregated inner-CV tuning scores."""
+    try:
+        import matplotlib
+
+        matplotlib.use("Agg", force=True)
+        import matplotlib.pyplot as plt
+    except ImportError as error:
+        raise ImportError(
+            "matplotlib is required to write inner-CV score landscape plots."
+        ) from error
+
+    output_path = _ensure_parent_dir(output_path)
+    required_columns = [
+        "dataset_label",
+        "model_type",
+        "parameter",
+        "parameter_label",
+        "comparison_name",
+        "feature_set_label",
+        "p",
+        "parameter_bin",
+        "parameter_bin_sort",
+        "median_tuning_score",
+        "trial_count",
+    ]
+    _validate_required_columns(landscape_df, required_columns, "landscape_df")
+
+    plot_df = landscape_df.loc[
+        landscape_df["model_type"].astype(str).eq(model_type)
+    ].copy()
+    if plot_df.empty:
+        raise ValueError(f"No inner-CV score landscape rows found for model: {model_type}")
+
+    plot_df["median_tuning_score"] = pd.to_numeric(
+        plot_df["median_tuning_score"],
+        errors="coerce",
+    )
+    plot_df = plot_df.loc[plot_df["median_tuning_score"].notna()].copy()
+    if plot_df.empty:
+        raise ValueError(
+            f"No finite inner-CV score landscape values found for model: {model_type}"
+        )
+
+    dataset_order = sorted(
+        plot_df["dataset_label"].astype(str).unique(),
+        key=format_dataset_label,
+    )
+    parameter_order = _landscape_parameters_for_model(model_type, plot_df)
+    color_limits = _parallel_color_limits(plot_df["median_tuning_score"])
+    color_norm = plt.Normalize(vmin=color_limits[0], vmax=color_limits[1])
+    cmap = plt.get_cmap("viridis").copy()
+    cmap.set_bad("#f2f2f2")
+
+    max_feature_count = max(
+        len(_landscape_feature_order(plot_df.loc[plot_df["dataset_label"].eq(dataset)]))
+        for dataset in dataset_order
+    )
+    panel_height = max(2.7, 0.22 * max_feature_count + 1.25)
+    fig_width = max(8.8, 3.35 * len(parameter_order) + 3.2)
+    fig_height = max(5.8, panel_height * len(dataset_order) + 2.0)
+    fig, axes = plt.subplots(
+        len(dataset_order),
+        len(parameter_order),
+        figsize=(fig_width, fig_height),
+        squeeze=False,
+    )
+
+    for row_idx, dataset_label in enumerate(dataset_order):
+        dataset_df = plot_df.loc[
+            plot_df["dataset_label"].astype(str).eq(dataset_label)
+        ].copy()
+        feature_order = _landscape_feature_order(dataset_df)
+        feature_labels = (
+            dataset_df.loc[:, ["comparison_name", "feature_set_label"]]
+            .drop_duplicates()
+            .set_index("comparison_name")["feature_set_label"]
+            .to_dict()
+        )
+
+        for col_idx, parameter in enumerate(parameter_order):
+            ax = axes[row_idx, col_idx]
+            parameter_df = dataset_df.loc[
+                dataset_df["parameter"].astype(str).eq(parameter)
+            ].copy()
+            if parameter_df.empty:
+                ax.axis("off")
+                continue
+
+            bin_order = _landscape_bin_order(parameter_df)
+            score_matrix = pd.DataFrame(
+                np.nan,
+                index=feature_order,
+                columns=bin_order,
+            )
+            for _, row in parameter_df.iterrows():
+                score_matrix.loc[
+                    row["comparison_name"],
+                    str(row["parameter_bin"]),
+                ] = row["median_tuning_score"]
+
+            ax.imshow(
+                np.ma.masked_invalid(score_matrix.to_numpy(dtype=float)),
+                aspect="auto",
+                cmap=cmap,
+                norm=color_norm,
+            )
+            ax.set_title(
+                (
+                    f"{format_dataset_label(dataset_label)} | "
+                    f"{parameter_df['parameter_label'].iloc[0]}"
+                ),
+                loc="left",
+                fontsize=9,
+                fontweight="bold",
+            )
+            ax.set_xticks(range(len(bin_order)), bin_order, rotation=45, ha="right")
+            if col_idx == 0:
+                ax.set_yticks(
+                    range(len(feature_order)),
+                    [
+                        feature_labels.get(comparison_name, comparison_name)
+                        for comparison_name in feature_order
+                    ],
+                )
+            else:
+                ax.set_yticks(range(len(feature_order)), [])
+
+            ax.set_xticks(np.arange(-0.5, len(bin_order), 1), minor=True)
+            ax.set_yticks(np.arange(-0.5, len(feature_order), 1), minor=True)
+            ax.grid(which="minor", color="white", linewidth=0.55)
+            ax.tick_params(axis="x", labelsize=7)
+            ax.tick_params(axis="y", labelsize=7.5)
+            ax.tick_params(which="minor", bottom=False, left=False)
+            for spine in ax.spines.values():
+                spine.set_visible(False)
+
+    sm = plt.cm.ScalarMappable(norm=color_norm, cmap=cmap)
+    sm.set_array([])
+    cbar_ax = fig.add_axes([0.30, 0.060, 0.52, 0.018])
+    cbar = fig.colorbar(sm, cax=cbar_ax, orientation="horizontal")
+    cbar.set_label(f"Median inner-CV tuning {format_metric_label(metric)}")
+    cbar.ax.xaxis.set_label_position("top")
+    fig.suptitle(
+        f"{format_model_label(model_type)} inner-CV tuning score landscape",
+        y=0.992,
+    )
+    fig.subplots_adjust(
+        left=0.34 if len(parameter_order) > 1 else 0.42,
+        right=0.98,
+        top=0.94,
+        bottom=0.18,
+        hspace=0.62,
+        wspace=0.26,
+    )
+    fig.savefig(output_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    return output_path
+
+
 def build_metric_axis_limits(
     feature_summary_df: pd.DataFrame,
     metric: str = DEFAULT_METRIC,
@@ -1352,10 +1815,20 @@ def create_evaluation_diagnostics(
         trace_df=tables["trace_df"],
         metric=metric,
     )
+    inner_cv_landscape_df = build_inner_cv_tuning_score_landscape(inner_cv_trials_df)
     selected_outer_trials_by_model = _split_tuning_trials_by_model(
         selected_outer_trials_df
     )
     inner_cv_trials_by_model = _split_tuning_trials_by_model(inner_cv_trials_df)
+    inner_cv_landscape_by_model = {
+        str(model_type): model_df.copy().dropna(axis=1, how="all")
+        for model_type, model_df in inner_cv_landscape_df.groupby(
+            "model_type",
+            sort=True,
+        )
+        if str(model_type) in MODEL_TUNING_LANDSCAPE_PARAMETERS
+        and not model_df.empty
+    }
 
     output_dir = resolve_output_dir(results_dir=results_dir, round_id=round_id)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1373,6 +1846,10 @@ def create_evaluation_diagnostics(
     ]:
         if obsolete_path.exists():
             obsolete_path.unlink()
+    for obsolete_path in output_dir.glob(
+        "*_inner_cv_tuning_score_parallel_coordinates.png"
+    ):
+        obsolete_path.unlink()
 
     metric_slug = str(metric).replace(" ", "_").replace("/", "_")
     data_paths = {
@@ -1388,6 +1865,10 @@ def create_evaluation_diagnostics(
         data_paths[f"{model_type}_inner_cv_tuning_trials_csv"] = (
             output_dir / f"{model_type}_inner_cv_tuning_trials.csv"
         )
+    for model_type in inner_cv_landscape_by_model:
+        data_paths[f"{model_type}_inner_cv_tuning_score_landscape_csv"] = (
+            output_dir / f"{model_type}_inner_cv_tuning_score_landscape.csv"
+        )
 
     plot_paths = {
         "feature_dotplot_png": output_dir / "model_family_feature_dotplot.png",
@@ -1401,8 +1882,10 @@ def create_evaluation_diagnostics(
             / f"{model_type}_selected_tuning_outer_{metric_slug}_parallel_coordinates.png"
         )
     for model_type in inner_cv_trials_by_model:
-        plot_paths[f"{model_type}_inner_cv_tuning_score_parallel_coordinates_png"] = (
-            output_dir / f"{model_type}_inner_cv_tuning_score_parallel_coordinates.png"
+        if model_type not in inner_cv_landscape_by_model:
+            continue
+        plot_paths[f"{model_type}_inner_cv_tuning_score_landscape_png"] = (
+            output_dir / f"{model_type}_inner_cv_tuning_score_landscape.png"
         )
 
     tables["trace_df"].to_csv(data_paths["tuning_trace_csv"], index=False)
@@ -1418,6 +1901,11 @@ def create_evaluation_diagnostics(
             data_paths[f"{model_type}_inner_cv_tuning_trials_csv"],
             index=False,
         )
+    for model_type, model_df in inner_cv_landscape_by_model.items():
+        model_df.to_csv(
+            data_paths[f"{model_type}_inner_cv_tuning_score_landscape_csv"],
+            index=False,
+        )
 
     if write_plots:
         for model_type, model_df in selected_outer_trials_by_model.items():
@@ -1429,11 +1917,11 @@ def create_evaluation_diagnostics(
                 model_type=model_type,
                 metric=metric,
             )
-        for model_type, model_df in inner_cv_trials_by_model.items():
-            write_inner_cv_tuning_score_parallel_coordinates_plot(
-                inner_cv_trials_df=model_df,
+        for model_type, model_df in inner_cv_landscape_by_model.items():
+            write_inner_cv_tuning_score_landscape_plot(
+                landscape_df=model_df,
                 output_path=plot_paths[
-                    f"{model_type}_inner_cv_tuning_score_parallel_coordinates_png"
+                    f"{model_type}_inner_cv_tuning_score_landscape_png"
                 ],
                 model_type=model_type,
                 metric=metric,
