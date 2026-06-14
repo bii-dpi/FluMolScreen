@@ -222,3 +222,7 @@ __marimo__/
 
 # User-specified files and folders
 tests/
+.$key_flow.drawio.bkp
+*.aux
+*.out
+FluMolScreen_old/
